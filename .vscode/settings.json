@@ -2,6 +2,7 @@
 	"files.associations": {
 		"*.erd": "json",
 		"*.vuerd": "json",
-		"mlx.h": "c"
+		"mlx.h": "c",
+		"minirt.h": "c"
 	}
 }
