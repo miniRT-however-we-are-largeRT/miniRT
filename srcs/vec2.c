@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   vec2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 17:01:00 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/11/08 17:01:23 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/12/30 21:12:16 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/vec.h"
 #include <math.h>
 
-t_vec3	ft_vec_div_f(const double t, const t_vec3 v)
+t_vec3	vdiv_f(const double t, const t_vec3 v)
 {
-	return (ft_vec_mul_f(1 / t, v));
+	return (vmult_f(1 / t, v));
 }
 
-double	ft_vec_dot(const t_vec3 u, const t_vec3 v)
+double	vdot(const t_vec3 u, const t_vec3 v)
 {
 	return (u.x * v.x + u.y * v.y + u.z * v.z);
 }
 
-t_vec3	ft_vec_cross(const t_vec3 u, const t_vec3 v)
+t_vec3	vcross(const t_vec3 u, const t_vec3 v)
 {
 	t_vec3	result;
 
@@ -33,12 +33,12 @@ t_vec3	ft_vec_cross(const t_vec3 u, const t_vec3 v)
 	return (result);
 }
 
-double	ft_vec_len(const t_vec3 v)
+double	vlen(const t_vec3 v)
 {
-	return (sqrt(ft_vec_sqr_len(v)));
+	return (sqrt(vlen_sqr(v)));
 }
 
-double	ft_vec_sqr_len(const t_vec3 v)
+double	vlen_sqr(const t_vec3 v)
 {
 	return (pow(v.x, 2.0) + pow(v.y, 2.0) + pow(v.z, 2.0));
 }

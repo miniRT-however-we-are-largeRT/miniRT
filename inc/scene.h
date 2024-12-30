@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.c                                              :+:      :+:    :+:   */
+/*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 17:12:06 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/12/30 21:13:49 by jihyjeon         ###   ########.fr       */
+/*   Created: 2024/12/30 16:35:36 by jihyjeon          #+#    #+#             */
+/*   Updated: 2024/12/30 16:38:50 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/ray.h"
+#ifndef SCENE_H
+# define SCENE_H
 
-t_ray		ray_set(t_point3 origin, t_vec3 direction)
-{
-	t_ray	target;
+# include "structure.h"
 
-	target.orig = origin;
-	target.dir = direction;
-	return (target);
-}
-
-t_point3	ray_at(t_ray ray, double t)
-{
-	t_point3	target;
-
-	target = vec3(
-			ray.orig.x + t * ray.dir.x,
-			ray.orig.y + t * ray.dir.y,
-			ray.orig.z + t * ray.dir.z);
-	return (target);
-}
+t_canvas	canvas(int w, int h);
+t_camera	camera(t_canvas *canvas, t_point3 origin);

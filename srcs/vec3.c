@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   vec3.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 17:01:43 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/11/08 17:01:47 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/12/30 21:12:38 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/vec.h"
 
-t_vec3	ft_vec_unit_vec(const t_vec3 v)
+t_vec3	uvec(const t_vec3 v)
 {
-	return (ft_vec_div_f(ft_vec_len(v), v));
+	return (vdiv_f(vlen(v), v));
 }
 
-t_vec3	ft_vec_set_xyz(const double x, const double y, const double z)
+t_vec3	vec3(const double x, const double y, const double z)
 {
 	return ((t_vec3){x, y, z});
 }

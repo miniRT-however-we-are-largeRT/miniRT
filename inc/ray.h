@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 17:11:36 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/11/08 17:13:07 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/12/30 21:13:49 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ typedef struct	s_ray
 	t_vec3		dir;
 }				t_ray;
 
-t_ray			ft_ray_set(t_point3 origin, t_vec3 direction);
-t_point3		ft_ray_at(t_ray ray, double t);
+t_ray			ray_set(t_point3 origin, t_vec3 direction);
+t_point3		ray_at(t_ray ray, double t);
 #endif

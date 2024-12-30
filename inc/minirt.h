@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:03:36 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/11/08 18:21:18 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/12/27 16:51:00 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,7 @@ typedef struct 	s_data
 	int     line_length;
 	int     endian;
 }               t_data;
+
+int	run(void);
 
 #endif
