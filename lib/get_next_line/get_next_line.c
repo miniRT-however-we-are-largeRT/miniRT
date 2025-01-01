@@ -100,7 +100,7 @@ t_gnl_list	*find_fd(t_gnl_list **head, int fd, t_gnl_list *tmp)
 {
 	if (*head == NULL)
 	{
-		*head = ft_lstnew(fd);
+		*head = ft_llstnew(fd);
 		if (*head == NULL)
 			return (NULL);
 	}
@@ -111,7 +111,7 @@ t_gnl_list	*find_fd(t_gnl_list **head, int fd, t_gnl_list *tmp)
 			return (tmp);
 		if (tmp->next == NULL)
 		{
-			tmp->next = ft_lstnew(fd);
+			tmp->next = ft_llstnew(fd);
 			if (!tmp->next)
 				return (NULL);
 			return (tmp->next);

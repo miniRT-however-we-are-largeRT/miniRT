@@ -1,32 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/30 19:16:52 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/01 22:24:32 by junhyeong        ###   ########.fr       */
+/*   Created: 2025/01/01 21:16:23 by junhyeong         #+#    #+#             */
+/*   Updated: 2025/01/01 22:25:53 by junhyeong        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/main.h"
+#include "../../inc/utils.h"
 
-t_rt	*get_rt(void)
+t_bool ft_isfloat(char *str)
 {
-	t_rt	*rt;
+	int i;
+	int dot;
 
-	rt = (t_rt *)ft_calloc(sizeof(t_rt), 1);
-	if (!rt)
-		error_handle("Error: malloc error\n");
-	return (rt);
+	i = 0;
+	dot = 0;
+	if (str[i] == '-')
+		i++;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+		{
+			if (str[i] == '.' && !dot)
+				dot++;
+			else
+				return (false);
+		}
+		i++;
+	}
+	return (true);
 }
 
-int	main(int argc, char **argv)
+int	is_ulong(char *str)
 {
-	t_rt	*rt;
+	int	i;
 
-	if (argc != 2)
-		error_handle(ARGC_ERROR);
-	rt = get_rt();
+	i = 0;
+	while (str[i] && str[i])
+	{
+		if (ft_isdigit(str[i]) != 1)
+			return (0);
+		i++;
+	}
+	return (1);
 }

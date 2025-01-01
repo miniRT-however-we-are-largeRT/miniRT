@@ -48,7 +48,7 @@ typedef struct s_var
 	char		*buf;
 }	t_var;
 
-t_gnl_list	*ft_lstnew(int fd);
+t_gnl_list	*ft_llstnew(int fd);
 t_gnl_list	*find_fd(t_gnl_list **head, int fd, t_gnl_list *tmp);
 void		lst_delone(t_gnl_list *remove, t_gnl_list **head, t_gnl_list *tmp);
 char		*read_line_ext(t_var *var);

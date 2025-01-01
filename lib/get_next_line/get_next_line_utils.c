@@ -62,7 +62,7 @@ char	*ft_strnjoin(char *s1, char *s2, int n)
 	return ((char *)var.str);
 }
 
-t_gnl_list	*ft_lstnew(int fd)
+t_gnl_list	*ft_llstnew(int fd)
 {
 	t_gnl_list	*new;
 

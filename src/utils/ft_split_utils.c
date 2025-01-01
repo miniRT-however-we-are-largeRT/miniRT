@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_split_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/13 19:14:40 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/01 23:37:35 by junhyeong        ###   ########.fr       */
+/*   Created: 2025/01/01 21:06:24 by junhyeong         #+#    #+#             */
+/*   Updated: 2025/01/01 21:06:40 by junhyeong        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../inc/utils.h"
 
-t_list	*ft_lstnew(char *content)
+void ft_free_split(char **split)
 {
-	t_list	*newnode;
+	int i;
 
-	newnode = (t_list *)malloc(sizeof(t_list));
-	if (!newnode)
-		return (NULL);
-	newnode->next = NULL;
-	newnode->content = content;
-	return (newnode);
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
+
+int ft_split_size(char **split)
+{
+	int i;
+
+	i = 0;
+	while (split[i])
+		i++;
+	return (i);
 }

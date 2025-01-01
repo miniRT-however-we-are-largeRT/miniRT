@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file.c                                             :+:      :+:    :+:   */
+/*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 00:35:14 by junhyeong         #+#    #+#             */
-/*   Updated: 2024/12/31 02:03:32 by junhyeong        ###   ########.fr       */
+/*   Updated: 2025/01/01 21:00:25 by junhyeong        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../../inc/parse.h"
 #include <fcntl.h>
 
 char *sanitize_line(char *line)
@@ -30,7 +30,7 @@ char *sanitize_line(char *line)
 	return (line);
 }
 
-bool read_file(t_rt *rt, int fd)
+t_bool read_file(t_rt *rt, int fd)
 {
 	char	*line;
 	int		num;
@@ -53,17 +53,17 @@ bool read_file(t_rt *rt, int fd)
 	return (true);
 }
 
-bool is_rt_file(char *file)
+t_bool is_rt_file(char *file)
 {
 	int len;
 
 	len = ft_strlen(file);
-	if (file[i - 1] == 't' && file[i - 2] == 'r' && file[i - 3] == '.')
+	if (file[len - 1] == 't' && file[len - 2] == 'r' && file[len - 3] == '.')
 		return (true);
 	return (false);
 }
 
-bool open_file(t_rt *rt, char *file)
+t_bool open_file(t_rt *rt, char *file)
 {
 	int fd;
 

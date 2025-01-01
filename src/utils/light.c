@@ -1,25 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/13 19:14:40 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/01 23:37:35 by junhyeong        ###   ########.fr       */
+/*   Created: 2025/01/01 23:53:58 by junhyeong         #+#    #+#             */
+/*   Updated: 2025/01/01 23:58:36 by junhyeong        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../inc/utils.h"
+#include "../../inc/minirt.h"
 
-t_list	*ft_lstnew(char *content)
+void	push_light(t_rt *rt, t_light *light)
 {
-	t_list	*newnode;
+	t_light	*tmp;
 
-	newnode = (t_list *)malloc(sizeof(t_list));
-	if (!newnode)
-		return (NULL);
-	newnode->next = NULL;
-	newnode->content = content;
-	return (newnode);
+	tmp = rt->light;
+	if (!tmp)
+	{
+		rt->light = light;
+		return ;
+	}
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = light;
+	return ;
+}
+
+void	free_lights(t_light **light)
+{
+	t_light	*tmp;
+
+	while (*light)
+	{
+		tmp = *light;
+		*light = (*light)->next;
+		free(tmp);
+	}
 }
