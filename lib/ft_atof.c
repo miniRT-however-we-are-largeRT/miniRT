@@ -1,36 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_utils.c                                   :+:      :+:    :+:   */
+/*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/01 21:06:24 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/01 21:06:40 by junhyeong        ###   ########.fr       */
+/*   Created: 2025/01/01 20:47:22 by junhyeong         #+#    #+#             */
+/*   Updated: 2025/01/02 20:19:09 by junhyeong        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/utils.h"
+#include "libft.h"
+#include <math.h>
 
-void ft_free_split(char **split)
+float	ft_atof(const char *str)
 {
-	int i;
+	float	result;
+	float	sign;
+	float	decimal;
+	int		i;
 
+	result = 0;
+	sign = 1;
+	decimal = 0;
 	i = 0;
-	while (split[i])
+	if (str[i] == '-')
 	{
-		free(split[i]);
+		sign = -1;
 		i++;
 	}
-	free(split);
-}
-
-int ft_split_size(char **split)
-{
-	int i;
-
-	i = 0;
-	while (split[i])
+	while (ft_isdigit(str[i]))
+	{
+		result = result * 10 + str[i] - '0';
 		i++;
-	return (i);
+	}
+	if (str[i] == '.')
+	{
+		i++;
+		while (ft_isdigit(str[i]))
+		{
+			decimal = decimal * 10 + str[i] - '0';
+			i++;
+		}
+	}
+	return (sign * (result + decimal / pow(10, i)));
 }

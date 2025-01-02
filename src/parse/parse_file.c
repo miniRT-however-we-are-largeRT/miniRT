@@ -6,7 +6,7 @@
 /*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 00:35:14 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/01 21:00:25 by junhyeong        ###   ########.fr       */
+/*   Updated: 2025/01/02 20:56:48 by junhyeong        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ char *sanitize_line(char *line)
 	return (line);
 }
 
+void	print_line(char *line)
+{
+	printf("line: %s\n", line);
+}
+
 t_bool read_file(t_rt *rt, int fd)
 {
 	char	*line;
@@ -45,11 +50,13 @@ t_bool read_file(t_rt *rt, int fd)
 		if (!line)
 			break ;
 		line = sanitize_line(line);
+		print_line(line);
 		parse_line(rt, line);
 		free(line);
 	}
 	if (ret < 0)
-		error_handle("Error: read error\n");
+		error_handle(READ_ERROR);
+	close(fd);
 	return (true);
 }
 

@@ -6,7 +6,7 @@
 /*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 20:42:25 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/01 23:54:26 by junhyeong        ###   ########.fr       */
+/*   Updated: 2025/01/02 20:15:01 by junhyeong        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ t_bool parse_float(char *str, float *num)
 t_bool	parse_color(char *str, t_color *color)
 {
 	char	**split;
-	int		r;
-	int		g;
-	int		b;
 
 	split = ft_split(str, ',');
 	if (ft_split_size(split) != 3)

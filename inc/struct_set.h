@@ -6,7 +6,7 @@
 /*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:36:06 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/01 20:49:35 by junhyeong        ###   ########.fr       */
+/*   Updated: 2025/01/02 18:57:59 by junhyeong        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 
 #include "bool.h"
 #include <unistd.h>
+
+# define NB_PARAMS_PLANE 4
+# define NB_PARAMS_SPHERE 4
+# define NB_PARAMS_CYLINDER 6
+# define NB_PARAMS_CONE 7
+# define NB_PARAMS_TRIANGLE 5
+# define NB_PARAMS_TORUS 6
 
 typedef enum e_object_id
 {
