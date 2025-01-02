@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   object_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 17:11:36 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/02 16:27:33 by jihyjeon         ###   ########.fr       */
+/*   Created: 2025/01/02 15:31:03 by jihyjeon          #+#    #+#             */
+/*   Updated: 2025/01/02 15:35:25 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-# define RAY_H
+#include "../inc/structure.h"
 
-# include "vec.h"
-# include "structure.h"
-
-typedef struct	s_ray
+t_sphere	sphere(t_point3 center, double radius)
 {
-	t_point3	orig;
-	t_vec3		dir;
-}				t_ray;
+	t_sphere	sp;
 
-t_ray			ray_set(t_point3 origin, t_vec3 direction);
-t_point3		ray_at(t_ray ray, double t);
-t_ray			ray_primary(t_camera *cam, double u, double v);
-t_color3		ray_color(t_ray *r);
-t_bool			hit_sphere(t_sphere *sp, t_ray *ray);
-
-#endif
+	sp.center = center;
+	sp.radius = radius;
+	sp.radius2 = radius * radius;
+	return (sp);
+}

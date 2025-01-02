@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   hit.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 17:11:36 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/02 16:27:33 by jihyjeon         ###   ########.fr       */
+/*   Created: 2025/01/02 16:17:51 by jihyjeon          #+#    #+#             */
+/*   Updated: 2025/01/02 16:25:45 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-# define RAY_H
+#include "../inc/structure.h"
+#include "../inc/vec.h"
 
-# include "vec.h"
-# include "structure.h"
-
-typedef struct	s_ray
+t_bool	hit_sphere(t_sphere *sp, t_ray *ray)
 {
-	t_point3	orig;
-	t_vec3		dir;
-}				t_ray;
+	t_vec3	oc;
+	double	a;
+	double	b;
+	double	c;
+	double	dscrm;
 
-t_ray			ray_set(t_point3 origin, t_vec3 direction);
-t_point3		ray_at(t_ray ray, double t);
-t_ray			ray_primary(t_camera *cam, double u, double v);
-t_color3		ray_color(t_ray *r);
-t_bool			hit_sphere(t_sphere *sp, t_ray *ray);
-
-#endif
+	oc = vsub(ray->orig, sp->center);
+	a = vdot(ray->dir, ray->dir);
+	b = 2.0 * vdot(oc, ray->dir);
+	c = vdot(oc, oc) - sp->radius2;
+	dscrm = b * b - 4 * a * c;
+	return (dscrm > 0); // not considering when = 0?
+}
