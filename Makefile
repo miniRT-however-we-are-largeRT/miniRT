@@ -11,6 +11,7 @@
 # **************************************************************************** #
 
 # Compiler and flags
+NAME = miniRT
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
@@ -20,35 +21,32 @@ LIBDIR = ./lib
 SRCDIR = ./src
 LIBFTDIR = $(LIBDIR)
 MLXDIR = $(LIBDIR)/mlx
-OBJDIR = ./obj
+OBJDIR = ./
 
 # Files
-SRC = $(SRC_DIR)/rt/canvas.c \
-	$(SRC_DIR)/rt/hit.c \
-	$(SRC_DIR)/rt/object_init.c \
-	$(SRC_DIR)/rt/ray.c \
-	$(SRC_DIR)/rt/run.c \
-	$(SRC_DIR)/rt/scene.c \
-	$(SRC_DIR)/rt/vec1.c \
-	$(SRC_DIR)/rt/vec2.c \
-	$(SRC_DIR)/rt/vec3.c
-	$(SRC_DIR)/main.c \
-	$(SRC_DIR)/parse/parse_file.c \
-	$(SRC_DIR)/parse/parse.c \
-	$(SRC_DIR)/parse/parse_init.c \
-	$(SRC_DIR)/parse/parse_object.c \
-	$(SRC_DIR)/parse/parse_utils.c \
-	$(SRC_DIR)/utils/utils.c \
-	$(SRC_DIR)/utils/error.c \
-	$(SRC_DIR)/utils/object.c \
-	$(SRC_DIR)/utils/light.c
+SRC =	$(SRCDIR)/rt/canvas.c \
+	$(SRCDIR)/rt/hit.c \
+	$(SRCDIR)/rt/object_init.c \
+	$(SRCDIR)/rt/ray.c \
+	$(SRCDIR)/rt/run.c \
+	$(SRCDIR)/rt/scene.c \
+	$(SRCDIR)/rt/vec1.c \
+	$(SRCDIR)/rt/vec2.c \
+	$(SRCDIR)/rt/vec3.c \
+	$(SRCDIR)/main.c \
+	$(SRCDIR)/parse/parse_file.c \
+	$(SRCDIR)/parse/parse.c \
+	$(SRCDIR)/parse/parse_init.c \
+	$(SRCDIR)/parse/parse_object.c \
+	$(SRCDIR)/parse/parse_utils.c \
+	$(SRCDIR)/utils/utils.c \
+	$(SRCDIR)/utils/error.c \
+	$(SRCDIR)/utils/object.c \
+	$(SRCDIR)/utils/light.c 
 
 OBJS = $(SRC:%.c=$(OBJDIR)/%.o)
 LIBFT = $(LIBFTDIR)/libft.a
 MLX = $(MLXDIR)/libmlx.a
-
-# Output
-NAME = miniRT
 
 # Commands
 all: $(NAME)

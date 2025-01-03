@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   canvas.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/13 16:24:38 by junhyeop          #+#    #+#             */
-/*   Updated: 2023/11/03 17:47:48 by junhyeop         ###   ########.fr       */
+/*   Created: 2024/12/30 16:38:58 by jihyjeon          #+#    #+#             */
+/*   Updated: 2025/01/03 17:05:41 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../inc/minirt.h"
 
-void	ft_putchar_fd(char c, int fd)
+t_canvas	canvas(int width, int height)
 {
-	if (fd < 0)
-		return ;
-	write(fd, &c, 1);
+	t_canvas canvas;
+
+	canvas.w = width;
+	canvas.h = height;
+	canvas.aspect_ratio = (double)width / (double)height;
+	return(canvas);
 }
-
-// int main(void)
-// {
-// 	char c = 'a';
-// 	int fd = 0;
-// 	ft_putchar_fd(c, fd);
-
-// }
