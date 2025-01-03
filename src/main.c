@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 19:16:52 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/02 19:46:51 by junhyeong        ###   ########.fr       */
+/*   Updated: 2025/01/03 16:33:37 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,24 @@ t_rt	*get_rt(void)
 	return (rt);
 }
 
-void	print_rt(t_rt *rt)
-{
-	printf("path: %s\n", rt->path);
-	printf("width: %f\n", rt->width);
-	printf("height: %f\n", rt->height);
-	printf("aspectratio: %f\n", rt->aspectratio);
-	printf("camera coords: %f %f %f\n", rt->camera.coords.x, rt->camera.coords.y, rt->camera.coords.z);
-	printf("camera orient: %f %f %f\n", rt->camera.orient.x, rt->camera.orient.y, rt->camera.orient.z);
-	printf("camera fov: %lu\n", rt->camera.fov);
-	printf("ambient lighting: %f\n", rt->ambient.lighting);
-	printf("ambient color: %f %f %f\n", rt->ambient.color.r, rt->ambient.color.g, rt->ambient.color.b);
-
-	// print all
-	
-	
-}
+// void	print_rt(t_rt *rt)
+// {
+// 	t_obj *obj = rt->objs;
+// 	printf("path: %s\n", rt->path);
+// 	printf("width: %f\n", rt->width);
+// 	printf("height: %f\n", rt->height);
+// 	printf("aspectratio: %f\n", rt->aspectratio);
+// 	printf("camera coords: %f %f %f\n", rt->camera.coords.x, rt->camera.coords.y, rt->camera.coords.z);
+// 	printf("camera orient: %f %f %f\n", rt->camera.orient.x, rt->camera.orient.y, rt->camera.orient.z);
+// 	printf("camera fov: %lu\n", rt->camera.fov);
+// 	printf("ambient lighting: %f\n", rt->ambient.lighting);
+// 	printf("ambient color: %f %f %f\n", rt->ambient.color.r, rt->ambient.color.g, rt->ambient.color.b);
+// 	printf("sp: %f %f %f\n", obj->object.sphere.color.r, obj->object.sphere.coords.x, obj->object.sphere.diameter);
+// 	obj = obj->next;
+// 	printf("pl: %f %f %f\n", obj->object.plane.color.r, obj->object.plane.coords.x, obj->object.plane.orient.x);
+// 	obj = obj->next;
+// 	printf("cy: %f %f %f\n", obj->object.cylinder.color.r, obj->object.cylinder.coords.x, obj->object.cylinder.orient.x);
+// }
 
 int	main(int argc, char **argv)
 {
@@ -49,5 +51,5 @@ int	main(int argc, char **argv)
 	if (!open_file(rt, argv[1]))
 		error_handle(OPEN_ERROR);
 	
-	print_rt(rt);
+	// print_rt(rt);
 }
