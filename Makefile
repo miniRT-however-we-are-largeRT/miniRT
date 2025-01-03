@@ -10,63 +10,73 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME        = minirt
+# Compiler and flags
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
 
-SRC_DIR     = ./src
-LIBDIR      = ./lib/
-LIBNAME     = ft
-LIB         = $(LIBDIR)lib$(LIBNAME).a
-INCDIRS     = ./inc
+# Directories
+INCDIR = ./inc
+LIBDIR = ./lib
+SRCDIR = ./src
+LIBFTDIR = $(LIBDIR)
+MLXDIR = $(LIBDIR)/mlx
+OBJDIR = ./obj
 
-SRC         = $(SRC_DIR)/main.c \
-              $(SRC_DIR)/parse/parse_file.c \
-              $(SRC_DIR)/parse/parse.c \
-              $(SRC_DIR)/parse/parse_init.c \
-              $(SRC_DIR)/parse/parse_object.c \
-              $(SRC_DIR)/parse/parse_utils.c \
-              $(SRC_DIR)/utils/utils.c \
-              $(SRC_DIR)/utils/error.c \
-              $(SRC_DIR)/utils/object.c \
-              $(SRC_DIR)/utils/light.c
+# Files
+SRC = $(SRC_DIR)/rt/canvas.c \
+	$(SRC_DIR)/rt/hit.c \
+	$(SRC_DIR)/rt/object_init.c \
+	$(SRC_DIR)/rt/ray.c \
+	$(SRC_DIR)/rt/run.c \
+	$(SRC_DIR)/rt/scene.c \
+	$(SRC_DIR)/rt/vec1.c \
+	$(SRC_DIR)/rt/vec2.c \
+	$(SRC_DIR)/rt/vec3.c
+	$(SRC_DIR)/main.c \
+	$(SRC_DIR)/parse/parse_file.c \
+	$(SRC_DIR)/parse/parse.c \
+	$(SRC_DIR)/parse/parse_init.c \
+	$(SRC_DIR)/parse/parse_object.c \
+	$(SRC_DIR)/parse/parse_utils.c \
+	$(SRC_DIR)/utils/utils.c \
+	$(SRC_DIR)/utils/error.c \
+	$(SRC_DIR)/utils/object.c \
+	$(SRC_DIR)/utils/light.c
 
-OBJS        = $(SRC:.c=.o)
+OBJS = $(SRC:%.c=$(OBJDIR)/%.o)
+LIBFT = $(LIBFTDIR)/libft.a
+MLX = $(MLXDIR)/libmlx.a
 
-CC          = gcc
-MAKE        = make
-RM          = rm -f
-CFLAGS      = -Wall -Wextra -Werror $(foreach D, $(INCDIRS), -I$(D))
-READFLAGS   = -lm
+# Output
+NAME = miniRT
 
-# Colors for better output
-RESET       = \033[0m
-GREEN       = \033[32m
-YELLOW      = \033[33m
-BLUE        = \033[34m
-
+# Commands
 all: $(NAME)
 
-%.o: %.c $(foreach D, $(INCDIRS), $(D)*.h)
-	@echo "$(YELLOW)Compiling$(RESET): $<"
-	@$(CC) $(CFLAGS) -c -o $@ $<
+$(NAME): $(OBJS) $(LIBFT) $(MLX)
+	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFTDIR) -lft -lm -L$(MLXDIR) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
-$(NAME): $(LIB) $(OBJS)
-	@echo "$(BLUE)Linking$(RESET): Creating $(NAME)"
-	@$(CC) -o $(NAME) $(OBJS) -L$(LIBDIR) -l$(LIBNAME) $(READFLAGS)
-	@echo "$(GREEN)Build complete!$(RESET) $(NAME) is ready."
+$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
+	$(CC) $(CFLAGS) -I$(INCDIR) -I$(LIBFTDIR) -I$(MLXDIR) -c $< -o $@
 
-$(LIB):
-	@echo "$(YELLOW)Building library$(RESET): $(LIBNAME)"
-	@$(MAKE) -C $(LIBDIR) all
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
+
+$(LIBFT):
+	$(MAKE) -C $(LIBFTDIR)
+
+$(MLX):
+	$(MAKE) -C $(MLXDIR)
 
 clean:
-	@echo "$(BLUE)Cleaning$(RESET): Object files"
-	@$(MAKE) -C $(LIBDIR) clean
-	@$(RM) $(OBJS)
+	$(MAKE) -C $(LIBFTDIR) clean
+	$(MAKE) -C $(MLXDIR) clean
+	rm -rf $(OBJDIR)
 
 fclean: clean
-	@echo "$(BLUE)Cleaning$(RESET): $(NAME)"
-	@$(MAKE) -C $(LIBDIR) fclean
-	@$(RM) $(NAME)
+	$(MAKE) -C $(LIBFTDIR) fclean
+	$(MAKE) -C $(MLXDIR) clean
+	rm -f $(NAME)
 
 re: fclean all
 
