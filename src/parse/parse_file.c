@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 00:35:14 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/02 20:56:48 by junhyeong        ###   ########.fr       */
+/*   Updated: 2025/01/03 16:33:49 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,32 +30,28 @@ char *sanitize_line(char *line)
 	return (line);
 }
 
-void	print_line(char *line)
-{
-	printf("line: %s\n", line);
-}
+// void	print_line(char *line)
+// {
+// 	printf("line: %s\n", line);
+// }
 
 t_bool read_file(t_rt *rt, int fd)
 {
 	char	*line;
 	int		num;
-	int		ret;
 
-	ret = 1;
 	num = 0;
-	while (ret)
+	while (true)
 	{
 		num++;
 		line = get_next_line(fd);
 		if (!line)
 			break ;
 		line = sanitize_line(line);
-		print_line(line);
+		// print_line(line);
 		parse_line(rt, line);
 		free(line);
 	}
-	if (ret < 0)
-		error_handle(READ_ERROR);
 	close(fd);
 	return (true);
 }

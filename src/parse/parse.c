@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 02:04:49 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/02 21:07:43 by junhyeong        ###   ########.fr       */
+/*   Updated: 2025/01/03 16:24:31 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	parse_shape(t_rt *rt, char *line, int id, int nb_params)
 		parse_triangle(split, obj);
 	else
 		error_handle("Error: invalid identifier\n");
+	printf("CLEAR\n");
+
 	push_obj(rt, obj);
 	rt->num_objs++;
 	ft_free_split(split);
