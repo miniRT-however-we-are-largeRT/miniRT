@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/scene.h"
+#include "../../inc/minirt.h"
 
 t_camera	camera(t_canvas *canvas, t_point3 orgn)
 {

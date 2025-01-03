@@ -10,24 +10,43 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
+#include "../../inc/minirt.h"
 
 
-double	hit_sphere(t_sphere *sp, t_ray *ray)
+t_bool	hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec)
 {
 	t_vec3	oc;
 	double	a;
-	double	b;
+	double	half_b;
 	double	c;
 	double	dscrm;
+	double	sqrtd;
+	double	root;
 
 	oc = vsub(ray->orig, sp->center);
-	a = vdot(ray->dir, ray->dir);
-	b = 2.0 * vdot(oc, ray->dir);
-	c = vdot(oc, oc) - sp->radius2;
-	dscrm = b * b - 4 * a * c;
+	a = vlen_sqr(ray->dir);
+	half_b = vdot(oc, ray->dir);
+	c = vlen_sqr(oc) - sp->radius2;
+	dscrm = half_b * half_b - a * c;
 	if (dscrm < 0)
-		return (-1.0);
-	else
-		return ((-b - sqrt(dscrm)) /  (2.0 * a));
+		return (FALSE);
+	sqrtd = sqrt(dscrm);
+	root = (-half_b - sqrtd) / a;
+	if (root < rec->tmin || rec->tmax < root)
+	{
+		root = (-half_b + sqrtd) / a;
+		if (root < rec->tmin || rec->tmax < root)
+			return (FALSE);
+	}
+	rec->t = root;
+	rec->p = ray_at(*ray, root);
+	rec->normal = vdiv_f(sp->radius, vsub(rec->p, sp->center));
+	set_face_normal(ray, rec);
+	return (TRUE);
+}
+
+void	set_face_normal(t_ray *r, t_hit_record *rec)
+{
+	rec->front_face = vdot(r->dir, rec->normal) < 0;
+    rec->normal = (rec->front_face) ? rec->normal : vmult_f(-1, rec->normal);
 }

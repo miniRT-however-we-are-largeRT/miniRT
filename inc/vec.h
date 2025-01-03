@@ -13,6 +13,8 @@
 #ifndef VEC_H
 # define VEC_H
 
+# include <math.h>
+
 typedef struct s_point3
 {
 	float        x;

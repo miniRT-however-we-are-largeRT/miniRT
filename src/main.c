@@ -10,17 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/main.h"
+#include "../inc/minirt.h"
+// #include "../inc/main.h"
 
-t_rt	*get_rt(void)
-{
-	t_rt	*rt;
+// t_rt	*get_rt(void)
+// {
+// 	t_rt	*rt;
 
-	rt = (t_rt *)ft_calloc(sizeof(t_rt), 1);
-	if (!rt)
-		error_handle("Error: malloc error\n");
-	return (rt);
-}
+// 	rt = (t_rt *)ft_calloc(sizeof(t_rt), 1);
+// 	if (!rt)
+// 		error_handle("Error: malloc error\n");
+// 	return (rt);
+// }
 
 // void	print_rt(t_rt *rt)
 // {
@@ -41,15 +42,20 @@ t_rt	*get_rt(void)
 // 	printf("cy: %f %f %f\n", obj->object.cylinder.color.r, obj->object.cylinder.coords.x, obj->object.cylinder.orient.x);
 // }
 
-int	main(int argc, char **argv)
-{
-	t_rt	*rt;
+// int	main(int argc, char **argv)
+// {
+// 	t_rt	*rt;
 
-	if (argc != 2)
-		error_handle(ARGC_ERROR);
-	rt = get_rt();
-	if (!open_file(rt, argv[1]))
-		error_handle(OPEN_ERROR);
+// 	if (argc != 2)
+// 		error_handle(ARGC_ERROR);
+// 	rt = get_rt();
+// 	if (!open_file(rt, argv[1]))
+// 		error_handle(OPEN_ERROR);
 	
-	// print_rt(rt);
+// 	// print_rt(rt);
+// }
+
+int main (void)
+{
+	run();
 }

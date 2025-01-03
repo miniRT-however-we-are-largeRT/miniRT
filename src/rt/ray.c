@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
+#include "../../inc/minirt.h"
 
 t_ray	ray_set(t_point3 origin, t_vec3 direction)
 {
@@ -44,11 +44,14 @@ t_ray	ray_primary(t_camera *cam, double u, double v)
 
 t_color3	ray_color(t_ray *r, t_sphere *sphere)
 {
-	double	t;
+	t_bool	t;
 	t_vec3	n;
+	t_hit_record	rec;
 
-	t = hit_sphere(sphere, r);
-	if (t > 0.0)
+	rec.tmin = 0;
+	rec.tmax = INFINITY;
+	t = hit_sphere(sphere, r, &rec);
+	if (t == TRUE)
 	{
 		n = uvec(vsub(ray_at(*r, t), sphere->center));
 		return (vmult_f(0.5, color3(n.x + 1, n.y + 1, n.z + 1)));
