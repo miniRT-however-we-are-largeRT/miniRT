@@ -11,7 +11,17 @@ MLXDIR = $(LIBDIR)/mlx
 OBJDIR = ./obj
 
 # Files
-SRC = main.c ray.c run.c vec1.c vec2.c vec3.c
+SRC = canvas.c \
+hit.c \
+main.c \
+object_init.c \
+ray.c \
+run.c \
+scene.c \
+vec1.c \
+vec2.c \
+vec3.c
+
 OBJS = $(SRC:%.c=$(OBJDIR)/%.o)
 LIBFT = $(LIBFTDIR)/libft.a
 MLX = $(MLXDIR)/libmlx.a

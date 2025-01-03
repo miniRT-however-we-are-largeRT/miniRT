@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:52:55 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/02 15:35:53 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/03 17:04:56 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 # define STRUCTURE_H
 
 # include <math.h>
-# include "ray.h"
+# include "minirt.h"
 
-const double	g_pi = 3.1415926535897932385;
-typedef int		t_bool;
 
 # define		FALSE	0
 # define		TRUE	1

@@ -6,11 +6,11 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:31:03 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/02 15:35:25 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/03 17:05:47 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/structure.h"
+#include "../inc/minirt.h"
 
 t_sphere	sphere(t_point3 center, double radius)
 {

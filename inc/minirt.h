@@ -6,16 +6,20 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:03:36 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/12/27 16:51:00 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/03 17:13:28 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
-# include "../lib/mlx/mlx.h"
-# include "../lib/libft/libft.h"
 # include <stdio.h>
 # include <stdlib.h>
+# include "../lib/mlx/mlx.h"
+# include "../lib/libft/libft.h"
+# include "vec.h"
+# include "structure.h"
+# include "ray.h"
+# include "scene.h"
 
 # define	UP          126
 # define	DOWN        125

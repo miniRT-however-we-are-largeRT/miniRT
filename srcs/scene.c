@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:41:38 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/02 15:34:31 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/03 16:38:45 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ t_camera	camera(t_canvas *canvas, t_point3 orgn)
 	cam.vertical = vec3(0, cam.viewport_h, 0);
 	cam.lower_left = vsub(vsub(vsub(cam.origin, vdiv_f(2, cam.horizontal)), \
 						vdiv_f(2, cam.vertical)), vec3(0, 0, focal_len));
+	return (cam);
 }

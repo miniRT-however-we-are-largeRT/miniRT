@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:53:57 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/12/27 16:50:00 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/03 17:09:59 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,28 +78,31 @@ int ft_key_release(int keycode, t_data *data)
 
 int ft_draw(t_data *data)
 {
-	//	printf("ft_draw!\n");
 	int i;
 	int j;
-	int k;
-	int x = data->x;
-	int y = data->y;
+	t_canvas	canv;
+	t_camera	cam;
+	t_sphere	sphere;
 
-	for (i = 0; i < data->width; i++)
-	{
-		for (j = 0; j < data->height; j++)
-			my_mlx_pixel_put(data, i, j, 0x00000000);
-	}
-	for (i = x, k = 99; i < x + 50; i++, k -= 2)
-	{
-		for (j = y + k; j < y + 100; j++)
-			my_mlx_pixel_put(data, i, j, 0x0000FF00);
-	}
-	for (i = x + 50, k = 0; i < x + 100; i++, k += 2)
-	{
-		for (j = y + k; j < y + 100; j++)
-			my_mlx_pixel_put(data, i, j, 0x0000FF00);
-	}
+	canv = canvas(data->width, data->height);
+	cam = camera(&canv, vec3(0, 0, 0));
+	sphere.center = vec3(0, 0, -1);;
+	sphere.radius = 0.5;
+	sphere.radius2 = 0.5 * 0.5;
+	for (j = 0; j < canv.h; j++)
+    {
+        for (i = 0; i < canv.w; i++)
+        {
+            double u = (double)i / (canv.w - 1);
+            double v = (double)(canv.h - 1 - j) / (canv.h - 1);
+            t_ray r = ray_primary(&cam, u, v);
+            t_color3 pixel_color = ray_color(&r, &sphere);
+            int color = ((int)(255.999 * pixel_color.x) << 16) |
+                        ((int)(255.999 * pixel_color.y) << 8) |
+                        ((int)(255.999 * pixel_color.z));
+            my_mlx_pixel_put(data, i, j, color);
+        }
+    }
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 	return (0);
 }

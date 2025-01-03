@@ -6,14 +6,14 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:35:36 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/02 16:16:36 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/03 17:04:52 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCENE_H
 # define SCENE_H
 
-# include "structure.h"
+# include "minirt.h"
 
 t_canvas	canvas(int w, int h);
 t_camera	camera(t_canvas *canvas, t_point3 origin);
