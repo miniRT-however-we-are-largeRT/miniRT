@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:52:55 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/03 17:04:56 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/04 22:26:25 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@
 
 # define		FALSE	0
 # define		TRUE	1
-typedef int		t_object_type;;
 # define		SP		0
 
-typedef struct s_object t_object;
 typedef struct s_cam_scene_data
 {
 	t_point3	viewpoint;
@@ -92,6 +90,75 @@ typedef enum e_object_id
 	id_torus
 }	t_obj_id;
 
+typedef struct s_plane
+{
+	t_obj_id	id;
+	t_vec3		coords;
+	t_vec3		orient;
+	t_color3		color;
+}	t_plane;
+
+typedef struct s_cylinder
+{
+	t_obj_id	id;
+	t_vec3		coords;
+	t_vec3		orient;
+	float		diameter;
+	float		height;
+	float		r2;
+	t_vec3		p1;
+	t_vec3		p2;
+	t_vec3		delta_p;
+	t_color3		color;
+}	t_cylinder;
+
+// typedef struct s_sphere
+// {
+// 	t_obj_id	id;
+// 	t_vec3		coords;
+// 	float		diameter;
+// 	float		r2;
+// 	t_color3		color;
+// }	t_sphere;
+
+typedef struct s_triangle
+{
+	t_obj_id	id;
+	t_vec3		c[3];
+	t_vec3		edge[3];
+	t_vec3		n;
+	t_color3		color;
+	float		area2;
+}	t_triangle;
+
+typedef struct s_cone
+{
+	t_obj_id	id;
+	t_vec3		coords;
+	t_vec3		orient;
+	float		h;
+	float		h2;
+	float		angle;
+	float		cos2;
+	t_vec3		c1;
+	t_vec3		c2;
+	float		r1;
+	float		r2;
+	t_color3		color;
+}	t_cone;
+
+typedef	struct s_torus
+{
+	t_obj_id	id;
+	t_vec3		coords;
+	t_vec3		orient;
+	float		sml_r;
+	float		sml_r2;
+	float		big_r;
+	float		big_r2;
+	t_color3		color;
+}	t_torus;
+
 typedef union u_object
 {
 	t_sphere	sphere;
@@ -102,7 +169,21 @@ typedef union u_object
 	t_torus		torus;
 }	t_obj_union;
 
-typedef struct s_obj
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	char	*path;
+	int		width;
+	int		height;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		addr_incr;
+	int		antialiasing_on;
+}	t_img;
+
+typedef struct s_object
 {
 	t_obj_id		id;
 	t_obj_union		object;
@@ -110,12 +191,12 @@ typedef struct s_obj
 	float			specn;
 	float			mirror;
 	float			refract;
-	t_vect			ex;
-	t_vect			ey;
-	t_vect			ez;
-	t_vect			coords;
-	t_color			color;
-	t_color			color2;
+	t_vec3			ex;
+	t_vec3			ey;
+	t_vec3			ez;
+	t_vec3			coords;
+	t_color3		color;
+	t_color3		color2;
 	float			h;
 	float			pattern_len;
 	int				pattern_num;
@@ -126,8 +207,8 @@ typedef struct s_obj
 	t_bool			has_texture;
 	t_img			bump;
 	t_img			texture;
-	struct s_obj	*next;
-}	t_obj;
+	struct s_object	*next;
+}	t_object;
 
 // t_camera		ft_camera_set(t_point3 pos, t_vec3 dir, double vfov);
 // t_ray			ft_camera_get_ray(t_camera *cam, double u, double v);
