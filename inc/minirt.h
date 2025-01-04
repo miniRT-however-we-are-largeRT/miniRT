@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:03:36 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/03 20:02:21 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/04 22:37:51 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,8 @@
 # include "struct_set.h"
 # include <stdio.h>
 # include <stdlib.h>
+# include <pthread.h>
 # include "../lib/mlx/mlx.h"
-# include "vec.h"
-# include "structure.h"
-# include "ray.h"
-# include "scene.h"
 
 # define	UP          126
 # define	DOWN        125
@@ -33,6 +30,42 @@
 # define 	KeyPress    2
 # define 	KeyRelease  3
 # define 	MAX_KEY     65535
+
+# define EPSILON 0.0001
+# define SPECULAR_KV 0.5
+# define SPECULAR_N 20
+# define MIRROR 0.0
+# define REFRACT 0.0
+# define PATTERN_LEN 0.0
+# define PATTERN_NUM 0
+# define FOCAL_DIST 0.5
+# define WIN_WIDTH 1280
+# define WIN_HEIGHT 720
+# define DECO_WIDTH 60
+# define COLORDEF 0x81A1C1
+# define BG_COLOR 0xCFCFFF
+# define WHITE 0x00FFFFFF
+# define BLACK 0x0000000
+# define DARKGREY 0x333333
+# define MAX_KEY 65535
+# define MAX_REFLECT 5
+# define ANTIALIASING_ON false
+# define PROGBAR_TEXT_W 90
+# define PROGBAR_TEXT_H 12
+# define PROGBAR_W 180
+# define PROGBAR_H 12
+# define MAX_THREADS 10
+# define IS_LINUX 0
+# define ESC_KEY 53
+# define A_KEY 0
+# define S_KEY 1
+# define D_KEY 2
+# define C_KEY 5
+# define I_KEY 34
+# define P_KEY 35
+# define L_KEY 37
+# define LEFT_CLICK 1
+# define RIGHT_CLICK 2
 
 typedef struct s_event
 {
@@ -94,5 +127,13 @@ typedef struct s_line_trd
 // }               t_data;
 
 int	run(void);
+
+// window.c
+void	rt_init(t_rt *rt, char *path);
+void	rt_clear(t_rt *rt);
+void	rt_free(t_rt *rt);
+
+void	object_render(t_rt *rt);
+
 
 #endif

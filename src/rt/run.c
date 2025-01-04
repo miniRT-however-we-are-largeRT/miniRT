@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:53:57 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/03 17:09:59 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/04 22:38:13 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,15 @@ int ft_key_release(int keycode, t_data *data)
 	return (0);
 }
 
-int ft_draw(t_data *data)
+int ft_draw(t_data *data, t_rt *rt)
 {
 	int i;
 	int j;
 	t_canvas	canv;
 	t_camera	cam;
 	t_sphere	sphere;
+
+	object_render(rt);
 
 	canv = canvas(data->width, data->height);
 	cam = camera(&canv, vec3(0, 0, 0));
