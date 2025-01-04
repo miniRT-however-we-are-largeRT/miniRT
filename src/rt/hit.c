@@ -6,12 +6,41 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:17:51 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/03 17:05:44 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/04 22:16:13 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
+t_bool	hit(t_object *world, t_ray *ray, t_hit_record *rec)
+{
+	t_bool	hit_any;
+	t_hit_record	tmp_rec;
+
+	tmp_rec = *rec;
+	hit_any = FALSE;
+	while (world)
+	{
+		if (hit_obj(world, ray, &tmp_rec))
+		{
+			hit_any = TRUE;
+			tmp_rec.tmax = tmp_rec.t;
+			*rec = tmp_rec;
+		}
+		world = world->next;
+	}
+	return (hit_any);
+}
+
+t_bool	hit_obj(t_object *obj, t_ray *ray, t_hit_record *rec)
+{
+	t_bool	hit_result;
+
+	hit_result = FALSE;
+	if (world->id == id_sphere)
+		hit_result = hit_sphere(world, ray, rec);
+	return (hit_result);
+}
 
 t_bool	hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec)
 {

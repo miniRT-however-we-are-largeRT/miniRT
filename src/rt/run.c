@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:53:57 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/03 17:09:59 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/04 22:21:29 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,12 @@ int ft_draw(t_data *data)
 	int j;
 	t_canvas	canv;
 	t_camera	cam;
-	t_sphere	sphere;
+	t_object	*world;
 
 	canv = canvas(data->width, data->height);
 	cam = camera(&canv, vec3(0, 0, 0));
-	sphere.center = vec3(0, 0, -1);;
-	sphere.radius = 0.5;
-	sphere.radius2 = 0.5 * 0.5;
+	//object addition
+	
 	for (j = 0; j < canv.h; j++)
     {
         for (i = 0; i < canv.w; i++)
@@ -96,7 +95,8 @@ int ft_draw(t_data *data)
             double u = (double)i / (canv.w - 1);
             double v = (double)(canv.h - 1 - j) / (canv.h - 1);
             t_ray r = ray_primary(&cam, u, v);
-            t_color3 pixel_color = ray_color(&r, &sphere);
+            t_color3 pixel_color = ray_color(&r, world);
+			//write color
             int color = ((int)(255.999 * pixel_color.x) << 16) |
                         ((int)(255.999 * pixel_color.y) << 8) |
                         ((int)(255.999 * pixel_color.z));
