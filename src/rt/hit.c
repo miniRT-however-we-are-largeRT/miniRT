@@ -12,30 +12,6 @@
 
 #include "../../inc/minirt.h"
 
-t_bool	hit(t_object *world, t_ray *ray, t_hit_record *rec)
-{
-	t_bool			hit_any;
-	t_hit_record	tmp_rec;
-
-	tmp_rec = *rec;
-	hit_any = FALSE;
-	while (world)
-	{
-		if (hit_obj(world, ray, &tmp_rec))
-		{
-			hit_any = TRUE;
-			tmp_rec.tmax = tmp_rec.t;
-			*rec = tmp_rec;
-		}
-		world = world->next;
-	}
-	return (hit_any);
-}
-
-t_bool	hit_obj(t_object *world, t_ray *ray, t_hit_record *rec)
-{
-
-}
 
 t_bool	hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec)
 {
