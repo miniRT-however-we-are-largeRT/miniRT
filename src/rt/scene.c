@@ -30,3 +30,24 @@ t_camera	camera(t_canvas *canvas, t_point3 orgn)
 						vdiv_f(2, cam.vertical)), vec3(0, 0, focal_len));
 	return (cam);
 }
+
+t_scene *scene_init(void)
+{
+	t_scene     *scene;
+	t_object    *world;
+	t_object    *lights;
+	double      ka; // 8.4 에서 설명
+
+	scene = (t_scene *)malloc(sizeof(t_scene));
+	if (!scene)
+		return (NULL);
+	scene->canvas = canvas(600, 400);
+	scene->camera = camera(&scene->canvas, point3(0, 0, 0));
+	world = object_init_sphere(point3(0, 0, -5), 2, color3(0.5, 0, 0), color3(0.9, 0.3, 0.5));
+	scene->world = world;
+	lights = object(id_light, *light_point(point3(0, 5, 0), color3(1, 1, 1), 0.5), color3(0, 0, 0));
+	scene->light = lights;
+	ka = 0.1; // 8.4 에서 설명
+	scene->ambient = vmult_f(ka, color3(1,1,1)); // 8.4 에서 설명
+	return (scene);
+}

@@ -20,89 +20,31 @@ void my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int ft_move(t_data *data)
+int ft_draw(t_data *data) // sce
 {
-	if (data->left == 1 && data->x > 0)
-	{
-		data->x -= 3;
-		printf("x = %d, y= %d\n", data->x, data->y);
-	}
-	if (data->right == 1 && data->x + 100 < data->width)
-	{
-		data->x += 3;
-		printf("x = %d, y= %d\n", data->x, data->y);
-	}
-	if (data->up == 1 && data->y > 0)
-	{
-		data->y -= 3;
-		printf("x = %d, y= %d\n", data->x, data->y);
-	}
-	if (data->down == 1 && data->y + 100 < data->height)
-	{
-		data->y += 3;
-		printf("x = %d, y= %d\n", data->x, data->y);
-	}
-	return (0);
-}
+	int i, j;
+	t_scene	*scene;
 
-int ft_key_press(int keycode, t_data *data)
-{
-	if (keycode == ESC)
+	scene = scene_init();
+	if (!scene)
+		return (0);
+
+	for (j = 0; j < scene->canvas.h; j++)
 	{
-		mlx_destroy_window(data->mlx, data->mlx_win);
-		exit(0);
+		for (i = 0; i < scene->canvas.w; i++)
+		{
+			double u = (double)i / (scene->canvas.w - 1);
+			double v = (double)(scene->canvas.h - 1 - j) / (scene->canvas.h - 1);
+			scene->ray = ray_primary(&scene->camera, u, v);
+			t_color3 pixel_color = ray_color(scene);
+
+			int color = ((int)(255.999 * pixel_color.x) << 16) |
+						((int)(255.999 * pixel_color.y) << 8) |
+						((int)(255.999 * pixel_color.z));
+			my_mlx_pixel_put(data, i, j, color);
+		}
 	}
-	if (keycode == LEFT)
-		data->left = 1;
-	if (keycode == RIGHT)
-		data->right = 1;
-	if (keycode == UP)
-		data->up = 1;
-	if (keycode == DOWN)
-		data->down = 1;
-	return (0);
-}
 
-int ft_key_release(int keycode, t_data *data)
-{
-	if (keycode == LEFT)
-		data->left = 0;
-	if (keycode == RIGHT)
-		data->right = 0;
-	if (keycode == UP)
-		data->up = 0;
-	if (keycode == DOWN)
-		data->down = 0;
-	return (0);
-}
-
-int ft_draw(t_data *data)
-{
-	int i;
-	int j;
-	t_canvas	canv;
-	t_camera	cam;
-	t_object	*world;
-
-	canv = canvas(data->width, data->height);
-	cam = camera(&canv, vec3(0, 0, 0));
-	//object addition
-	
-	for (j = 0; j < canv.h; j++)
-    {
-        for (i = 0; i < canv.w; i++)
-        {
-            double u = (double)i / (canv.w - 1);
-            double v = (double)(canv.h - 1 - j) / (canv.h - 1);
-            t_ray r = ray_primary(&cam, u, v);
-            t_color3 pixel_color = ray_color(&r, world);
-			//write color
-            int color = ((int)(255.999 * pixel_color.x) << 16) |
-                        ((int)(255.999 * pixel_color.y) << 8) |
-                        ((int)(255.999 * pixel_color.z));
-            my_mlx_pixel_put(data, i, j, color);
-        }
-    }
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 	return (0);
 }
@@ -110,7 +52,6 @@ int ft_draw(t_data *data)
 int main_loop(t_data *data)
 {
 	ft_draw(data);
-	ft_move(data);
 	return (0);
 }
 
@@ -126,10 +67,6 @@ int run(void)
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
 
 	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
-	data.x = 250;
-	data.y = 150;
-	mlx_hook(data.mlx_win, KeyPress, 1L << 0, ft_key_press, &data);
-	mlx_hook(data.mlx_win, KeyRelease, 1L << 1, ft_key_release, &data);
 	mlx_loop_hook(data.mlx, main_loop, &data);
 	mlx_loop(data.mlx);
 	return (0);

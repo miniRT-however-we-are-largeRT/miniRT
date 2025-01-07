@@ -26,6 +26,7 @@
 # include "structure.h"
 # include "ray.h"
 # include "scene.h"
+# include "light.h"
 
 # define	UP          126
 # define	DOWN        125

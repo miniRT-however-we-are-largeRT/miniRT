@@ -35,7 +35,7 @@ typedef struct	s_coef
 }				t_coef;
 
 typedef t_point3	t_vec3;
-typedef t_vec3		t_color3;
+typedef t_point3	t_color3;
 t_vec3				vadd(const t_vec3 u, const t_vec3 v);
 t_vec3				vsub(const t_vec3 u, const t_vec3 v);
 t_vec3				vmult(const t_vec3 u, const t_vec3 v);
@@ -47,7 +47,8 @@ t_vec3				vcross(const t_vec3 u, const t_vec3 v);
 double				vlen(const t_vec3 v);
 double				vlen_sqr(const t_vec3 v);
 t_vec3				uvec(const t_vec3 v);
+t_point3			vmin(t_point3 a, t_point3 b);
 t_vec3				vec3(const double x, const double y, const double z);
 t_color3			color3(double x, double y, double z);
-
+t_point3			point3(double x, double y, double z);
 #endif

@@ -32,7 +32,7 @@ t_bool	hit(t_object *world, t_ray *ray, t_hit_record *rec)
 	return (hit_any);
 }
 
-t_bool	hit_obj(t_object *obj, t_ray *ray, t_hit_record *rec)
+t_bool	hit_obj(t_object *world, t_ray *ray, t_hit_record *rec)
 {
 	t_bool	hit_result;
 
@@ -42,7 +42,7 @@ t_bool	hit_obj(t_object *obj, t_ray *ray, t_hit_record *rec)
 	return (hit_result);
 }
 
-t_bool	hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec)
+t_bool	hit_sphere(t_object *obj, t_ray *ray, t_hit_record *rec)
 {
 	t_vec3	oc;
 	double	a;
@@ -51,7 +51,9 @@ t_bool	hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec)
 	double	dscrm;
 	double	sqrtd;
 	double	root;
+	t_sphere	*sp;
 
+	sp = &(obj->object.sphere);
 	oc = vsub(ray->orig, sp->center);
 	a = vlen_sqr(ray->dir);
 	half_b = vdot(oc, ray->dir);
@@ -70,6 +72,7 @@ t_bool	hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec)
 	rec->t = root;
 	rec->p = ray_at(*ray, root);
 	rec->normal = vdiv_f(sp->radius, vsub(rec->p, sp->center));
+	rec->albedo = obj->albedo;
 	set_face_normal(ray, rec);
 	return (TRUE);
 }
@@ -77,5 +80,5 @@ t_bool	hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec)
 void	set_face_normal(t_ray *r, t_hit_record *rec)
 {
 	rec->front_face = vdot(r->dir, rec->normal) < 0;
-    rec->normal = (rec->front_face) ? rec->normal : vmult_f(-1, rec->normal);
+	rec->normal = (rec->front_face) ? rec->normal : vmult_f(-1, rec->normal);
 }

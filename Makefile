@@ -26,6 +26,7 @@ SRC =	$(SRCDIR)/rt/canvas.c \
 		$(SRCDIR)/rt/vec1.c \
 		$(SRCDIR)/rt/vec2.c \
 		$(SRCDIR)/rt/vec3.c \
+		$(SRCDIR)/rt/light.c \
 		$(SRCDIR)/main.c \
 		# $(SRCDIR)/parse/parse_file.c \
 		# $(SRCDIR)/parse/parse.c \
