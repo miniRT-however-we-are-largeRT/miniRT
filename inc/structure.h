@@ -13,8 +13,6 @@
 #ifndef STRUCTURE_H
 # define STRUCTURE_H
 
-# include "minirt.h"
-
 
 # define		FALSE	0
 # define		TRUE	1

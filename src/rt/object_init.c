@@ -68,6 +68,35 @@ t_object *object_init_sphere(t_point3 center, double radius, t_color3 color, t_c
 	return (obj);
 }
 
+t_object *object_init_plane(t_point3 coords, t_vec3 orient, t_color3 color, t_color3 albedo)
+{
+	t_object *obj = (t_object *)malloc(sizeof(t_object));
+	if (!obj)
+		return (NULL);
+	obj->id = id_plane;
+	obj->object.plane.coords = coords;
+	obj->object.plane.orient = orient;
+	obj->color = color;
+	obj->albedo = albedo;
+	obj->next = NULL;
+	return (obj);
+}
+
+t_object *object_init_cylinder(t_point3 coords, double radius, double height, t_color3 color, t_color3 albedo)
+{
+	t_object *obj = (t_object *)malloc(sizeof(t_object));
+	if (!obj)
+		return (NULL);
+	obj->id = id_cylinder;
+	obj->object.cylinder.coords = coords;
+	obj->object.cylinder.diameter = radius;
+	obj->object.cylinder.height = height;
+	obj->color = color;
+	obj->albedo = albedo;
+	obj->next = NULL;
+	return (obj);
+}
+
 t_light	*light_point(t_point3 light_origin, t_color3 light_color, double bright_ratio)
 {
 	t_light	*light;

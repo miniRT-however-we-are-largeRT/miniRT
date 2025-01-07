@@ -34,7 +34,6 @@ t_camera	camera(t_canvas *canvas, t_point3 orgn)
 t_scene *scene_init(void)
 {
 	t_scene     *scene;
-	t_object    *world;
 	t_object    *lights;
 	double      ka; // 8.4 에서 설명
 
@@ -43,8 +42,15 @@ t_scene *scene_init(void)
 		return (NULL);
 	scene->canvas = canvas(600, 400);
 	scene->camera = camera(&scene->canvas, point3(0, 0, 0));
-	world = object_init_sphere(point3(0, 0, -5), 2, color3(0.5, 0, 0), color3(0.9, 0.3, 0.5));
-	scene->world = world;
+	t_object *sphere = object_init_sphere(point3(0, 0, -5), 2, color3(0.5, 0, 0), color3(0.9, 0.3, 0.5));
+	t_object *plane = object_init_plane(point3(0, -2, 0), vec3(0, 1, 0), color3(0.7, 0.7, 0.7), color3(0.8, 0.8, 0.8));
+	t_object *cylinder = object_init_cylinder(point3(2, 0, -6), 1, 4, color3(0, 0.5, 0.8), color3(0.6, 0.4, 0.8));
+
+	// 객체 연결
+	plane->next = sphere;
+	sphere->next = cylinder;
+	scene->world = plane;
+
 	lights = object(id_light, *light_point(point3(0, 5, 0), color3(1, 1, 1), 0.5), color3(0, 0, 0));
 	scene->light = lights;
 	ka = 0.1; // 8.4 에서 설명

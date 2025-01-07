@@ -39,6 +39,10 @@ t_bool	hit_obj(t_object *world, t_ray *ray, t_hit_record *rec)
 	hit_result = FALSE;
 	if (world->id == id_sphere)
 		hit_result = hit_sphere(world, ray, rec);
+	else if (world->id == id_plane)
+		hit_result = hit_plane(world, ray, rec);
+	else if (world->id == id_cylinder)
+		hit_result = hit_cylinder(world, ray, rec);
 	return (hit_result);
 }
 
@@ -72,6 +76,51 @@ t_bool	hit_sphere(t_object *obj, t_ray *ray, t_hit_record *rec)
 	rec->t = root;
 	rec->p = ray_at(*ray, root);
 	rec->normal = vdiv_f(sp->radius, vsub(rec->p, sp->center));
+	rec->albedo = obj->albedo;
+	set_face_normal(ray, rec);
+	return (TRUE);
+}
+
+t_bool hit_plane(t_object *obj, t_ray *ray, t_hit_record *rec)
+{
+	t_plane *pl = &(obj->object.plane);
+	double denom = vdot(pl->orient, ray->dir);
+	if (fabs(denom) > EPSILON)
+	{
+		double t = vdot(vsub(pl->coords, ray->orig), pl->orient) / denom;
+		if (t < rec->tmin || t > rec->tmax)
+			return (FALSE);
+		rec->t = t;
+		rec->p = ray_at(*ray, t);
+		rec->normal = pl->orient;
+		rec->albedo = obj->albedo;
+		set_face_normal(ray, rec);
+		return (TRUE);
+	}
+	return (FALSE);
+}
+
+t_bool hit_cylinder(t_object *obj, t_ray *ray, t_hit_record *rec)
+{
+	t_cylinder *cy = &(obj->object.cylinder);
+	t_vec3 oc = vsub(ray->orig, cy->coords);
+	double a = pow(ray->dir.x, 2) + pow(ray->dir.z, 2);
+	double half_b = ray->dir.x * oc.x + ray->dir.z * oc.z;
+	double c = pow(oc.x, 2) + pow(oc.z, 2) - pow(cy->diameter, 2);
+	double dscrm = half_b * half_b - a * c;
+	if (dscrm < 0)
+		return (FALSE);
+	double sqrtd = sqrt(dscrm);
+	double root = (-half_b - sqrtd) / a;
+	if (root < rec->tmin || rec->tmax < root)
+	{
+		root = (-half_b + sqrtd) / a;
+		if (root < rec->tmin || rec->tmax < root)
+			return (FALSE);
+	}
+	rec->t = root;
+	rec->p = ray_at(*ray, root);
+	rec->normal = vec3(rec->p.x - cy->coords.x, 0, rec->p.z - cy->coords.z);
 	rec->albedo = obj->albedo;
 	set_face_normal(ray, rec);
 	return (TRUE);
