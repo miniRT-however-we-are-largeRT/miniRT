@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:53:57 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/04 22:21:29 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/08 17:26:38 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,13 @@ void my_mlx_pixel_put(t_data *data, int x, int y, int color)
 int ft_draw(t_data *data) // sce
 {
 	int i, j;
-	t_scene	*scene;
-	int samples_per_pixel = 30;
+	int samples_per_pixel = 10;
 
-	scene = scene_init();
-	if (!scene)
-		return (0);
-
-	for (j = 0; j < scene->canvas.h; j++)
+	for (j = 0; j < data->scene->canvas.h; j++)
 	{
-		for (i = 0; i < scene->canvas.w; i++)
+		for (i = 0; i < data->scene->canvas.w; i++)
 		{
-			t_color3 pixel_color = anti_aliasing_color(scene, i, j, samples_per_pixel);
+			t_color3 pixel_color = anti_aliasing_color(data->scene, i, j, samples_per_pixel);
 
 			// 색상값을 0~255 범위로 변환
 			int color = ((int)(255.999 * clamp(pixel_color.x, 0.0, 0.999)) << 16) |
@@ -55,13 +50,13 @@ int handle_key_input(int keycode, t_data *data)
 	t_scene *scene = data->scene;
 
 	if (keycode == UP)
-		translate_camera(&scene->camera, vec3(0, 1, 0));  // 카메라 위로 이동
+		translate_camera(&scene->camera, vec3(0, 10, 0));  // 카메라 위로 이동
 	else if (keycode == DOWN)
-		translate_camera(&scene->camera, vec3(0, -1, 0));  // 카메라 아래로 이동
+		translate_camera(&scene->camera, vec3(0, -10, 0));  // 카메라 아래로 이동
 	else if (keycode == LEFT)
-		rotate_camera(&scene->camera, vec3(0, 1, 0), M_PI / 18);  // 좌회전
+		rotate_camera(&scene->camera, vec3(0, 10, 0), M_PI / 3);  // 좌회전
 	else if (keycode == RIGHT)
-		rotate_camera(&scene->camera, vec3(0, 1, 0), -M_PI / 18);  // 우회전
+		rotate_camera(&scene->camera, vec3(0, 10, 0), -M_PI / 18);  // 우회전
 	else if (keycode == 53)  // ESC 키
 		exit(0);
 
@@ -76,9 +71,10 @@ int main_loop(t_data *data)
 	return (0);
 }
 
-void init_hooks(t_data *data) {
-	mlx_key_hook(data->mlx_win, handle_key_input, data);  // 키 입력 처리
-	mlx_loop_hook(data->mlx, main_loop, data);  // 매 프레임 렌더링}
+int	exit_hook(void)
+{
+	exit(0);
+	return (0);
 }
 
 int run(void)
@@ -118,7 +114,8 @@ int run(void)
 	data.scene = scene_init();  // 씬 초기화
 
 	ft_draw(&data);  // 첫 프레임 렌더링
-	init_hooks(&data);  // 입력 처리 연결
+	mlx_key_hook(data.mlx_win, handle_key_input, &data);  // 키 입력 처리
+	mlx_hook(data.mlx_win, 17, 0, exit_hook, &data);
 	mlx_loop(data.mlx);
 
 	return (0);

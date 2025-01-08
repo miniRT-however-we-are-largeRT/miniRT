@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:41:38 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/03 16:38:45 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/08 17:44:49 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ t_scene *scene_init(void)
 	sphere->next = cylinder;
 	scene->world = plane;
 
-	lights = object(id_light, *light_point(point3(0, 5, 0), color3(1, 1, 1), 0.5), color3(0, 0, 0));
+	lights = object(id_light, *light_point(point3(0, 20, 0), color3(1, 1, 1), 0.5), color3(0, 0, 0));
 	scene->light = lights;
-	ka = 0.1; // 8.4 에서 설명
-	scene->ambient = vmult_f(ka, color3(1,1,1)); // 8.4 에서 설명
+	ka = 0.1; 
+	scene->ambient = vmult_f(ka, color3(1,1,1));
 	return (scene);
 }
