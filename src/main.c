@@ -6,11 +6,12 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 19:16:52 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/04 22:15:30 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/08 19:18:50 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/main.h"
+#include "../../inc/minirt.h"
+#include "../../inc/main.h"
 
 t_rt	*get_rt(void)
 {
@@ -52,8 +53,6 @@ int	main(int argc, char **argv)
 		error_handle(OPEN_ERROR);
 
 	rt_init(rt, argv[1]);
-	
-	
 	print_rt(rt);
-	
+	run();
 }
