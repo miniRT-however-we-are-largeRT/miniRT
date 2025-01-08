@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_set.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:36:06 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/02 18:57:59 by junhyeong        ###   ########.fr       */
+/*   Updated: 2025/01/08 20:55:59 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "bool.h"
 #include <unistd.h>
+# include "vec.h"
 
 # define NB_PARAMS_PLANE 4
 # define NB_PARAMS_SPHERE 4
@@ -22,6 +23,8 @@
 # define NB_PARAMS_CONE 7
 # define NB_PARAMS_TRIANGLE 5
 # define NB_PARAMS_TORUS 6
+
+
 
 typedef enum e_object_id
 {
@@ -37,12 +40,55 @@ typedef enum e_object_id
 	id_torus
 }	t_obj_id;
 
-typedef struct s_vect
+typedef struct s_cam_scene_data
 {
-	float	x;
-	float	y;
-	float	z;
-}	t_vect;
+	t_point3	viewpoint;
+	t_vec3		dir;
+	int			fov;
+}				t_cam_scene_data;
+
+// typedef	struct s_camera
+// {
+// 	t_point3	origin;
+// 	t_vec3		dir;
+// 	double		cam_phi;
+// 	double		cam_theta;
+// 	t_vec3		w;
+// 	t_vec3		u;
+// 	t_vec3		v;
+// 	double		viewport_h;
+// 	double		viewport_w;
+// 	t_point3	lower_left;
+// 	double		focal_len;
+// 	t_vec3		horizontal;
+// 	t_vec3		vertical;
+// }				t_camera;
+
+typedef struct s_canvas
+{
+	double	w;
+	double	h;
+	double	aspect_ratio;
+	t_vec3	vup;
+}				t_canvas;
+
+typedef struct s_sphere2
+{
+	t_point3	center;
+	double		radius;
+	double		radius2;
+}				t_sphere2;
+
+typedef struct s_hit_record
+{
+	t_point3	p;
+	t_vec3		normal;
+	double		tmin;
+	double		tmax;
+	double		t;
+	t_bool		front_face;
+	t_color3	albedo;
+}				t_hit_record;
 
 typedef struct s_quadratic
 {
@@ -63,8 +109,8 @@ typedef struct s_color
 
 typedef struct s_hit
 {
-	t_vect	nhit;
-	t_vect	phit;
+	t_vec3	nhit;
+	t_vec3	phit;
 	float	t;
 	t_color	color;
 }	t_hit;
@@ -90,7 +136,7 @@ typedef struct s_ambient
 typedef struct s_light
 {
 	t_obj_id		id;
-	t_vect			coords;
+	t_vec3			coords;
 	float			brightness;
 	t_color			color;
 	struct s_light	*next;
@@ -99,8 +145,8 @@ typedef struct s_light
 typedef struct s_camera
 {
 	t_obj_id	id;
-	t_vect		coords;
-	t_vect		orient;
+	t_vec3		coords;
+	t_vec3		orient;
 	size_t		fov;
 	float		scale;
 }	t_camera;
@@ -108,29 +154,29 @@ typedef struct s_camera
 typedef struct s_plane
 {
 	t_obj_id	id;
-	t_vect		coords;
-	t_vect		orient;
+	t_vec3		coords;
+	t_vec3		orient;
 	t_color		color;
 }	t_plane;
 
 typedef struct s_cylinder
 {
 	t_obj_id	id;
-	t_vect		coords;
-	t_vect		orient;
+	t_vec3		coords;
+	t_vec3		orient;
 	float		diameter;
 	float		height;
 	float		r2;
-	t_vect		p1;
-	t_vect		p2;
-	t_vect		delta_p;
+	t_vec3		p1;
+	t_vec3		p2;
+	t_vec3		delta_p;
 	t_color		color;
 }	t_cylinder;
 
 typedef struct s_sphere
 {
 	t_obj_id	id;
-	t_vect		coords;
+	t_vec3		coords;
 	float		diameter;
 	float		r2;
 	t_color		color;
@@ -139,9 +185,9 @@ typedef struct s_sphere
 typedef struct s_triangle
 {
 	t_obj_id	id;
-	t_vect		c[3];
-	t_vect		edge[3];
-	t_vect		n;
+	t_vec3		c[3];
+	t_vec3		edge[3];
+	t_vec3		n;
 	t_color		color;
 	float		area2;
 }	t_triangle;
@@ -149,14 +195,14 @@ typedef struct s_triangle
 typedef struct s_cone
 {
 	t_obj_id	id;
-	t_vect		coords;
-	t_vect		orient;
+	t_vec3		coords;
+	t_vec3		orient;
 	float		h;
 	float		h2;
 	float		angle;
 	float		cos2;
-	t_vect		c1;
-	t_vect		c2;
+	t_vec3		c1;
+	t_vec3		c2;
 	float		r1;
 	float		r2;
 	t_color		color;
@@ -165,8 +211,8 @@ typedef struct s_cone
 typedef	struct s_torus
 {
 	t_obj_id	id;
-	t_vect		coords;
-	t_vect		orient;
+	t_vec3		coords;
+	t_vec3		orient;
 	float		sml_r;
 	float		sml_r2;
 	float		big_r;
@@ -206,10 +252,10 @@ typedef struct s_obj
 	float			specn;
 	float			mirror;
 	float			refract;
-	t_vect			ex;
-	t_vect			ey;
-	t_vect			ez;
-	t_vect			coords;
+	t_vec3			ex;
+	t_vec3			ey;
+	t_vec3			ez;
+	t_vec3			coords;
 	t_color			color;
 	t_color			color2;
 	float			h;
@@ -227,8 +273,8 @@ typedef struct s_obj
 
 typedef struct	s_ray
 {
-	t_vect		orig;
-	t_vect		dir;
+	t_vec3		orig;
+	t_vec3		dir;
 }				t_ray;
 
 typedef struct s_rays
@@ -239,5 +285,16 @@ typedef struct s_rays
 	t_hit		shadow_hit;
 	t_obj		*closest_obj;
 }	t_rays;
+
+typedef struct  s_scene
+{
+	t_canvas		canvas;
+	t_camera		camera;
+	t_obj			*world;
+	t_light			*light;
+	t_ambient		ambient; // 8.4에서 설명할 요소
+	t_ray           ray;
+	t_hit_record    rec;
+}	t_scene;
 
 #endif

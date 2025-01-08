@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 20:42:25 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/02 20:15:01 by junhyeong        ###   ########.fr       */
+/*   Updated: 2025/01/08 19:00:37 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_bool	parse_color(char *str, t_color *color)
 	return (true);
 }
 
-t_bool	parse_vector(char *str, t_vect *vector)
+t_bool	parse_vector(char *str, t_vec3 *vector)
 {
 	char	**split;
 

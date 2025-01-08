@@ -1,42 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light.c                                            :+:      :+:    :+:   */
+/*   anti_alias.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/01 23:53:58 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/08 20:57:10 by junhyeop         ###   ########.fr       */
+/*   Created: 2025/01/08 19:31:28 by junhyeop          #+#    #+#             */
+/*   Updated: 2025/01/08 19:31:29 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/utils.h"
-#include "../../inc/minirt.h"
+#ifndef ANTI_ALIAS_H
+# define ANTI_ALIAS_H
 
-void	push_light(t_data *data, t_light *light)
-{
-	t_light	*tmp;
+#include "struct_set.h"
 
-	tmp = data->scene->light;
-	if (!tmp)
-	{
-		data->scene->light = light;
-		return ;
-	}
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = light;
-	return ;
-}
+/* Anti-Aliasing 관련 함수 선언 */
+double random_double(void);
+double random_double_range(double min, double max);
+double clamp(double x, double min, double max);
+t_color3 average_color(t_color3 *colors, int sample_count);
+t_color3 anti_aliasing_color(t_scene *scene, int i, int j, int samples_per_pixel);
 
-void	free_lights(t_light **light)
-{
-	t_light	*tmp;
-
-	while (*light)
-	{
-		tmp = *light;
-		*light = (*light)->next;
-		free(tmp);
-	}
-}
+#endif

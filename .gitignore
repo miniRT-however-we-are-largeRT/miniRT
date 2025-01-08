@@ -4,3 +4,6 @@
 *.o
 *.a
 *.dylib
+lib/*
+.gitignore
+miniRT

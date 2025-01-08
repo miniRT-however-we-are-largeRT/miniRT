@@ -6,11 +6,11 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 17:12:06 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/03 17:05:50 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/08 18:50:31 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
+#include "../../inc/minirt.h"
 
 t_ray	ray_set(t_point3 origin, t_vec3 direction)
 {
@@ -42,16 +42,25 @@ t_ray	ray_primary(t_camera *cam, double u, double v)
 	return (ray);
 }
 
-t_color3	ray_color(t_ray *r, t_sphere *sphere)
+t_hit_record record_init(void)
 {
-	double	t;
-	t_vec3	n;
+	t_hit_record    record;
 
-	t = hit_sphere(sphere, r);
-	if (t > 0.0)
-	{
-		n = uvec(vsub(ray_at(*r, t), sphere->center));
-		return (vmult_f(0.5, color3(n.x + 1, n.y + 1, n.z + 1)));
-	}
-	return (color3(1, 0, 0));
+	record.tmin = EPSILON;
+	record.tmax = INFINITY;
+	return (record);
+}
+
+t_color3 ray_color(t_scene *scene)
+{
+	// t_ray		*ray;
+	double		t;
+
+	scene->rec = record_init();
+	if (hit(scene->world, &(scene->ray), &(scene->rec)))
+		return (phong_lighting(scene));  // 구체 객체의 색상 반환
+	t = 0.5 * (scene->ray.dir.y + 1.0);
+	// (1-t) * 흰색 + t * 하늘색
+	return (vadd(vmult_f(1.0 - t, color3(1, 1, 1)), \
+		vmult_f(t, color3(0.5, 0.7, 1.0))));  // 배경 색상
 }

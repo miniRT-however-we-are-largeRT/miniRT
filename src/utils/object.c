@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:25:20 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/02 20:19:26 by junhyeong        ###   ########.fr       */
+/*   Updated: 2025/01/08 20:24:49 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ t_obj	*new_obj(int id)
 	return (obj);
 }
 
-void	push_obj(t_rt *rt, t_obj *obj)
+void	push_obj(t_data *rt, t_obj *obj)
 {
 	t_obj	*tmp;
 
-	tmp = rt->objs;
+	tmp = rt->scene->world;
 	if (!tmp)
 	{
-		rt->objs = obj;
+		rt->scene->world = obj;
 		return ;
 	}
 	while (tmp->next)
@@ -42,7 +42,22 @@ void	push_obj(t_rt *rt, t_obj *obj)
 	return ;
 }
 
-t_vect	*normalize(t_vect *v)
+void	free_objs(t_data *data)
+{
+	t_obj	*tmp;
+	t_obj	*rmv;
+
+	tmp = data->scene->world;
+	while (tmp)
+	{
+		rmv = tmp;
+		tmp = tmp->next;
+		// 도형별 free 시켜주기
+		free(rmv);
+	}
+}
+
+t_vec3	*normalize(t_vec3 *v)
 {
 	float	norm;
 
@@ -53,7 +68,7 @@ t_vect	*normalize(t_vect *v)
 	return (v);
 }
 
-float	vectlen(t_vect v)
+float	vectlen(t_vec3 v)
 {
 	return (sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
 }

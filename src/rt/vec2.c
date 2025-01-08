@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/vec.h"
-#include <math.h>
+#include "../../inc/vec.h"
 
 t_vec3	vdiv_f(const double t, const t_vec3 v)
 {
