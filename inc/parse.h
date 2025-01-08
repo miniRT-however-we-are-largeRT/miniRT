@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 20:43:23 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/02 20:20:25 by junhyeong        ###   ########.fr       */
+/*   Updated: 2025/01/08 19:00:37 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	parse_camera(t_rt *rt, char *line);
 // parse_utils.c
 t_bool	parse_float(char *str, float *num);
 t_bool	parse_color(char *str, t_color *color);
-t_bool	parse_vector(char *str, t_vect *vector);
+t_bool	parse_vector(char *str, t_vec3 *vector);
 t_bool	parse_ulong(char *str, unsigned long *num);
 
 // parse_objects.c

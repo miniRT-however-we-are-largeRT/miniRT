@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 20:47:47 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/02 20:20:29 by junhyeong        ###   ########.fr       */
+/*   Updated: 2025/01/08 19:00:37 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	free_lights(t_light **light);
 // object.c
 t_obj	*new_obj(int id);
 void	push_obj(t_rt *rt, t_obj *obj);
-t_vect	*normalize(t_vect *v);
-float	vectlen(t_vect v);
+t_vec3	*normalize(t_vec3 *v);
+float	vectlen(t_vec3 v);
 
 #endif
