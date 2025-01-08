@@ -6,11 +6,11 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:53:57 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/04 22:38:13 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/08 19:10:33 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
+#include "../../inc/minirt.h"
 
 void my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -83,8 +83,6 @@ int ft_draw(t_data *data, t_rt *rt)
 	t_canvas	canv;
 	t_camera	cam;
 	t_sphere	sphere;
-
-	object_render(rt);
 
 	canv = canvas(data->width, data->height);
 	cam = camera(&canv, vec3(0, 0, 0));

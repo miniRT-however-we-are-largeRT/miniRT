@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:03:36 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/04 22:37:51 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/08 19:11:15 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,19 +112,19 @@ typedef struct s_line_trd
 	pthread_t	trd;
 }	t_line_trd;
 
-// typedef struct 	s_data
-// {
-// 	void    *mlx;
-// 	void    *mlx_win;
-// 	int     width, height;
-// 	int     x, y;
-// 	int     up, down, left, right;
-// 	void    *img;
-// 	char    *addr;
-// 	int     bits_per_pixel;
-// 	int     line_length;
-// 	int     endian;
-// }               t_data;
+typedef struct 	s_data
+{
+	void    *mlx;
+	void    *mlx_win;
+	int     width, height;
+	int     x, y;
+	int     up, down, left, right;
+	void    *img;
+	char    *addr;
+	int     bits_per_pixel;
+	int     line_length;
+	int     endian;
+}               t_data;
 
 int	run(void);
 
