@@ -26,6 +26,9 @@
 # include "structure.h"
 # include "ray.h"
 # include "scene.h"
+# include "light.h"
+# include "anti_alias.h"
+# include "move.h"
 
 # define	UP          126
 # define	DOWN        125
@@ -85,6 +88,7 @@ typedef struct 	s_data
 {
 	void    *mlx;
 	void    *mlx_win;
+	t_scene	*scene;
 	int     width, height;
 	int     x, y;
 	int     up, down, left, right;

@@ -31,3 +31,19 @@ t_color3	color3(double x, double y, double z)
 {
 	return ((t_color3){x, y, z});
 }
+
+t_point3	point3(double x, double y, double z)
+{
+	return ((t_point3){x, y, z});
+}
+
+t_point3	vmin(t_point3 a, t_point3 b)
+{
+	t_color3 result;
+
+	result.x = (a.x < b.x) ? a.x : b.x;
+	result.y = (a.y < b.y) ? a.y : b.y;
+	result.z = (a.z < b.z) ? a.z : b.z;
+
+	return result;
+}

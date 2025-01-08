@@ -6,19 +6,19 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:52:55 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/04 22:26:25 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/08 18:49:04 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURE_H
 # define STRUCTURE_H
 
-# include "minirt.h"
-
 
 # define		FALSE	0
 # define		TRUE	1
 # define		SP		0
+# define		EPSILON		1e-6
+# define		LUMEN	3
 
 typedef struct s_cam_scene_data
 {
@@ -67,6 +67,7 @@ typedef struct s_hit_record
 	double		tmax;
 	double		t;
 	t_bool		front_face;
+	t_color3	albedo;
 }				t_hit_record;
 
 # define NB_PARAMS_PLANE 4
@@ -159,6 +160,13 @@ typedef	struct s_torus
 	t_color3		color;
 }	t_torus;
 
+typedef struct s_light
+{
+	t_point3	origin;
+	t_color3	light_color;
+	double		bright_ratio;
+}	t_light;
+
 typedef union u_object
 {
 	t_sphere	sphere;
@@ -167,6 +175,7 @@ typedef union u_object
 	t_cone		cone;
 	t_triangle	triangle;
 	t_torus		torus;
+	t_light		light;
 }	t_obj_union;
 
 typedef struct s_img
@@ -197,6 +206,7 @@ typedef struct s_object
 	t_vec3			coords;
 	t_color3		color;
 	t_color3		color2;
+	t_color3		albedo;
 	float			h;
 	float			pattern_len;
 	int				pattern_num;
@@ -209,6 +219,23 @@ typedef struct s_object
 	t_img			texture;
 	struct s_object	*next;
 }	t_object;
+
+typedef struct	s_ray
+{
+	t_point3	orig;
+	t_vec3		dir;
+}				t_ray;
+
+typedef struct  s_scene
+{
+	t_canvas        canvas;
+	t_camera        camera;
+	t_object        *world;
+	t_object        *light;
+	t_color3         ambient; // 8.4에서 설명할 요소
+	t_ray           ray;
+	t_hit_record    rec;
+}	t_scene;
 
 // t_camera		ft_camera_set(t_point3 pos, t_vec3 dir, double vfov);
 // t_ray			ft_camera_get_ray(t_camera *cam, double u, double v);
