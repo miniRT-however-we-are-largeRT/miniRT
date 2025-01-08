@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:41:38 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/08 17:44:49 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/08 19:27:37 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_camera	camera(t_canvas *canvas, t_point3 orgn)
 t_scene *scene_init(void)
 {
 	t_scene     *scene;
-	t_object    *lights;
+	t_obj    *lights;
 	double      ka; // 8.4 에서 설명
 
 	scene = (t_scene *)malloc(sizeof(t_scene));
@@ -42,9 +42,9 @@ t_scene *scene_init(void)
 		return (NULL);
 	scene->canvas = canvas(600, 400);
 	scene->camera = camera(&scene->canvas, point3(0, 0, 0));
-	t_object *sphere = object_init_sphere(point3(0, 0, -5), 2, color3(0.5, 0, 0), color3(0.9, 0.3, 0.5));
-	t_object *plane = object_init_plane(point3(0, -2, 0), vec3(0, 1, 0), color3(0.7, 0.7, 0.7), color3(0.8, 0.8, 0.8));
-	t_object *cylinder = object_init_cylinder(point3(2, 0, -6), 1, 4, color3(0, 0.5, 0.8), color3(0.6, 0.4, 0.8));
+	t_obj *sphere = object_init_sphere(point3(0, 0, -5), 2, color3(0.5, 0, 0), color3(0.9, 0.3, 0.5));
+	t_obj *plane = object_init_plane(point3(0, -2, 0), vec3(0, 1, 0), color3(0.7, 0.7, 0.7), color3(0.8, 0.8, 0.8));
+	t_obj *cylinder = object_init_cylinder(point3(2, 0, -6), 1, 4, color3(0, 0.5, 0.8), color3(0.6, 0.4, 0.8));
 
 	// 객체 연결
 	plane->next = sphere;

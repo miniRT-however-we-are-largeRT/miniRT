@@ -6,35 +6,31 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 02:04:49 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/03 16:24:31 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/08 20:58:53 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/parse.h"
 
-void	parse_line(t_rt *rt, char *line)
+void	parse_line(t_data *data, char *line)
 {
 	if (line[0] == 'R')
-		parse_resolution(rt, line);
+		parse_resolution(data, line);
 	else if (line[0] == 'A')
-		parse_ambient(rt, line);
+		parse_ambient(data, line);
 	else if (line[0] == 'C' && line[1] == ' ')
-		parse_camera(rt, line);
+		parse_camera(data, line);
 	else if (line[0] == 'L')
-		parse_light(rt, line);
+		parse_light(data, line);
 	else if (line[0] == 's' && line[1] == 'p')
-		parse_shape(rt, line, id_sphere, NB_PARAMS_SPHERE);
+		parse_shape(data, line, id_sphere, NB_PARAMS_SPHERE);
 	else if (line[0] == 'p' && line[1] == 'l')
-		parse_shape(rt, line, id_plane, NB_PARAMS_PLANE);
-	else if (line[0] == 'c' && line[1] == 'o')
-		parse_shape(rt, line, id_cone, NB_PARAMS_CONE);
+		parse_shape(data, line, id_plane, NB_PARAMS_PLANE);
 	else if (line[0] == 'c' && line[1] == 'y')
-		parse_shape(rt, line, id_cylinder, NB_PARAMS_CYLINDER);
-	else if (line[0] == 't' && line[1] == 'r')
-		parse_shape(rt, line, id_triangle, NB_PARAMS_TRIANGLE);
+		parse_shape(data, line, id_cylinder, NB_PARAMS_CYLINDER);
 }
 
-void	parse_shape(t_rt *rt, char *line, int id, int nb_params)
+void	parse_shape(t_data *data, char *line, int id, int nb_params)
 {
 	t_obj	*obj;
 	char	**split;
@@ -47,19 +43,11 @@ void	parse_shape(t_rt *rt, char *line, int id, int nb_params)
 		parse_sphere(split, obj);
 	else if (line[0] == 'p' && line[1] == 'l')
 		parse_plane(split, obj);
-	else if (line[0] == 'c' && line[1] == 'o')
-		parse_cone(rt, split, obj);
 	else if (line[0] == 'c' && line[1] == 'y')
 		parse_cylinder(split, obj);
-	else if (line[0] == 't' && line[1] == 'r')
-		parse_triangle(split, obj);
 	else
 		error_handle("Error: invalid identifier\n");
-	printf("CLEAR\n");
-
-	push_obj(rt, obj);
-	rt->num_objs++;
+	push_obj(data, obj);
+	data->num_objs++;
 	ft_free_split(split);
 }
-
-

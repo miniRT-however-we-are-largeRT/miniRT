@@ -42,7 +42,7 @@ t_color3    diffuse(t_scene *scene, t_light *light)
 t_color3    phong_lighting(t_scene *scene)
 {
     t_color3    light_color;
-    t_object    *lights;
+    t_obj    *lights;
 
     light_color = color3(0, 0, 0);
     lights = scene->light;
@@ -56,7 +56,7 @@ t_color3    phong_lighting(t_scene *scene)
     return (vmin(vmult(light_color, scene->rec.albedo), color3(1, 1, 1)));
 }
 
-t_bool  in_shadow(t_object *objects, t_ray light_ray, double light_len)
+t_bool  in_shadow(t_obj *objects, t_ray light_ray, double light_len)
 {
     t_hit_record    rec;
 

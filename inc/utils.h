@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 20:47:47 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/08 19:00:37 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/08 20:10:19 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void	ft_lstadd_front(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
 
 // light.c
-void	push_light(t_rt *rt, t_light *light);
+void	push_light(t_data *rt, t_light *light);
 void	free_lights(t_light **light);
 
 // object.c
 t_obj	*new_obj(int id);
-void	push_obj(t_rt *rt, t_obj *obj);
+void	push_obj(t_data *rt, t_obj *obj);
 t_vec3	*normalize(t_vec3 *v);
 float	vectlen(t_vec3 v);
 

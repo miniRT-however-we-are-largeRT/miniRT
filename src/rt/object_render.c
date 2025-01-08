@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 22:22:11 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/08 19:01:58 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/08 20:10:19 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 // 	cy->p2 = vect_add(cy->p2, cy->coords);
 // }
 
-// void	object_render(t_rt *rt)
+// void	object_render(t_data *rt)
 // {
 // 	t_obj	*objs;
 

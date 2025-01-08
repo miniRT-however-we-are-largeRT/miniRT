@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   anti_alias.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/08 19:25:29 by junhyeop          #+#    #+#             */
+/*   Updated: 2025/01/08 19:36:02 by junhyeop         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/minirt.h"
 
 double random_double(void)
@@ -33,12 +45,12 @@ t_color3 anti_aliasing_color(t_scene *scene, int i, int j, int samples_per_pixel
 {
     t_color3 pixel_color = color3(0, 0, 0);
 
-    for (int s = 0; s < samples_per_pixel; s++)
-    {
-        double u = ((double)i + random_double()) / (scene->canvas.w - 1);
-        double v = ((double)(scene->canvas.h - 1 - j) + random_double()) / (scene->canvas.h - 1);
-        scene->ray = ray_primary(&scene->camera, u, v);
-        pixel_color = vadd(pixel_color, ray_color(scene));
-    }
-    return vmult_f(1.0 / samples_per_pixel, pixel_color);  // 평균 색상 계산
+	for (int s = 0; s < samples_per_pixel; s++)
+	{
+		double u = ((double)i + random_double()) / (scene->canvas.w - 1);
+		double v = ((double)(scene->canvas.h - 1 - j) + random_double()) / (scene->canvas.h - 1);
+		scene->ray = ray_primary(&scene->camera, u, v);
+		pixel_color = vadd(pixel_color, ray_color(scene));
+	}
+	return vmult_f(1.0 / samples_per_pixel, pixel_color);  // 평균 색상 계산
 }

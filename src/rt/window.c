@@ -6,13 +6,13 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 22:15:37 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/04 22:18:35 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/08 20:10:19 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	rt_init(t_rt *rt, char *path)
+void	rt_init(t_data *rt, char *path)
 {
 	rt->mlx = mlx_init();
 	if (!rt->width)
@@ -37,7 +37,7 @@ void	rt_init(t_rt *rt, char *path)
 	rt->is_processing = false;
 }
 
-void	rt_clear(t_rt *rt)
+void	rt_clear(t_data *rt)
 {
 	if (rt->mlx_win)
 		mlx_destroy_window(rt->mlx, rt->mlx_win);
@@ -49,7 +49,7 @@ void	rt_clear(t_rt *rt)
 	exit(0);
 }
 
-void	rt_free(t_rt *rt)
+void	rt_free(t_data *rt)
 {
 	if (rt)
 	{

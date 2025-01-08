@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:52:55 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/08 19:17:46 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/08 19:39:02 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,7 +224,7 @@
 // 	t_img			bump;
 // 	t_img			texture;
 // 	struct s_object	*next;
-// }	t_object;
+// }	t_obj;
 
 // typedef struct	s_ray
 // {
@@ -236,8 +236,8 @@
 // {
 // 	t_canvas        canvas;
 // 	t_camera        camera;
-// 	t_object        *world;
-// 	t_object        *light;
+// 	t_obj        *world;
+// 	t_obj        *light;
 // 	t_color3         ambient; // 8.4에서 설명할 요소
 // 	t_ray           ray;
 // 	t_hit_record    rec;

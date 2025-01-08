@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 23:53:58 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/01 23:58:36 by junhyeong        ###   ########.fr       */
+/*   Updated: 2025/01/08 20:57:10 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/utils.h"
 #include "../../inc/minirt.h"
 
-void	push_light(t_rt *rt, t_light *light)
+void	push_light(t_data *data, t_light *light)
 {
 	t_light	*tmp;
 
-	tmp = rt->light;
+	tmp = data->scene->light;
 	if (!tmp)
 	{
-		rt->light = light;
+		data->scene->light = light;
 		return ;
 	}
 	while (tmp->next)

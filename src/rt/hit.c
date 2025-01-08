@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   hit.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:17:51 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/08 18:49:51 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/08 19:27:37 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-t_bool	hit(t_object *world, t_ray *ray, t_hit_record *rec)
+t_bool	hit(t_obj *world, t_ray *ray, t_hit_record *rec)
 {
 	t_bool	hit_any;
 	t_hit_record	tmp_rec;
@@ -32,7 +32,7 @@ t_bool	hit(t_object *world, t_ray *ray, t_hit_record *rec)
 	return (hit_any);
 }
 
-t_bool	hit_obj(t_object *world, t_ray *ray, t_hit_record *rec)
+t_bool	hit_obj(t_obj *world, t_ray *ray, t_hit_record *rec)
 {
 	t_bool	hit_result;
 
@@ -46,7 +46,7 @@ t_bool	hit_obj(t_object *world, t_ray *ray, t_hit_record *rec)
 	return (hit_result);
 }
 
-t_bool	hit_sphere(t_object *obj, t_ray *ray, t_hit_record *rec)
+t_bool	hit_sphere(t_obj *obj, t_ray *ray, t_hit_record *rec)
 {
 	t_vec3	oc;
 	double	a;
@@ -81,7 +81,7 @@ t_bool	hit_sphere(t_object *obj, t_ray *ray, t_hit_record *rec)
 	return (TRUE);
 }
 
-t_bool hit_plane(t_object *obj, t_ray *ray, t_hit_record *rec)
+t_bool hit_plane(t_obj *obj, t_ray *ray, t_hit_record *rec)
 {
 	t_plane *pl = &(obj->object.plane);
 	double denom = vdot(pl->orient, ray->dir);
@@ -100,7 +100,7 @@ t_bool hit_plane(t_object *obj, t_ray *ray, t_hit_record *rec)
 	return (FALSE);
 }
 
-t_bool hit_cylinder(t_object *obj, t_ray *ray, t_hit_record *rec)
+t_bool hit_cylinder(t_obj *obj, t_ray *ray, t_hit_record *rec)
 {
 	t_cylinder *cy = &(obj->object.cylinder);
 	t_vec3 oc = vsub(ray->orig, cy->coords);

@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 00:35:14 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/03 16:33:49 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/08 20:59:01 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ char *sanitize_line(char *line)
 	return (line);
 }
 
-// void	print_line(char *line)
-// {
-// 	printf("line: %s\n", line);
-// }
+void	print_line(char *line)
+{
+	printf("line: %s\n", line);
+}
 
-t_bool read_file(t_rt *rt, int fd)
+t_bool read_file(t_data *data, int fd)
 {
 	char	*line;
 	int		num;
@@ -48,8 +48,8 @@ t_bool read_file(t_rt *rt, int fd)
 		if (!line)
 			break ;
 		line = sanitize_line(line);
-		// print_line(line);
-		parse_line(rt, line);
+		print_line(line);
+		parse_line(data, line);
 		free(line);
 	}
 	close(fd);
@@ -66,7 +66,7 @@ t_bool is_rt_file(char *file)
 	return (false);
 }
 
-t_bool open_file(t_rt *rt, char *file)
+t_bool open_file(t_data *data, char *file)
 {
 	int fd;
 
@@ -75,7 +75,7 @@ t_bool open_file(t_rt *rt, char *file)
 		error_handle(OPEN_ERROR);
 	if (!is_rt_file(file))
 		error_handle(RT_FILE_ERROR);
-	if (read_file(rt, fd))
+	if (read_file(data, fd))
 		return (true);
 	return (false);
 }

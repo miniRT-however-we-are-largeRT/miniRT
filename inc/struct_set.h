@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:36:06 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/08 19:01:02 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/08 20:55:59 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,7 @@
 # define NB_PARAMS_TRIANGLE 5
 # define NB_PARAMS_TORUS 6
 
-typedef struct  s_scene
-{
-	t_canvas		canvas;
-	t_camera		camera;
-	t_obj			*world;
-	t_obj			*light;
-	t_color3		ambient; // 8.4에서 설명할 요소
-	t_ray           ray;
-	t_hit_record    rec;
-}	t_scene;
+
 
 typedef enum e_object_id
 {
@@ -56,22 +47,22 @@ typedef struct s_cam_scene_data
 	int			fov;
 }				t_cam_scene_data;
 
-typedef	struct s_camera
-{
-	t_point3	origin;
-	t_vec3		dir;
-	double		cam_phi;
-	double		cam_theta;
-	t_vec3		w;
-	t_vec3		u;
-	t_vec3		v;
-	double		viewport_h;
-	double		viewport_w;
-	t_point3	lower_left;
-	double		focal_len;
-	t_vec3		horizontal;
-	t_vec3		vertical;
-}				t_camera;
+// typedef	struct s_camera
+// {
+// 	t_point3	origin;
+// 	t_vec3		dir;
+// 	double		cam_phi;
+// 	double		cam_theta;
+// 	t_vec3		w;
+// 	t_vec3		u;
+// 	t_vec3		v;
+// 	double		viewport_h;
+// 	double		viewport_w;
+// 	t_point3	lower_left;
+// 	double		focal_len;
+// 	t_vec3		horizontal;
+// 	t_vec3		vertical;
+// }				t_camera;
 
 typedef struct s_canvas
 {
@@ -81,12 +72,12 @@ typedef struct s_canvas
 	t_vec3	vup;
 }				t_canvas;
 
-typedef struct s_sphere
+typedef struct s_sphere2
 {
 	t_point3	center;
 	double		radius;
 	double		radius2;
-}				t_sphere;
+}				t_sphere2;
 
 typedef struct s_hit_record
 {
@@ -294,5 +285,16 @@ typedef struct s_rays
 	t_hit		shadow_hit;
 	t_obj		*closest_obj;
 }	t_rays;
+
+typedef struct  s_scene
+{
+	t_canvas		canvas;
+	t_camera		camera;
+	t_obj			*world;
+	t_light			*light;
+	t_ambient		ambient; // 8.4에서 설명할 요소
+	t_ray           ray;
+	t_hit_record    rec;
+}	t_scene;
 
 #endif

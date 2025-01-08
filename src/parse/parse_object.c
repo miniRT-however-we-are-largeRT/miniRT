@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 22:32:38 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/03 16:22:56 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/08 20:10:19 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	parse_plane(char **split, t_obj *obj)
 	return ;
 }
 
-void	parse_cone(t_rt *rt, char **line, t_obj *obj) 
+void	parse_cone(t_data *rt, char **line, t_obj *obj) 
 {
 	(void)rt;
 	(void)line;

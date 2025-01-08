@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:31:03 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/03 17:05:47 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/08 19:27:37 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ t_sphere	sphere(t_point3 center, double radius)
 	return (sp);
 }
 
-// t_object    *object(t_object_type type, void *element, t_color3 albedo)
+// t_obj    *object(t_obj_type type, void *element, t_color3 albedo)
 // {
-// 	t_object    *new;
+// 	t_obj    *new;
 //
-// 	if (!(new = (t_object *)malloc(sizeof(t_object))))
+// 	if (!(new = (t_obj *)malloc(sizeof(t_obj))))
 // 		return (NULL);
 // 	new->type = type;
 // 	new->element = element;
@@ -37,11 +37,11 @@ t_sphere	sphere(t_point3 center, double radius)
 // 	return (new);
 // }
 
-t_object *object(int id, t_light light, t_color3 albedo)
+t_obj *object(int id, t_light light, t_color3 albedo)
 {
 	if (id)
 		;
-	t_object *obj = (t_object *)malloc(sizeof(t_object));
+	t_obj *obj = (t_obj *)malloc(sizeof(t_obj));
 	if (!obj)
 		return (NULL);
 	obj->id = id_light;
@@ -53,11 +53,11 @@ t_object *object(int id, t_light light, t_color3 albedo)
 	return (obj);
 }
 
-t_object *object_init_sphere(t_point3 center, double radius, t_color3 color, t_color3 albedo)
+t_obj *object_init_sphere(t_point3 center, double radius, t_color3 color, t_color3 albedo)
 {
-	t_object *obj;
+	t_obj *obj;
 
-	obj = (t_object *)malloc(sizeof(t_object));
+	obj = (t_obj *)malloc(sizeof(t_obj));
 	if (!obj)
 		return (NULL);
 	obj->id = id_sphere;
@@ -68,9 +68,9 @@ t_object *object_init_sphere(t_point3 center, double radius, t_color3 color, t_c
 	return (obj);
 }
 
-t_object *object_init_plane(t_point3 coords, t_vec3 orient, t_color3 color, t_color3 albedo)
+t_obj *object_init_plane(t_point3 coords, t_vec3 orient, t_color3 color, t_color3 albedo)
 {
-	t_object *obj = (t_object *)malloc(sizeof(t_object));
+	t_obj *obj = (t_obj *)malloc(sizeof(t_obj));
 	if (!obj)
 		return (NULL);
 	obj->id = id_plane;
@@ -82,9 +82,9 @@ t_object *object_init_plane(t_point3 coords, t_vec3 orient, t_color3 color, t_co
 	return (obj);
 }
 
-t_object *object_init_cylinder(t_point3 coords, double radius, double height, t_color3 color, t_color3 albedo)
+t_obj *object_init_cylinder(t_point3 coords, double radius, double height, t_color3 color, t_color3 albedo)
 {
-	t_object *obj = (t_object *)malloc(sizeof(t_object));
+	t_obj *obj = (t_obj *)malloc(sizeof(t_obj));
 	if (!obj)
 		return (NULL);
 	obj->id = id_cylinder;

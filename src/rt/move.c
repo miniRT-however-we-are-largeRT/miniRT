@@ -1,6 +1,6 @@
 #include "../../inc/minirt.h"
 
-void translate_object(t_object *obj, t_vec3 translation)
+void translate_object(t_obj *obj, t_vec3 translation)
 {
     if (obj->id == id_plane)
         obj->object.plane.coords = vadd(obj->object.plane.coords, translation);
@@ -24,7 +24,7 @@ t_vec3 rotate_vector(t_vec3 v, t_vec3 axis, double angle)
     return vadd(vadd(vmult_f(cos_a, v), vmult_f(sin_a, cross)), vmult_f((1 - cos_a) * dot, axis));
 }
 
-void rotate_object(t_object *obj, t_vec3 axis, double angle)
+void rotate_object(t_obj *obj, t_vec3 axis, double angle)
 {
     if (obj->id == id_plane)
     {
