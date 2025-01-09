@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 20:42:25 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/08 19:00:37 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/09 17:28:31 by junhyeong        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/parse.h"
 #include "../../inc/utils.h"
 
-t_bool parse_float(char *str, float *num) 
+t_bool	parse_float(char *str, float *num)
 {
 	if (!ft_isfloat(str))
 		return (false);
