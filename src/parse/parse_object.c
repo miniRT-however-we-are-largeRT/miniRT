@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_object.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 22:32:38 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/08 20:10:19 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/10 12:41:21 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	parse_sphere(char **split, t_obj *obj)
 		error_handle(RT_FILE_ERROR);
 	if (!parse_color(split[3], &obj->color))
 		error_handle(RT_FILE_ERROR);
-	sphere.coords = obj->coords;
+	sphere.center = obj->coords;
 	obj->object.sphere = sphere;
 	return ;
 }

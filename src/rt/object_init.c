@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:31:03 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/08 19:27:37 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/10 12:46:01 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_sphere	sphere(t_point3 center, double radius)
 
 	sp.center = center;
 	sp.radius = radius;
-	sp.radius2 = radius * radius;
+	sp.r2 = radius * radius;
 	return (sp);
 }
 

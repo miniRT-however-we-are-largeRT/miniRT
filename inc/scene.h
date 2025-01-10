@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:35:36 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/08 19:27:37 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/10 12:18:58 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_scene     *scene_init(void);
 t_canvas	canvas(int w, int h);
 t_camera	camera(t_canvas *canvas, t_point3 origin);
 t_sphere	sphere(t_point3 center, double radius);
-// t_obj    *object(t_obj_type type, void *element, t_color3 albedo);
 t_obj *object(int id, t_light light, t_color3 albedo); // temp object init
 t_obj    *object_init_sphere(t_point3 center, double radius, t_color3 color, t_color3 albedo);
 t_obj *object_init_plane(t_point3 coords, t_vec3 orient, t_color3 color, t_color3 albedo);
