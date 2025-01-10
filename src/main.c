@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 19:16:52 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/08 21:04:00 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/08 21:32:04 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ int	main(int argc, char **argv)
 
 	// rt_init(data, argv[1]);
 	print_data(data);
+	rt_free(data);
 	// run();
 }

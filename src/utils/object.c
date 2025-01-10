@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:25:20 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/08 20:24:49 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/09 17:31:23 by junhyeong        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/utils.h"
-#include "../../inc/error_handle.h"
+#include "../../inc/minirt.h"
 #include <math.h>
 
 t_obj	*new_obj(int id)
@@ -42,17 +41,22 @@ void	push_obj(t_data *rt, t_obj *obj)
 	return ;
 }
 
-void	free_objs(t_data *data)
+void	free_objs(t_data **data)
 {
 	t_obj	*tmp;
 	t_obj	*rmv;
 
-	tmp = data->scene->world;
+	tmp = (*data)->scene->world;
 	while (tmp)
 	{
 		rmv = tmp;
 		tmp = tmp->next;
-		// 도형별 free 시켜주기
+		if (rmv->id == id_sphere)
+			free_sphere(rmv);
+		if (rmv->id == id_plane)
+			free_plane(rmv);
+		if (rmv->id == id_cylinder)
+			free_cy(rmv);
 		free(rmv);
 	}
 }

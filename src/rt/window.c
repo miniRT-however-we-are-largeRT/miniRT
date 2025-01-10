@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 22:15:37 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/08 20:10:19 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/08 21:32:42 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,13 @@ void	rt_free(t_data *rt)
 {
 	if (rt)
 	{
-		if (rt->light)
-			free_lights(&rt->light);
-		if (rt->objs)
-			free_objects(rt, &rt->objs);
+		if (rt->scene->light)
+			free_lights(&rt->scene->light);
+		if (rt->scene->world)
+			free_objs(&rt->scene->world);
+
+		// mlx 도 여기서 free
+		free(rt->scene);
 		free(rt);
 	}
 }
