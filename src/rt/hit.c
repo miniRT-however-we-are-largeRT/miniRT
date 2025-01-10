@@ -118,8 +118,11 @@ t_bool hit_cylinder(t_obj *obj, t_ray *ray, t_hit_record *rec)
 		if (root < rec->tmin || rec->tmax < root)
 			return (FALSE);
 	}
+	
 	rec->t = root;
 	rec->p = ray_at(*ray, root);
+	if (rec->p.y > cy->coords.y + cy->height)
+		return (FALSE);
 	rec->normal = vec3(rec->p.x - cy->coords.x, 0, rec->p.z - cy->coords.z);
 	rec->albedo = obj->albedo;
 	set_face_normal(ray, rec);
