@@ -98,7 +98,7 @@ typedef struct 	s_data
 	int     endian;
 }               t_data;
 
-int	run(void);
+int	run(t_data *data);
 
 // window.c
 void		rt_init(t_data *rt, char *path);

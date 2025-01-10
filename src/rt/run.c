@@ -76,46 +76,10 @@ int	exit_hook(void)
 	return (0);
 }
 
-int run(void)
+int run(t_data *data)
 {
-	t_data data;
-
-	data.mlx = mlx_init();
-	if (!data.mlx)
-	{
-		ft_putendl_fd("Error: MLX initialization failed", 2);
-		return (1);
-	}
-
-	data.width = 600;
-	data.height = 400;
-	data.mlx_win = mlx_new_window(data.mlx, data.width, data.height, "miniRT");
-	if (!data.mlx_win)
-	{
-		ft_putendl_fd("Error: Failed to create window", 2);
-		return (1);
-	}
-
-	data.img = mlx_new_image(data.mlx, data.width, data.height);
-	if (!data.img)
-	{
-		ft_putendl_fd("Error: Failed to create image", 2);
-		return (1);
-	}
-
-	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
-	if (!data.addr)
-	{
-		ft_putendl_fd("Error: Failed to get image data address", 2);
-		return (1);
-	}
-
-	data.scene = scene_init();  // 씬 초기화
-
-	ft_draw(&data);  // 첫 프레임 렌더링
-	mlx_key_hook(data.mlx_win, handle_key_input, &data);  // 키 입력 처리
-	mlx_hook(data.mlx_win, 17, 0, exit_hook, &data);
-	mlx_loop(data.mlx);
-
+	mlx_key_hook(data->mlx_win, handle_key_input, data);
+	mlx_hook(data->mlx_win, 17, 0, exit_hook, data);
+	mlx_loop(data->mlx);
 	return (0);
 }

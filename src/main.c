@@ -56,8 +56,7 @@ int	main(int argc, char **argv)
 	data = get_data();
 	if (!open_file(data, argv[1]))
 		error_handle(OPEN_ERROR);
-
-	// rt_init(data, argv[1]);
-	print_data(data);
-	// run();
+	rt_init(data, argv[1]);
+	// print_data(data);
+	run(data);
 }
