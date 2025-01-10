@@ -6,16 +6,16 @@
 /*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 21:16:23 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/01 22:25:53 by junhyeong        ###   ########.fr       */
+/*   Updated: 2025/01/09 17:30:37 by junhyeong        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/utils.h"
 
-t_bool ft_isfloat(char *str)
+t_bool	ft_isfloat(char *str)
 {
-	int i;
-	int dot;
+	int	i;
+	int	dot;
 
 	i = 0;
 	dot = 0;

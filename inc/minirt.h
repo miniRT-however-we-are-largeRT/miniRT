@@ -113,4 +113,10 @@ double		clamp(double x, double min, double max);
 double		random_double_range(double min, double max);
 double		random_double(void);
 
+// light.c
+void	free_lights(t_light **light);
+
+// object.c
+void	free_objs(t_data *data);
+
 #endif
