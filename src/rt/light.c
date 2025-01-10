@@ -46,12 +46,15 @@ t_color3    phong_lighting(t_scene *scene)
 
     light_color = color3(0, 0, 0);
     lights = scene->light;
-    while (lights) //여러 광원에서 나오는 모든 빛에 대해 각각 diffuse, specular 값을 모두 구해줘야 한다
-    {
-        if (lights->id == id_light)
-            light_color = vadd(light_color, diffuse(scene, lights));
-        lights = lights->next;
-    }
+//    while (lights) //여러 광원에서 나오는 모든 빛에 대해 각각 diffuse, specular 값을 모두 구해줘야 한다
+//    {
+//        if (lights->id == id_light)
+	light_color = vadd(light_color, diffuse(scene, lights));
+//	if (light_color.x == 0 && light_color.y == 0 && light_color.z == 0)
+//		return (vmin(vmult(light_color, scene->rec.albedo), color3(1, 1, 1)));
+
+//        lights = lights->next;
+//    }
     light_color = vadd(light_color, scene->ambient.color);
     return (vmin(vmult(light_color, scene->rec.albedo), color3(1, 1, 1)));
 }
@@ -62,7 +65,8 @@ t_bool  in_shadow(t_obj *objects, t_ray light_ray, double light_len)
 
     rec.tmin = 0;
     rec.tmax = light_len;
-    if (hit(objects, &light_ray, &rec))
-        return (TRUE);
+    if (hit(objects, &light_ray, &rec)) {
+	    return (TRUE);
+    }
     return (FALSE);
 }

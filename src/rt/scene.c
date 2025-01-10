@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:41:38 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/10 14:23:37 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/10 15:46:05 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 // 						vdiv_f(2, cam.vertical)), vec3(0, 0, focal_len));
 // 	return (cam);
 // }
+
 
 // t_scene *scene_init(void)
 // {

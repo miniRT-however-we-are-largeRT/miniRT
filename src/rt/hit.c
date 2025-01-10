@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:17:51 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/10 12:46:01 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:11:25 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ t_bool hit_cylinder(t_obj *obj, t_ray *ray, t_hit_record *rec)
 	t_vec3 oc = vsub(ray->orig, cy->coords);
 	double a = pow(ray->dir.x, 2) + pow(ray->dir.z, 2);
 	double half_b = ray->dir.x * oc.x + ray->dir.z * oc.z;
-	double c = pow(oc.x, 2) + pow(oc.z, 2) - pow(cy->diameter, 2);
+	double c = pow(oc.x, 2) + pow(oc.z, 2) - pow(cy->radius, 2);
 	double dscrm = half_b * half_b - a * c;
 	if (dscrm < 0)
 		return (FALSE);
