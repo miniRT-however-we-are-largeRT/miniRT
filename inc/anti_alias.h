@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   anti_alias.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 19:31:28 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/08 19:31:29 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/10 12:19:57 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 #include "struct_set.h"
 
-/* Anti-Aliasing 관련 함수 선언 */
 double random_double(void);
 double random_double_range(double min, double max);
 double clamp(double x, double min, double max);

@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 20:47:47 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/08 20:10:19 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/10 14:30:40 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "minirt.h"
 # include "../lib/libft.h"
-#include <math.h>
+# include <math.h>
 
 // utils.c
 t_bool	ft_isfloat(char *str);
@@ -35,5 +35,6 @@ t_obj	*new_obj(int id);
 void	push_obj(t_data *rt, t_obj *obj);
 t_vec3	*normalize(t_vec3 *v);
 float	vectlen(t_vec3 v);
+void	free_objs(t_data **data);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:19:52 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/08 21:04:18 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/10 12:34:09 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	parse_camera(t_data *data, char *line)
 	ft_bzero(&camera, sizeof(t_camera));
 	if (ft_split_size(split) != 4)
 		error_handle(RT_FILE_ERROR);
-	if (!parse_vector(split[1], &data->scene->camera.coords))
+	if (!parse_vector(split[1], &data->scene->camera.origin))
 		error_handle(RT_FILE_ERROR);
-	if (!parse_vector(split[2], &data->scene->camera.orient))
+	if (!parse_vector(split[2], &data->scene->camera.dir))
 		error_handle(RT_FILE_ERROR);
 	if (!parse_ulong(split[3], &data->scene->camera.fov))
 		error_handle(RT_FILE_ERROR);

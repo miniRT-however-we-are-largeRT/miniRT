@@ -6,7 +6,7 @@
 /*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 20:42:25 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/09 17:28:31 by junhyeong        ###   ########.fr       */
+/*   Updated: 2025/01/10 13:40:47 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ t_bool	parse_float(char *str, float *num)
 	return (true);
 }
 
-t_bool	parse_color(char *str, t_color *color)
+t_bool	parse_color(char *str, t_color3 *color)
 {
 	char	**split;
 
 	split = ft_split(str, ',');
 	if (ft_split_size(split) != 3)
 		error_handle(RT_FILE_ERROR);
-	color->r = ft_atof(split[0]) / 255;
-	color->g = ft_atof(split[1]) / 255;
-	color->b = ft_atof(split[2]) / 255;
+	color->x = ft_atof(split[0]) / 255;
+	color->y = ft_atof(split[1]) / 255;
+	color->z = ft_atof(split[2]) / 255;
 	ft_free_split(split);
 	return (true);
 }

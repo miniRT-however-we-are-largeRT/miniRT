@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structure.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:52:55 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/08 19:39:02 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/10 12:46:01 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 // 	double		viewport_h;
 // 	double		viewport_w;
 // 	t_point3	lower_left;
-// 	double		focal_len;
+// 	double		fov;
 // 	t_vec3		horizontal;
 // 	t_vec3		vertical;
 // }				t_camera;
@@ -62,7 +62,7 @@
 // {
 // 	t_point3	center;
 // 	double		radius;
-// 	double		radius2;
+// 	double		r2;
 // }				t_sphere;
 
 // typedef struct s_hit_record

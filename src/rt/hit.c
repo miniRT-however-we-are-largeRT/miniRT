@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:17:51 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/08 19:27:37 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/10 12:46:01 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_bool	hit_sphere(t_obj *obj, t_ray *ray, t_hit_record *rec)
 	oc = vsub(ray->orig, sp->center);
 	a = vlen_sqr(ray->dir);
 	half_b = vdot(oc, ray->dir);
-	c = vlen_sqr(oc) - sp->radius2;
+	c = vlen_sqr(oc) - sp->r2;
 	dscrm = half_b * half_b - a * c;
 	if (dscrm < 0)
 		return (FALSE);

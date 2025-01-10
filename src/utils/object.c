@@ -6,7 +6,7 @@
 /*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:25:20 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/09 17:31:23 by junhyeong        ###   ########.fr       */
+/*   Updated: 2025/01/10 14:28:53 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,6 @@ void	free_objs(t_data **data)
 	{
 		rmv = tmp;
 		tmp = tmp->next;
-		if (rmv->id == id_sphere)
-			free_sphere(rmv);
-		if (rmv->id == id_plane)
-			free_plane(rmv);
-		if (rmv->id == id_cylinder)
-			free_cy(rmv);
 		free(rmv);
 	}
 }

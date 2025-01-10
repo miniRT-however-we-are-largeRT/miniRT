@@ -20,7 +20,7 @@ t_color3    diffuse(t_scene *scene, t_light *light)
     double      ks;
     double      brightness;
 
-    light_dir = vsub(light->origin, scene->rec.p);
+    light_dir = vsub(light->coords, scene->rec.p);
     light_len = vlen(light_dir);
     light_ray = ray_set(vadd(scene->rec.p,\
         vmult_f(EPSILON, scene->rec.normal)), light_dir);
@@ -28,31 +28,31 @@ t_color3    diffuse(t_scene *scene, t_light *light)
         return (color3(0, 0, 0));
     light_dir = uvec(vmult_f(-1, scene->ray.dir));
     kd = fmax(vdot(scene->rec.normal, light_dir), 0.0);
-    diff = vmult_f(kd, light->light_color);
+    diff = vmult_f(kd, light->color);
     view_dir = uvec(vmult_f(-1, scene->ray.dir));
     reflect_dir = reflect(vmult_f(-1, light_dir), scene->rec.normal);
     ksn = 32; // shininess value
     ks = 0.5; // specular strength
     spec = pow(fmax(vdot(view_dir, reflect_dir), 0.0), ksn);
-    specular = vmult_f(spec, vmult_f(ks, light->light_color));
-    brightness = light->bright_ratio * LUMEN; // 기준 광속/광량을 정의한 매크로
+    specular = vmult_f(spec, vmult_f(ks, light->color));
+    brightness = light->brightness * LUMEN; // 기준 광속/광량을 정의한 매크로
     return (vmult_f(brightness, vadd(diff, specular)));
 }
 
 t_color3    phong_lighting(t_scene *scene)
 {
     t_color3    light_color;
-    t_obj    *lights;
+    t_light    *lights;
 
     light_color = color3(0, 0, 0);
     lights = scene->light;
     while (lights) //여러 광원에서 나오는 모든 빛에 대해 각각 diffuse, specular 값을 모두 구해줘야 한다
     {
         if (lights->id == id_light)
-            light_color = vadd(light_color, diffuse(scene, &(lights->object.light)));
+            light_color = vadd(light_color, diffuse(scene, lights));
         lights = lights->next;
     }
-    light_color = vadd(light_color, scene->ambient);
+    light_color = vadd(light_color, scene->ambient.color);
     return (vmin(vmult(light_color, scene->rec.albedo), color3(1, 1, 1)));
 }
 

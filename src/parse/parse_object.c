@@ -6,7 +6,7 @@
 /*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 22:32:38 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/09 17:29:18 by junhyeong        ###   ########.fr       */
+/*   Updated: 2025/01/10 14:17:11 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	parse_sphere(char **split, t_obj *obj)
 		error_handle(RT_FILE_ERROR);
 	if (!parse_color(split[3], &obj->color))
 		error_handle(RT_FILE_ERROR);
-	sphere.coords = obj->coords;
+	sphere.center = obj->coords;
 	obj->object.sphere = sphere;
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 19:16:52 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/08 21:32:04 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/10 14:59:59 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ void	print_data(t_data *rt)
 	printf("width: %f\n", rt->width);
 	printf("height: %f\n", rt->height);
 
-	printf("camera coords: %f %f %f\n", rt->scene->camera.coords.x, rt->scene->camera.coords.y, rt->scene->camera.coords.z);
-	printf("camera orient: %f %f %f\n", rt->scene->camera.orient.x, rt->scene->camera.orient.y, rt->scene->camera.orient.z);
+	printf("camera coords: %f %f %f\n", rt->scene->camera.origin.x, rt->scene->camera.origin.y, rt->scene->camera.origin.z);
+	printf("camera orient: %f %f %f\n", rt->scene->camera.dir.x, rt->scene->camera.dir.y, rt->scene->camera.dir.z);
 	printf("camera fov: %lu\n", rt->scene->camera.fov);
 	printf("ambient lighting: %f\n", rt->scene->ambient.lighting);
-	printf("ambient color: %f %f %f\n", rt->scene->ambient.color.r, rt->scene->ambient.color.g, rt->scene->ambient.color.b);
-	printf("sp: %f %f %f\n", obj->object.sphere.color.r, obj->object.sphere.coords.x, obj->object.sphere.diameter);
+	printf("ambient color: %f %f %f\n", rt->scene->ambient.color.x, rt->scene->ambient.color.y, rt->scene->ambient.color.z);
+	printf("sp: %f %f %f\n", obj->object.sphere.color.x, obj->object.sphere.center.x, obj->object.sphere.diameter);
 	obj = obj->next;
-	printf("pl: %f %f %f\n", obj->object.plane.color.r, obj->object.plane.coords.x, obj->object.plane.orient.x);
+	printf("pl: %f %f %f\n", obj->object.plane.color.x, obj->object.plane.coords.x, obj->object.plane.orient.x);
 	obj = obj->next;
-	printf("cy: %f %f %f\n", obj->object.cylinder.color.r, obj->object.cylinder.coords.x, obj->object.cylinder.orient.x);
+	printf("cy: %f %f %f\n", obj->object.cylinder.color.x, obj->object.cylinder.coords.x, obj->object.cylinder.orient.x);
 }
 
 int	main(int argc, char **argv)
@@ -56,9 +56,7 @@ int	main(int argc, char **argv)
 	data = get_data();
 	if (!open_file(data, argv[1]))
 		error_handle(OPEN_ERROR);
-
-	// rt_init(data, argv[1]);
+	rt_init(data, argv[1]);
 	print_data(data);
-	rt_free(data);
-	// run();
+	run(data);
 }
