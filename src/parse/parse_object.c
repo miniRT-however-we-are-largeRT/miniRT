@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_object.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 22:32:38 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/10 12:41:21 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/10 14:17:11 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,35 +45,6 @@ void	parse_plane(char **split, t_obj *obj)
 	return ;
 }
 
-void	parse_cone(t_data *rt, char **line, t_obj *obj) 
-{
-	(void)rt;
-	(void)line;
-	(void)obj;
-	// char	**split;
-	// t_cone	*cone;
-
-	// split = ft_split(line, ' ');
-	// if (ft_split_size(split) != 6)
-	// 	error_handle(RT_FILE_ERROR);
-	// cone = (t_cone *)malloc(sizeof(t_cone));
-	// if (!cone)
-	// 	error_handle(MALLOC_ERROR);
-	// if (parse_vector(split[1], &cone->coords))
-	// 	error_handle(RT_FILE_ERROR);
-	// if (parse_vector(split[2], &cone->orient))
-	// 	error_handle(RT_FILE_ERROR);
-	// if (parse_float(split[3], &cone->angle))
-	// 	error_handle(RT_FILE_ERROR);
-	// if (parse_float(split[4], &cone->height))
-	// 	error_handle(RT_FILE_ERROR);
-	// if (parse_color(split[5], &cone->color))
-	// 	error_handle(RT_FILE_ERROR);
-	// ft_lstadd_back(&rt->objects, ft_lstnew(cone));
-	// ft_free_split(split);
-	return ;
-}
-
 void	parse_cylinder(char **split, t_obj *obj)
 {
 	t_cylinder	cylinder;
@@ -94,21 +65,3 @@ void	parse_cylinder(char **split, t_obj *obj)
 	obj->object.cylinder = cylinder;
 	return ;
 }
-
-void	parse_triangle(char **split, t_obj *obj)
-{
-	t_triangle	triangle;
-
-	ft_bzero(&triangle, sizeof(t_triangle));
-	if (parse_vector(split[1], &triangle.c[0]))
-		error_handle(RT_FILE_ERROR);
-	if (parse_vector(split[2], &triangle.c[1]))
-		error_handle(RT_FILE_ERROR);
-	if (parse_vector(split[3], &triangle.c[2]))
-		error_handle(RT_FILE_ERROR);
-	if (parse_color(split[4], &obj->color))
-		error_handle(RT_FILE_ERROR);
-	triangle.color = obj->color;
-	obj->object.triangle = triangle;
-}
-

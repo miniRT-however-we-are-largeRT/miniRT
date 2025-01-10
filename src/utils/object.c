@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:25:20 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/08 20:24:49 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/10 14:28:53 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,16 @@ void	push_obj(t_data *rt, t_obj *obj)
 	return ;
 }
 
-void	free_objs(t_data *data)
+void	free_objs(t_data **data)
 {
 	t_obj	*tmp;
 	t_obj	*rmv;
 
-	tmp = data->scene->world;
+	tmp = (*data)->scene->world;
 	while (tmp)
 	{
 		rmv = tmp;
 		tmp = tmp->next;
-		// 도형별 free 시켜주기
 		free(rmv);
 	}
 }

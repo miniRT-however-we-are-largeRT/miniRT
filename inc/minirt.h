@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:03:36 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/10 12:21:02 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/10 14:21:53 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "struct_set.h"
 # include "ray.h"
 # include "bool.h"
+# include "light.h"
 # include "../lib/mlx/mlx.h"
 
 # define	UP          126
@@ -34,7 +35,6 @@
 # define 	KeyRelease  3
 # define 	MAX_KEY     65535
 
-# define EPSILON 0.0001
 # define SPECULAR_KV 0.5
 # define SPECULAR_N 20
 # define MIRROR 0.0
@@ -102,9 +102,9 @@ typedef struct 	s_data
 int	run(t_data *data);
 
 // window.c
-void		rt_init(t_data *rt, char *path);
 void		rt_clear(t_data *rt);
 void		rt_free(t_data *rt);
+void		rt_init(t_data *data, char *path);
 
 // anti_alias.c
 t_color3	anti_aliasing_color(t_scene *scene, int i, int j, int samples_per_pixel);

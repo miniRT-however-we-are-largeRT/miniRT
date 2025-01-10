@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 02:04:49 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/08 20:58:53 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/10 13:40:20 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	parse_shape(t_data *data, char *line, int id, int nb_params)
 {
 	t_obj	*obj;
 	char	**split;
-	
+
 	split = ft_split(line, ' ');
 	if (ft_split_size(split) < nb_params)
 		error_handle(INVALID_SHAPE);
