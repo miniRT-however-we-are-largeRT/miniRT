@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:53:57 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/10 16:37:44 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/11 16:38:47 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,21 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+void print_camera(t_data *data) {
+	t_camera camera = data->scene->camera;
+
+	printf("============ camera ==============\n");
+	printf("%zu %f %f %f\n",camera.fov, camera.dir.x, camera.dir.y, camera.dir.z);
+	printf("%f %f %f\n", camera.origin.x, camera.origin.y, camera.origin.z);
+}
+
 int ft_draw(t_data *data)
 {
 	int i, j;
 	int samples_per_pixel = 10;
 
 	camera(data);
+	print_camera(data);
 	for (j = 0; j < data->scene->canvas.h; j++)
 	{
 		for (i = 0; i < data->scene->canvas.w; i++)

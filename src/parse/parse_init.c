@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parse_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:19:52 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/10 16:01:42 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/11 17:42:31 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/parse.h"
 #include "../../lib/libft.h"
-
-// #include "../../inc/utils.h"
 
 void	parse_resolution(t_data *data, char *line)
 {
@@ -38,12 +36,13 @@ void	parse_ambient(t_data *data, char *line)
 		error_handle(RT_FILE_ERROR);
 	if (!parse_color(split[2], &data->scene->ambient.color))
 		error_handle(RT_FILE_ERROR);
+	data->scene->ambient.id = id_ambient;
 	ft_free_split(split);
 }
 
 void	parse_camera(t_data *data, char *line)
 {
-	char	**split;
+	char		**split;
 	t_camera	camera;
 
 	split = ft_split(line, ' ');
@@ -58,6 +57,7 @@ void	parse_camera(t_data *data, char *line)
 		error_handle(RT_FILE_ERROR);
 	if (!parse_ulong(split[3], &camera.fov))
 		error_handle(RT_FILE_ERROR);
+	camera.id = id_camera;
 	data->scene->camera = camera;
 	ft_free_split(split);
 }
@@ -79,9 +79,9 @@ void	parse_light(t_data *data, char *line)
 		error_handle(RT_FILE_ERROR);
 	if (!parse_color(split[3], &light->color))
 		error_handle(RT_FILE_ERROR);
+	light->id = id_light;
 	light->albedo = color3(0.9, 0.3, 0.5);
 	light->next = NULL;
 	data->scene->light = light;
-//	push_light(data, light);
 	ft_free_split(split);
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 02:04:49 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/10 13:40:20 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/11 17:38:07 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/parse.h"
 
-void	parse_line(t_data *data, char *line)
+t_bool	parse_line(t_data *data, char *line)
 {
 	if (line[0] == 'R')
 		parse_resolution(data, line);
@@ -28,6 +28,9 @@ void	parse_line(t_data *data, char *line)
 		parse_shape(data, line, id_plane, NB_PARAMS_PLANE);
 	else if (line[0] == 'c' && line[1] == 'y')
 		parse_shape(data, line, id_cylinder, NB_PARAMS_CYLINDER);
+	else
+		return (false);
+	return (true);
 }
 
 void	parse_shape(t_data *data, char *line, int id, int nb_params)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 00:35:14 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/09 17:29:59 by junhyeong        ###   ########.fr       */
+/*   Updated: 2025/01/11 17:54:38 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,28 +30,35 @@ char	*sanitize_line(char *line)
 	return (line);
 }
 
-void	print_line(char *line)
+t_bool	is_invalid(t_data *data)
 {
-	printf("line: %s\n", line);
+	if (!data->scene->ambient.id)
+		return (false);
+	if (!data->scene->camera.id)
+		return (false);
+	if (!data->scene->light->id)
+		return (false);
+	return (true);
 }
 
 t_bool	read_file(t_data *data, int fd)
 {
 	char	*line;
-	int		num;
+	t_bool	flag;
 
-	num = 0;
+	flag = true;
 	while (true)
 	{
-		num++;
 		line = get_next_line(fd);
 		if (!line)
 			break ;
 		line = sanitize_line(line);
-		print_line(line);
-		parse_line(data, line);
+		if (!parse_line(data, line))
+			flag = false;
 		free(line);
 	}
+	if (flag == false && !is_invalid(data))
+		error_handle(RT_FILE_ERROR);
 	close(fd);
 	return (true);
 }

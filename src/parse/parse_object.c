@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_object.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 22:32:38 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/10 17:04:42 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/11 17:44:07 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	parse_sphere(char **split, t_obj *obj)
 		error_handle(RT_FILE_ERROR);
 	if (!parse_color(split[3], &sphere.color))
 		error_handle(RT_FILE_ERROR);
+	sphere.id = id_sphere;
 	sphere.center = obj->coords;
 	sphere.radius = sphere.diameter / 2;
 	sphere.r2 = sphere.radius * sphere.radius;
@@ -43,6 +44,7 @@ void	parse_plane(char **split, t_obj *obj)
 	if (!parse_color(split[3], &plane.color))
 		error_handle(RT_FILE_ERROR);
 	normalize(&plane.orient);
+	plane.id = id_plane;
 	plane.coords = obj->coords;
 	obj->object.plane = plane;
 	obj->albedo = color3(0.8, 0.8, 0.8);
@@ -65,6 +67,7 @@ void	parse_cylinder(char **split, t_obj *obj)
 	if (!parse_color(split[5], &cylinder.color))
 		error_handle(RT_FILE_ERROR);
 	normalize(&cylinder.orient);
+	cylinder.id = id_cylinder;
 	cylinder.coords = obj->coords;
 	cylinder.radius = cylinder.diameter / 2;
 	obj->object.cylinder = cylinder;

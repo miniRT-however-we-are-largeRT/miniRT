@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 20:43:23 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/10 14:16:53 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/11 17:37:57 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ t_bool	read_file(t_data *rt, int fd);
 char	*sanitize_line(char *line);
 
 // // parse.c
-void parse_line(t_data *rt, char *line);
-void parse_shape(t_data *rt, char *line, int id, int nb_params);
+t_bool	parse_line(t_data *rt, char *line);
+void	parse_shape(t_data *rt, char *line, int id, int nb_params);
 
 // // parse_init.c
 void	parse_resolution(t_data *rt, char *line);
