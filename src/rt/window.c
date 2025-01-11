@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 22:15:37 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/10 14:55:03 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/11 16:47:50 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	rt_init(t_data *data, char *path)
 		data->scene->canvas.aspect_ratio = data->height / data->width;
 	data->scene->canvas.w = data->width;
 	data->scene->canvas.h = data->height;
-	data->mlx_win = mlx_new_window(data->mlx, data->width, data->height, "miniRT");
+	data->mlx_win = mlx_new_window(data->mlx, data->width, \
+									data->height, "miniRT");
 	data->path = path;
 	data->img = mlx_new_image(data->mlx, data->width, data->height);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 			&data->line_length, &data->endian);
 	if (!data->img)
 		rt_clear(data);
-	// hook_init(data);
 }
 
 void	rt_clear(t_data *data)

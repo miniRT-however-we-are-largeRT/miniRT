@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 19:16:52 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/10 14:59:59 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/11 16:49:38 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,6 @@ t_data	*get_data(void)
 	return (data);
 }
 
-void	print_data(t_data *rt)
-{
-	t_obj *obj = rt->scene->world;
-	printf("path: %s\n", rt->path);
-	printf("width: %f\n", rt->width);
-	printf("height: %f\n", rt->height);
-
-	printf("camera coords: %f %f %f\n", rt->scene->camera.origin.x, rt->scene->camera.origin.y, rt->scene->camera.origin.z);
-	printf("camera orient: %f %f %f\n", rt->scene->camera.dir.x, rt->scene->camera.dir.y, rt->scene->camera.dir.z);
-	printf("camera fov: %lu\n", rt->scene->camera.fov);
-	printf("ambient lighting: %f\n", rt->scene->ambient.lighting);
-	printf("ambient color: %f %f %f\n", rt->scene->ambient.color.x, rt->scene->ambient.color.y, rt->scene->ambient.color.z);
-	printf("sp: %f %f %f\n", obj->object.sphere.color.x, obj->object.sphere.center.x, obj->object.sphere.diameter);
-	obj = obj->next;
-	printf("pl: %f %f %f\n", obj->object.plane.color.x, obj->object.plane.coords.x, obj->object.plane.orient.x);
-	obj = obj->next;
-	printf("cy: %f %f %f\n", obj->object.cylinder.color.x, obj->object.cylinder.coords.x, obj->object.cylinder.orient.x);
-}
-
 int	main(int argc, char **argv)
 {
 	t_data	*data;
@@ -57,6 +38,5 @@ int	main(int argc, char **argv)
 	if (!open_file(data, argv[1]))
 		error_handle(OPEN_ERROR);
 	rt_init(data, argv[1]);
-//	print_data(data);
 	run(data);
 }
