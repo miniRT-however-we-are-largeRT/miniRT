@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_set.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:36:06 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/10 14:16:28 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/10 15:43:42 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,38 +71,10 @@ typedef struct s_ambient
 	t_color3	color;
 }	t_ambient;
 
-typedef struct s_light
-{
-	t_obj_id		id;
-	t_vec3			coords;
-	float			brightness;
-	t_color3		color;
-	struct s_light	*next;
-}	t_light;
-
-typedef struct s_camera
-{
-	t_obj_id	id;
-	t_point3	origin;
-	t_vec3		dir;
-	size_t		fov;
-	float		scale;
-	double		cam_phi;
-	double		cam_theta;
-	t_vec3		w;
-	t_vec3		u;
-	t_vec3		v;
-	double		viewport_h;
-	double		viewport_w;
-	t_point3	lower_left;
-	t_vec3		horizontal;
-	t_vec3		vertical;
-}	t_camera;
-
 typedef struct s_plane
 {
 	t_obj_id	id;
-	t_vec3		coords;
+	t_point3	coords;
 	t_vec3		orient;
 	t_color3	color;
 }	t_plane;
@@ -110,9 +82,10 @@ typedef struct s_plane
 typedef struct s_cylinder
 {
 	t_obj_id	id;
-	t_vec3		coords;
+	t_point3	coords;
 	t_vec3		orient;
 	float		diameter;
+	float		radius;
 	float		height;
 	float		r2;
 	t_vec3		p1;
@@ -126,7 +99,7 @@ typedef struct s_sphere
 	t_obj_id	id;
 	t_vec3		center;
 	float		diameter;
-	double		radius; //init needed
+	float		radius;
 	float		r2;
 	t_color3	color;
 }	t_sphere;
@@ -179,6 +152,36 @@ typedef struct	s_ray
 // 	t_hit		shadow_hit;
 // 	t_obj		*closest_obj;
 // }	t_rays;
+
+typedef struct s_light
+{
+	t_obj_id		id;
+	t_vec3			coords;
+	float			brightness;
+	t_color3		color;
+	t_color3        albedo;
+	struct s_light	*next;
+}	t_light;
+
+typedef struct s_camera
+{
+	t_obj_id	id;
+	t_point3	origin;
+	t_vec3		dir;
+	double		focal_len;
+	size_t		fov;
+	float		scale;
+	double		cam_phi;
+	double		cam_theta;
+	t_vec3		w;
+	t_vec3		u;
+	t_vec3		v;
+	double		viewport_h;
+	double		viewport_w;
+	t_point3	lower_left;
+	t_vec3		horizontal;
+	t_vec3		vertical;
+}	t_camera;
 
 typedef struct s_canvas
 {

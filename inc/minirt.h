@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:03:36 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/10 14:21:53 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:37:52 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "ray.h"
 # include "bool.h"
 # include "light.h"
+
 # include "../lib/mlx/mlx.h"
 
 # define	UP          126
@@ -115,8 +116,5 @@ double		random_double(void);
 
 // light.c
 void	free_lights(t_light **light);
-
-// object.c
-void	free_objs(t_data *data);
 
 #endif

@@ -1,7 +1,7 @@
 # Compiler and flags
 NAME = miniRT
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 # Directories
 INCDIR = ./inc

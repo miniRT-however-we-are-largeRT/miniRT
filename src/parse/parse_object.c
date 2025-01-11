@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_object.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 22:32:38 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/10 14:17:11 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:04:42 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@ void	parse_sphere(char **split, t_obj *obj)
 		error_handle(RT_FILE_ERROR);
 	if (!parse_float(split[2], &sphere.diameter))
 		error_handle(RT_FILE_ERROR);
-	if (!parse_color(split[3], &obj->color))
+	if (!parse_color(split[3], &sphere.color))
 		error_handle(RT_FILE_ERROR);
 	sphere.center = obj->coords;
+	sphere.radius = sphere.diameter / 2;
+	sphere.r2 = sphere.radius * sphere.radius;
 	obj->object.sphere = sphere;
+	obj->albedo = color3(0.9, 0.3, 0.5);
 	return ;
 }
 
@@ -37,11 +40,12 @@ void	parse_plane(char **split, t_obj *obj)
 		error_handle(RT_FILE_ERROR);
 	if (!parse_vector(split[2], &plane.orient))
 		error_handle(RT_FILE_ERROR);
-	if (!parse_color(split[3], &obj->color))
+	if (!parse_color(split[3], &plane.color))
 		error_handle(RT_FILE_ERROR);
 	normalize(&plane.orient);
 	plane.coords = obj->coords;
 	obj->object.plane = plane;
+	obj->albedo = color3(0.8, 0.8, 0.8);
 	return ;
 }
 
@@ -62,6 +66,8 @@ void	parse_cylinder(char **split, t_obj *obj)
 		error_handle(RT_FILE_ERROR);
 	normalize(&cylinder.orient);
 	cylinder.coords = obj->coords;
+	cylinder.radius = cylinder.diameter / 2;
 	obj->object.cylinder = cylinder;
+	obj->albedo = color3(0.6, 0.4, 0.8);
 	return ;
 }

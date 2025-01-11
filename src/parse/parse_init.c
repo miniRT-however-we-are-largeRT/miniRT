@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:19:52 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/10 12:34:09 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:01:42 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ void	parse_camera(t_data *data, char *line)
 	ft_bzero(&camera, sizeof(t_camera));
 	if (ft_split_size(split) != 4)
 		error_handle(RT_FILE_ERROR);
-	if (!parse_vector(split[1], &data->scene->camera.origin))
+	if (!parse_vector(split[1], &camera.origin))
 		error_handle(RT_FILE_ERROR);
-	if (!parse_vector(split[2], &data->scene->camera.dir))
+	if (!parse_vector(split[2], &camera.dir))
 		error_handle(RT_FILE_ERROR);
-	if (!parse_ulong(split[3], &data->scene->camera.fov))
+	if (!parse_ulong(split[3], &camera.fov))
 		error_handle(RT_FILE_ERROR);
 	data->scene->camera = camera;
 	ft_free_split(split);
@@ -70,12 +70,18 @@ void	parse_light(t_data *data, char *line)
 	split = ft_split(line, ' ');
 	if (ft_split_size(split) != 4)
 		error_handle(RT_FILE_ERROR);
-	light = (t_light *)malloc(sizeof(t_light));
+	light = (t_light *)ft_calloc(sizeof(t_light), 1);
 	if (!light)
 		error_handle(MALLOC_ERROR);
-	parse_vector(split[1], &light->coords);
-	parse_float(split[2], &light->brightness);
-	parse_color(split[3], &light->color);
-	push_light(data, light);
+	if (!parse_vector(split[1], &light->coords))
+		error_handle(RT_FILE_ERROR);
+	if (!parse_float(split[2], &light->brightness))
+		error_handle(RT_FILE_ERROR);
+	if (!parse_color(split[3], &light->color))
+		error_handle(RT_FILE_ERROR);
+	light->albedo = color3(0.9, 0.3, 0.5);
+	light->next = NULL;
+	data->scene->light = light;
+//	push_light(data, light);
 	ft_free_split(split);
 }

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:53:57 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/10 14:22:12 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:37:44 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
+#include "../../inc/scene.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -25,6 +26,7 @@ int ft_draw(t_data *data)
 	int i, j;
 	int samples_per_pixel = 10;
 
+	camera(data);
 	for (j = 0; j < data->scene->canvas.h; j++)
 	{
 		for (i = 0; i < data->scene->canvas.w; i++)

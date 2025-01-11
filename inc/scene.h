@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:35:36 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/10 12:18:58 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:37:27 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 t_scene     *scene_init(void);
 t_canvas	canvas(int w, int h);
-t_camera	camera(t_canvas *canvas, t_point3 origin);
+void	    camera(t_data *data);
 t_sphere	sphere(t_point3 center, double radius);
 t_obj *object(int id, t_light light, t_color3 albedo); // temp object init
 t_obj    *object_init_sphere(t_point3 center, double radius, t_color3 color, t_color3 albedo);
