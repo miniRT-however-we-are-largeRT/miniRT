@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:19:52 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/11 17:42:31 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/11 18:06:01 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,6 @@ void	parse_light(t_data *data, char *line)
 	light->id = id_light;
 	light->albedo = color3(0.9, 0.3, 0.5);
 	light->next = NULL;
-	data->scene->light = light;
+	push_light(data, light);
 	ft_free_split(split);
 }
