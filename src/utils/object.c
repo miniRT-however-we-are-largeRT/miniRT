@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:25:20 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/10 15:51:32 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/11 16:49:00 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	push_obj(t_data *rt, t_obj *obj)
 	t_obj	*tmp;
 
 	tmp = rt->scene->world;
-	if (tmp ==NULL) printf("**************\n");
 	if (!tmp)
 	{
 		rt->scene->world = obj;
@@ -72,4 +71,3 @@ t_vec3	*normalize(t_vec3 *v)
 	v->z *= norm;
 	return (v);
 }
-
