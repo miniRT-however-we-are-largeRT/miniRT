@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:19:52 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/11 18:06:01 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/11 21:14:16 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	parse_light(t_data *data, char *line)
 	if (!parse_color(split[3], &light->color))
 		error_handle(RT_FILE_ERROR);
 	light->id = id_light;
-	light->albedo = color3(0.9, 0.3, 0.5);
+	light->albedo = color3(0.0, 0.0, 0.0);
 	light->next = NULL;
 	push_light(data, light);
 	ft_free_split(split);

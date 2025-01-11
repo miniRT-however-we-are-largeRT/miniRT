@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_object.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 22:32:38 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/11 17:44:07 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/11 21:17:20 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	parse_sphere(char **split, t_obj *obj)
 	sphere.radius = sphere.diameter / 2;
 	sphere.r2 = sphere.radius * sphere.radius;
 	obj->object.sphere = sphere;
-	obj->albedo = color3(0.9, 0.3, 0.5);
+	obj->albedo = color3(1.0, 1.0, 1.0);
 	return ;
 }
 
@@ -47,7 +47,7 @@ void	parse_plane(char **split, t_obj *obj)
 	plane.id = id_plane;
 	plane.coords = obj->coords;
 	obj->object.plane = plane;
-	obj->albedo = color3(0.8, 0.8, 0.8);
+	obj->albedo = color3(1.0, 1.0, 1.0);
 	return ;
 }
 
@@ -71,6 +71,6 @@ void	parse_cylinder(char **split, t_obj *obj)
 	cylinder.coords = obj->coords;
 	cylinder.radius = cylinder.diameter / 2;
 	obj->object.cylinder = cylinder;
-	obj->albedo = color3(0.6, 0.4, 0.8);
+	obj->albedo = color3(1.0, 1.0, 1.0);
 	return ;
 }

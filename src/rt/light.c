@@ -33,7 +33,7 @@ t_color3    diffuse(t_scene *scene)
     view_dir = uvec(vmult_f(-1, scene->ray.dir));
     reflect_dir = reflect(vmult_f(-1, light_dir), scene->rec.normal);
     ksn = 64; // shininess value
-    ks = 0.5; // specular strength
+    ks = 0.7; // specular strength
     spec = pow(fmax(vdot(view_dir, reflect_dir), 0.0), ksn);
     specular = vmult_f(spec, vmult_f(ks, light->color));
     brightness = light->brightness * LUMEN; // 기준 광속/광량을 정의한 매크로
@@ -55,8 +55,12 @@ t_color3    phong_lighting(t_scene *scene)
 //		return (vmin(vmult(light_color, scene->rec.albedo), color3(1, 1, 1)));
 
 //        lights = lights->next;
-//    }
-    light_color = vadd(light_color, vmult_f(0.1, scene->ambient.color));
+		if (light_color.x > 1 || light_color.y > 1 || light_color.z > 1 )
+		{
+			(scene->tmp)++;
+		}
+
+    light_color = vadd(light_color, vmult_f(scene->ambient.lighting, scene->ambient.color));
     return (vmin(vmult(light_color, scene->rec.albedo), color3(1, 1, 1)));
 }
 
