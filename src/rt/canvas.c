@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:38:58 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/10 16:11:26 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/11 16:58:57 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	camera(t_data *data)
 	double		viewport_height;
 
 	canvas = data->scene->canvas;
-	viewport_height = 2.0;
+	viewport_height = 2 * tan((data->scene->camera.fov * M_PI / 180) / 2);
 	focal_len = 1.0; //value calc needed
 	data->scene->camera.viewport_h = viewport_height;
 	data->scene->camera.viewport_w = viewport_height * canvas.aspect_ratio;

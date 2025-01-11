@@ -56,7 +56,7 @@ t_color3    phong_lighting(t_scene *scene)
 
 //        lights = lights->next;
 //    }
-    light_color = vadd(light_color, scene->ambient.color);
+    light_color = vadd(light_color, vmult_f(0.1, scene->ambient.color));
     return (vmin(vmult(light_color, scene->rec.albedo), color3(1, 1, 1)));
 }
 

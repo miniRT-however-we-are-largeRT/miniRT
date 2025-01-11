@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:53:57 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/10 16:37:44 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/11 17:39:29 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,14 @@ int ft_draw(t_data *data)
 
 int handle_key_input(int keycode)
 {
-	if (keycode == 53)
+	if (keycode == 53)  // ESC 키
 		exit(0);
+	return (0);
+}
+
+int exit_hook(void)
+{
+	exit(0);
 	return (0);
 }
 
@@ -55,6 +61,7 @@ int run(t_data *data)
 {
 	ft_draw(data);
 	mlx_key_hook(data->mlx_win, handle_key_input, NULL);
+	mlx_hook(data->mlx_win, 17, 0, exit_hook, NULL);
 	mlx_loop(data->mlx);
 	return (0);
 }
