@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:17:38 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/08 19:01:14 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/12 18:13:34 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 typedef struct s_point3
 {
-	float        x;
-	float        y;
-	float        z;
+	double        x;
+	double        y;
+	double        z;
 }              t_point3;
 
 typedef struct	s_t

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_set.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:36:06 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/12 16:35:42 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/12 18:20:45 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define		FALSE	0
 # define		TRUE	1
 # define		EPSILON		1e-6
-# define		LUMEN	4
+# define		LUMEN	2
 
 # define NB_PARAMS_PLANE 4
 # define NB_PARAMS_SPHERE 4
@@ -67,7 +67,7 @@ typedef struct s_colors
 typedef struct s_ambient
 {
 	t_obj_id	id;
-	float		lighting;
+	double		lighting;
 	t_color3	color;
 }	t_ambient;
 
@@ -84,10 +84,10 @@ typedef struct s_cylinder
 	t_obj_id	id;
 	t_point3	coords;
 	t_vec3		orient;
-	float		diameter;
-	float		radius;
-	float		height;
-	float		r2;
+	double		diameter;
+	double		radius;
+	double		height;
+	double		r2;
 	t_vec3		p1;
 	t_vec3		p2;
 	t_vec3		delta_p;
@@ -98,9 +98,9 @@ typedef struct s_sphere
 {
 	t_obj_id	id;
 	t_vec3		center;
-	float		diameter;
-	float		radius;
-	float		r2;
+	double		diameter;
+	double		radius;
+	double		r2;
 	t_color3	color;
 }	t_sphere;
 
@@ -116,10 +116,10 @@ typedef struct s_obj
 {
 	t_obj_id		id;
 	t_obj_union		object;
-	float			speckv;
-	float			specn;
-	float			mirror;
-	float			refract;
+	double			speckv;
+	double			specn;
+	double			mirror;
+	double			refract;
 	t_vec3			ex;
 	t_vec3			ey;
 	t_vec3			ez;
@@ -127,12 +127,12 @@ typedef struct s_obj
 	t_color3		color;
 	t_color3		color2;
 	t_color3		albedo;
-	float			h;
-	float			pattern_len;
+	double			h;
+	double			pattern_len;
 	int				pattern_num;
-	float			alpha;
-	float			bump_f;
-	float			texture_f;
+	double			alpha;
+	double			bump_f;
+	double			texture_f;
 	t_bool			has_bump;
 	t_bool			has_texture;
 	struct s_obj	*next;
@@ -157,7 +157,7 @@ typedef struct s_light
 {
 	t_obj_id		id;
 	t_vec3			coords;
-	float			brightness;
+	double			brightness;
 	t_color3		color;
 	t_color3        albedo;
 	struct s_light	*next;
@@ -170,7 +170,7 @@ typedef struct s_camera
 	t_vec3		dir;
 	double		focal_len;
 	size_t		fov;
-	float		scale;
+	double		scale;
 	double		cam_phi;
 	double		cam_theta;
 	t_vec3		w;

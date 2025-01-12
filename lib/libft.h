@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 18:58:53 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/02 19:54:29 by junhyeong        ###   ########.fr       */
+/*   Updated: 2025/01/12 18:33:15 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_list
 }	t_list;
 
 int		ft_atoi(const char *str);
-float	ft_atof(const char *str);
+double	ft_atod(const char *str);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);

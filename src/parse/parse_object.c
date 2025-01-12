@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_object.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 22:32:38 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/12 15:38:58 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/12 18:13:34 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	parse_sphere(char **split, t_obj *obj)
 	ft_bzero(&sphere, sizeof(t_sphere));
 	if (!parse_vector(split[1], &obj->coords))
 		error_handle(RT_FILE_ERROR);
-	if (!parse_float(split[2], &sphere.diameter))
+	if (!parse_double(split[2], &sphere.diameter))
 		error_handle(RT_FILE_ERROR);
 	if (!parse_color(split[3], &sphere.color))
 		error_handle(RT_FILE_ERROR);
@@ -60,9 +60,9 @@ void	parse_cylinder(char **split, t_obj *obj)
 		error_handle(RT_FILE_ERROR);
 	if (!parse_vector(split[2], &cylinder.orient))
 		error_handle(RT_FILE_ERROR);
-	if (!parse_float(split[3], &cylinder.diameter))
+	if (!parse_double(split[3], &cylinder.diameter))
 		error_handle(RT_FILE_ERROR);
-	if (!parse_float(split[4], &cylinder.height))
+	if (!parse_double(split[4], &cylinder.height))
 		error_handle(RT_FILE_ERROR);
 	if (!parse_color(split[5], &cylinder.color))
 		error_handle(RT_FILE_ERROR);

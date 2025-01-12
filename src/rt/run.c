@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:53:57 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/12 16:45:17 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/12 17:51:31 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int ft_draw(t_data *data)
 
 			my_mlx_pixel_put(data, i, j, color);
 		}
-		if ()
 	}
 	printf("\nRendering complete!\n");
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);

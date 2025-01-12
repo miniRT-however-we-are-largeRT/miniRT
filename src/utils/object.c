@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:25:20 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/11 16:49:00 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/12 18:13:34 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ void	free_objs(t_data **data)
 	}
 }
 
-float	vectlen(t_vec3 v)
+double	vectlen(t_vec3 v)
 {
 	return (sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
 }
 
 t_vec3	*normalize(t_vec3 *v)
 {
-	float	norm;
+	double	norm;
 
 	norm = 1 / vectlen(*v);
 	v->x *= norm;

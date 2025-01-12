@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 20:43:23 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/11 17:37:57 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/12 18:13:34 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	parse_light(t_data *rt, char *line);
 void	parse_camera(t_data *rt, char *line);
 
 // parse_utils.c
-t_bool	parse_float(char *str, float *num);
+t_bool	parse_double(char *str, double *num);
 t_bool	parse_color(char *str, t_color3 *color);
 t_bool	parse_vector(char *str, t_vec3 *vector);
 t_bool	parse_ulong(char *str, unsigned long *num);
