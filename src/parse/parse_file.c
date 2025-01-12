@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 00:35:14 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/11 17:54:38 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/12 21:30:14 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_bool	is_invalid(t_data *data)
 		return (false);
 	if (!data->scene->camera.id)
 		return (false);
-	if (!data->scene->light->id)
+	if (!data->scene->light)
 		return (false);
 	return (true);
 }
