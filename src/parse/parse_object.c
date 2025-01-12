@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 22:32:38 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/11 21:17:20 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/12 15:38:58 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	parse_sphere(char **split, t_obj *obj)
 	sphere.radius = sphere.diameter / 2;
 	sphere.r2 = sphere.radius * sphere.radius;
 	obj->object.sphere = sphere;
-	obj->albedo = color3(1.0, 1.0, 1.0);
+	obj->albedo = sphere.color;
 	return ;
 }
 
@@ -47,7 +47,7 @@ void	parse_plane(char **split, t_obj *obj)
 	plane.id = id_plane;
 	plane.coords = obj->coords;
 	obj->object.plane = plane;
-	obj->albedo = color3(1.0, 1.0, 1.0);
+	obj->albedo = plane.color;
 	return ;
 }
 
@@ -71,6 +71,6 @@ void	parse_cylinder(char **split, t_obj *obj)
 	cylinder.coords = obj->coords;
 	cylinder.radius = cylinder.diameter / 2;
 	obj->object.cylinder = cylinder;
-	obj->albedo = color3(1.0, 1.0, 1.0);
+	obj->albedo = cylinder.color;
 	return ;
 }

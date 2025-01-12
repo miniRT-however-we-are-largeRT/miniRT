@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:53:57 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/11 20:52:46 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/12 16:45:17 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int ft_draw(t_data *data)
 	int samples_per_pixel = 10;
 
 	camera(data);
-	data->scene->tmp = 0;
 	for (j = 0; j < data->scene->canvas.h; j++)
 	{
 		for (i = 0; i < data->scene->canvas.w; i++)
@@ -40,8 +39,9 @@ int ft_draw(t_data *data)
 
 			my_mlx_pixel_put(data, i, j, color);
 		}
+		if ()
 	}
-	printf("total : %lld\n", data->scene->tmp);	
+	printf("\nRendering complete!\n");
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 	return (0);
 }

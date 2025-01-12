@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:38:58 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/11 16:58:57 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/12 15:59:51 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_canvas	canvas(int width, int height)
 void	camera(t_data *data)
 {
 	t_canvas 	canvas;
-//	t_camera	cam;
 	double		focal_len;
 	double		viewport_height;
 
@@ -34,11 +33,21 @@ void	camera(t_data *data)
 	focal_len = 1.0; //value calc needed
 	data->scene->camera.viewport_h = viewport_height;
 	data->scene->camera.viewport_w = viewport_height * canvas.aspect_ratio;
+	data->scene->camera.w = uvec(vmult_f(-1, data->scene->camera.dir));
+	data->scene->camera.u = uvec(vcross(vec3(0, 1, 0), data->scene->camera.w));
+	data->scene->camera.v = vcross(data->scene->camera.w, data->scene->camera.u);
 	data->scene->camera.focal_len = focal_len;
-	data->scene->camera.horizontal = vec3(data->scene->camera.viewport_w, 0, 0);
-	data->scene->camera.vertical = vec3(0, data->scene->camera.viewport_h, 0);
-	data->scene->camera.lower_left = vsub(vsub(vsub(data->scene->camera.origin, vdiv_f(2, data->scene->camera.horizontal)), \
-						vdiv_f(2, data->scene->camera.vertical)), vec3(0, 0, focal_len));
+	// data->scene->camera.horizontal = vec3(data->scene->camera.viewport_w, 0, 0);
+	// data->scene->camera.vertical = vec3(0, data->scene->camera.viewport_h, 0);
+	// data->scene->camera.lower_left = vsub(vsub(vsub(data->scene->camera.origin, vdiv_f(2, data->scene->camera.horizontal)), \
+	// 					vdiv_f(2, data->scene->camera.vertical)), vec3(0, 0, focal_len));
+	data->scene->camera.horizontal = vmult_f(data->scene->camera.viewport_w, data->scene->camera.u);
+	data->scene->camera.vertical = vmult_f(viewport_height, data->scene->camera.v);
+	data->scene->camera.lower_left = vsub(vsub(vsub(data->scene->camera.origin,
+				vdiv_f(2, data->scene->camera.horizontal)),
+				vdiv_f(2, data->scene->camera.vertical)),
+				vmult_f(focal_len, data->scene->camera.w));
+	
 }
 
 

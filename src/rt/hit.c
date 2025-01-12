@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:17:51 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/11 21:05:13 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/12 16:32:10 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ t_bool	hit_sphere(t_obj *obj, t_ray *ray, t_hit_record *rec)
 	}
 	rec->t = root;
 	rec->p = ray_at(*ray, root);
-	rec->normal = vdiv_f(sp->radius, vsub(rec->p, sp->center));
-	rec->p = vadd(rec->p, vmult_f(EPSILON, rec->normal));
+	rec->normal = uvec(vdiv_f(sp->radius, vsub(rec->p, sp->center)));
+	rec->p = vadd(rec->p, vmult_f(fabs(EPSILON), rec->normal));
 	rec->albedo = obj->albedo;
 	set_face_normal(ray, rec);
 	return (TRUE);
@@ -93,7 +93,8 @@ t_bool hit_plane(t_obj *obj, t_ray *ray, t_hit_record *rec)
 			return (FALSE);
 		rec->t = t;
 		rec->p = ray_at(*ray, t);
-		rec->normal = pl->orient;
+		rec->normal = uvec(pl->orient);
+			rec->p = vadd(rec->p, vmult_f(fabs(EPSILON), rec->normal));
 		rec->albedo = obj->albedo;
 		set_face_normal(ray, rec);
 		return (TRUE);
@@ -115,7 +116,7 @@ t_bool hit_cylinder_caps(t_obj *obj, t_ray *ray, t_hit_record *rec, double *t)
     {
         *t = t_top;
         rec->p = p_top;
-        rec->normal = cy->orient;
+        rec->normal = uvec(cy->orient);
         rec->albedo = obj->albedo;
         return (TRUE);
     }
@@ -127,7 +128,9 @@ t_bool hit_cylinder_caps(t_obj *obj, t_ray *ray, t_hit_record *rec, double *t)
     {
         *t = t_bottom;
         rec->p = p_bottom;
-        rec->normal = vmult_f(-1, cy->orient);
+        rec->normal = uvec(vmult_f(-1, cy->orient));
+			rec->p = vadd(rec->p, vmult_f(fabs(EPSILON), rec->normal));
+
         rec->albedo = obj->albedo;
         return (TRUE);
     }
@@ -166,7 +169,8 @@ t_bool hit_cylinder(t_obj *obj, t_ray *ray, t_hit_record *rec)
 
     // 측면 노멀 계산
     t_vec3 projection_point = vadd(cy->coords, vmult_f(projection, cy->orient));
-    rec->normal = uvec(vsub(rec->p, projection_point));
+    rec->normal = uvec(vsub(rec->p, projection_point));	
+		rec->p = vadd(rec->p, vmult_f(fabs(EPSILON), rec->normal));
     rec->albedo = obj->albedo;
     set_face_normal(ray, rec);
     return (TRUE);

@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:36:06 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/11 20:44:16 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/12 16:35:42 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define		FALSE	0
 # define		TRUE	1
 # define		EPSILON		1e-6
-# define		LUMEN	2
+# define		LUMEN	4
 
 # define NB_PARAMS_PLANE 4
 # define NB_PARAMS_SPHERE 4
@@ -200,7 +200,6 @@ typedef struct s_scene
 	t_ambient		ambient;
 	t_ray           ray;
 	t_hit_record    rec;
-	long long		tmp;
 }	t_scene;
 
 typedef struct s_img
