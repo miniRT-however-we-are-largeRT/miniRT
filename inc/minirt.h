@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:03:36 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/10 16:37:52 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/12 18:13:34 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef struct 	s_data
 	void    *mlx;
 	void    *mlx_win;
 	t_scene	*scene;
-	float	width, height;
+	double	width, height;
 	int     x, y;
 	int     up, down, left, right;
 	void    *img;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structure.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:52:55 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/10 12:46:01 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/12 18:13:34 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,9 @@
 // 	t_obj_id	id;
 // 	t_vec3		coords;
 // 	t_vec3		orient;
-// 	float		diameter;
-// 	float		height;
-// 	float		r2;
+// 	double		diameter;
+// 	double		height;
+// 	double		r2;
 // 	t_vec3		p1;
 // 	t_vec3		p2;
 // 	t_vec3		delta_p;
@@ -123,8 +123,8 @@
 // // {
 // // 	t_obj_id	id;
 // // 	t_vec3		coords;
-// // 	float		diameter;
-// // 	float		r2;
+// // 	double		diameter;
+// // 	double		r2;
 // // 	t_color3		color;
 // // }	t_sphere;
 
@@ -135,7 +135,7 @@
 // 	t_vec3		edge[3];
 // 	t_vec3		n;
 // 	t_color3		color;
-// 	float		area2;
+// 	double		area2;
 // }	t_triangle;
 
 // typedef struct s_cone
@@ -143,14 +143,14 @@
 // 	t_obj_id	id;
 // 	t_vec3		coords;
 // 	t_vec3		orient;
-// 	float		h;
-// 	float		h2;
-// 	float		angle;
-// 	float		cos2;
+// 	double		h;
+// 	double		h2;
+// 	double		angle;
+// 	double		cos2;
 // 	t_vec3		c1;
 // 	t_vec3		c2;
-// 	float		r1;
-// 	float		r2;
+// 	double		r1;
+// 	double		r2;
 // 	t_color3		color;
 // }	t_cone;
 
@@ -159,10 +159,10 @@
 // 	t_obj_id	id;
 // 	t_vec3		coords;
 // 	t_vec3		orient;
-// 	float		sml_r;
-// 	float		sml_r2;
-// 	float		big_r;
-// 	float		big_r2;
+// 	double		sml_r;
+// 	double		sml_r2;
+// 	double		big_r;
+// 	double		big_r2;
 // 	t_color3		color;
 // }	t_torus;
 
@@ -202,10 +202,10 @@
 // {
 // 	t_obj_id		id;
 // 	t_obj_union		object;
-// 	float			speckv;
-// 	float			specn;
-// 	float			mirror;
-// 	float			refract;
+// 	double			speckv;
+// 	double			specn;
+// 	double			mirror;
+// 	double			refract;
 // 	t_vec3			ex;
 // 	t_vec3			ey;
 // 	t_vec3			ez;
@@ -213,12 +213,12 @@
 // 	t_color3		color;
 // 	t_color3		color2;
 // 	t_color3		albedo;
-// 	float			h;
-// 	float			pattern_len;
+// 	double			h;
+// 	double			pattern_len;
 // 	int				pattern_num;
-// 	float			alpha;
-// 	float			bump_f;
-// 	float			texture_f;
+// 	double			alpha;
+// 	double			bump_f;
+// 	double			texture_f;
 // 	t_bool			has_bump;
 // 	t_bool			has_texture;
 // 	t_img			bump;

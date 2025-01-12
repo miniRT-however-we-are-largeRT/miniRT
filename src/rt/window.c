@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 22:15:37 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/11 16:47:50 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/12 18:13:34 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	rt_init(t_data *data, char *path)
 {
 	data->mlx = mlx_init();
 	if (!data->width)
-		data->width = (float) WIN_WIDTH;
+		data->width = (double) WIN_WIDTH;
 	if (!data->height)
-		data->height = (float) WIN_HEIGHT;
+		data->height = (double) WIN_HEIGHT;
 	if (data->height < data->width)
 		data->scene->canvas.aspect_ratio = data->width / data->height;
 	else

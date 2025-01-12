@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 21:16:23 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/09 17:30:37 by junhyeong        ###   ########.fr       */
+/*   Updated: 2025/01/12 18:13:34 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/utils.h"
 
-t_bool	ft_isfloat(char *str)
+t_bool	ft_isdouble(char *str)
 {
 	int	i;
 	int	dot;
