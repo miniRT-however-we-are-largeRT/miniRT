@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:17:51 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/12 18:13:34 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/12 20:35:28 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ t_bool	hit_sphere(t_obj *obj, t_ray *ray, t_hit_record *rec)
 	rec->t = root;
 	rec->p = ray_at(*ray, root);
 	rec->normal = uvec(vdiv_f(sp->radius, vsub(rec->p, sp->center)));
-	rec->p = vadd(rec->p, vmult_f(fabs(EPSILON), rec->normal));
 	rec->albedo = obj->albedo;
 	set_face_normal(ray, rec);
 	return (TRUE);
@@ -94,7 +93,6 @@ t_bool hit_plane(t_obj *obj, t_ray *ray, t_hit_record *rec)
 		rec->t = t;
 		rec->p = ray_at(*ray, t);
 		rec->normal = uvec(pl->orient);
-			rec->p = vadd(rec->p, vmult_f(fabs(EPSILON), rec->normal));
 		rec->albedo = obj->albedo;
 		set_face_normal(ray, rec);
 		return (TRUE);
@@ -129,7 +127,6 @@ t_bool hit_cylinder_caps(t_obj *obj, t_ray *ray, t_hit_record *rec, double *t)
         *t = t_bottom;
         rec->p = p_bottom;
         rec->normal = uvec(vmult_f(-1, cy->orient));
-			rec->p = vadd(rec->p, vmult_f(fabs(EPSILON), rec->normal));
 
         rec->albedo = obj->albedo;
         return (TRUE);
@@ -170,7 +167,6 @@ t_bool hit_cylinder(t_obj *obj, t_ray *ray, t_hit_record *rec)
     // 측면 노멀 계산
     t_vec3 projection_point = vadd(cy->coords, vmult_f(projection, cy->orient));
     rec->normal = uvec(vsub(rec->p, projection_point));	
-		rec->p = vadd(rec->p, vmult_f(fabs(EPSILON), rec->normal));
     rec->albedo = obj->albedo;
     set_face_normal(ray, rec);
     return (TRUE);

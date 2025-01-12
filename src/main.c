@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 19:16:52 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/11 21:43:54 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/12 20:48:43 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void print_light(t_data *data)
 	t_light *light = data->scene->light;
 
 	while (light) {
+		printf("%d", light->id);
 		printf("%f %f %f\n", light->color.x, light->color.y, light->color.z);
 		printf("%f %f %f\n", light->coords.x, light->coords.y, light->coords.z);
 		printf("%f\n", light->brightness);;
