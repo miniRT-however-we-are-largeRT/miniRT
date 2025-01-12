@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 17:12:06 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/08 18:50:31 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/11 21:10:40 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,15 @@ t_hit_record record_init(void)
 t_color3 ray_color(t_scene *scene)
 {
 	// t_ray		*ray;
-	double		t;
+	// double		t;
 
 	scene->rec = record_init();
 	if (hit(scene->world, &(scene->ray), &(scene->rec)))
 		return (phong_lighting(scene));  // 구체 객체의 색상 반환
-	t = 0.5 * (scene->ray.dir.y + 1.0);
-	// (1-t) * 흰색 + t * 하늘색
-	return (vadd(vmult_f(1.0 - t, color3(1, 1, 1)), \
-		vmult_f(t, color3(0.5, 0.7, 1.0))));  // 배경 색상
+	
+	// t = 0.5 * (scene->ray.dir.y + 1.0);
+	// // (1-t) * 흰색 + t * 하늘색
+	// return (vadd(vmult_f(1.0 - t, color3(1, 1, 1)), \
+	// 	vmult_f(t, color3(0.5, 0.7, 1.0))));  // 배경 색상
+	return (color3(0, 0, 0));
 }

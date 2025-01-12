@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:17:51 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/10 17:11:25 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/12 16:32:10 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ t_bool	hit_sphere(t_obj *obj, t_ray *ray, t_hit_record *rec)
 	}
 	rec->t = root;
 	rec->p = ray_at(*ray, root);
-	rec->normal = vdiv_f(sp->radius, vsub(rec->p, sp->center));
+	rec->normal = uvec(vdiv_f(sp->radius, vsub(rec->p, sp->center)));
+	rec->p = vadd(rec->p, vmult_f(fabs(EPSILON), rec->normal));
 	rec->albedo = obj->albedo;
 	set_face_normal(ray, rec);
 	return (TRUE);
@@ -92,7 +93,8 @@ t_bool hit_plane(t_obj *obj, t_ray *ray, t_hit_record *rec)
 			return (FALSE);
 		rec->t = t;
 		rec->p = ray_at(*ray, t);
-		rec->normal = pl->orient;
+		rec->normal = uvec(pl->orient);
+			rec->p = vadd(rec->p, vmult_f(fabs(EPSILON), rec->normal));
 		rec->albedo = obj->albedo;
 		set_face_normal(ray, rec);
 		return (TRUE);
@@ -100,33 +102,78 @@ t_bool hit_plane(t_obj *obj, t_ray *ray, t_hit_record *rec)
 	return (FALSE);
 }
 
+t_bool hit_cylinder_caps(t_obj *obj, t_ray *ray, t_hit_record *rec, double *t)
+{
+    t_cylinder *cy = &(obj->object.cylinder);
+
+    t_vec3 top_center = vadd(cy->coords, vmult_f(cy->height / 2.0, cy->orient));
+    t_vec3 bottom_center = vsub(cy->coords, vmult_f(cy->height / 2.0, cy->orient));
+
+    double t_top = vdot(vsub(top_center, ray->orig), cy->orient) / vdot(ray->dir, cy->orient);
+    t_vec3 p_top = ray_at(*ray, t_top);
+    if (t_top >= rec->tmin && t_top <= rec->tmax &&
+        vlen_sqr(vsub(p_top, top_center)) <= cy->radius * cy->radius)
+    {
+        *t = t_top;
+        rec->p = p_top;
+        rec->normal = uvec(cy->orient);
+        rec->albedo = obj->albedo;
+        return (TRUE);
+    }
+
+    double t_bottom = vdot(vsub(bottom_center, ray->orig), cy->orient) / vdot(ray->dir, cy->orient);
+    t_vec3 p_bottom = ray_at(*ray, t_bottom);
+    if (t_bottom >= rec->tmin && t_bottom <= rec->tmax &&
+        vlen_sqr(vsub(p_bottom, bottom_center)) <= cy->radius * cy->radius)
+    {
+        *t = t_bottom;
+        rec->p = p_bottom;
+        rec->normal = uvec(vmult_f(-1, cy->orient));
+			rec->p = vadd(rec->p, vmult_f(fabs(EPSILON), rec->normal));
+
+        rec->albedo = obj->albedo;
+        return (TRUE);
+    }
+
+    return (FALSE);
+}
+
 t_bool hit_cylinder(t_obj *obj, t_ray *ray, t_hit_record *rec)
 {
-	t_cylinder *cy = &(obj->object.cylinder);
-	t_vec3 oc = vsub(ray->orig, cy->coords);
-	double a = pow(ray->dir.x, 2) + pow(ray->dir.z, 2);
-	double half_b = ray->dir.x * oc.x + ray->dir.z * oc.z;
-	double c = pow(oc.x, 2) + pow(oc.z, 2) - pow(cy->radius, 2);
-	double dscrm = half_b * half_b - a * c;
-	if (dscrm < 0)
-		return (FALSE);
-	double sqrtd = sqrt(dscrm);
-	double root = (-half_b - sqrtd) / a;
-	if (root < rec->tmin || rec->tmax < root)
-	{
-		root = (-half_b + sqrtd) / a;
-		if (root < rec->tmin || rec->tmax < root)
-			return (FALSE);
-	}
-	
-	rec->t = root;
-	rec->p = ray_at(*ray, root);
-	if (rec->p.y > cy->coords.y + cy->height)
-		return (FALSE);
-	rec->normal = vec3(rec->p.x - cy->coords.x, 0, rec->p.z - cy->coords.z);
-	rec->albedo = obj->albedo;
-	set_face_normal(ray, rec);
-	return (TRUE);
+    t_cylinder *cy = &(obj->object.cylinder);
+    t_vec3 oc = vsub(ray->orig, cy->coords);
+
+    double a = vlen_sqr(vcross(ray->dir, cy->orient));
+    double half_b = vdot(vcross(oc, cy->orient), vcross(ray->dir, cy->orient));
+    double c = vlen_sqr(vcross(oc, cy->orient)) - pow(cy->radius, 2);
+    double dscrm = half_b * half_b - a * c;
+
+    if (dscrm < 0)
+        return (FALSE);
+
+    double sqrtd = sqrt(dscrm);
+    double root = (-half_b - sqrtd) / a;
+    if (root < rec->tmin || root > rec->tmax)
+    {
+        root = (-half_b + sqrtd) / a;
+        if (root < rec->tmin || root > rec->tmax)
+            return (FALSE);
+    }
+
+    // 측면 교차점 판별
+    rec->t = root;
+    rec->p = ray_at(*ray, root);
+    double projection = vdot(vsub(rec->p, cy->coords), cy->orient);
+    if (projection < -cy->height / 2.0 || projection > cy->height / 2.0)
+        return (hit_cylinder_caps(obj, ray, rec, &rec->t)); // 뚜껑과 교차 여부 확인
+
+    // 측면 노멀 계산
+    t_vec3 projection_point = vadd(cy->coords, vmult_f(projection, cy->orient));
+    rec->normal = uvec(vsub(rec->p, projection_point));	
+		rec->p = vadd(rec->p, vmult_f(fabs(EPSILON), rec->normal));
+    rec->albedo = obj->albedo;
+    set_face_normal(ray, rec);
+    return (TRUE);
 }
 
 void	set_face_normal(t_ray *r, t_hit_record *rec)

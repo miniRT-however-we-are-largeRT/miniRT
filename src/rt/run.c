@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:53:57 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/11 18:20:20 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/12 16:45:17 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,23 @@ int ft_draw(t_data *data)
 
 			my_mlx_pixel_put(data, i, j, color);
 		}
+		if ()
 	}
+	printf("\nRendering complete!\n");
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 	return (0);
 }
 
 int handle_key_input(int keycode)
 {
-	if (keycode == 53)
+	if (keycode == 53)  // ESC 키
 		exit(0);
+	return (0);
+}
+
+int exit_hook(void)
+{
+	exit(0);
 	return (0);
 }
 
@@ -55,6 +63,7 @@ int run(t_data *data)
 {
 	ft_draw(data);
 	mlx_key_hook(data->mlx_win, handle_key_input, NULL);
+	mlx_hook(data->mlx_win, 17, 0, exit_hook, NULL);
 	mlx_loop(data->mlx);
 	return (0);
 }

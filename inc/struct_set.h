@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:36:06 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/10 15:43:42 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/12 16:35:42 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define		FALSE	0
 # define		TRUE	1
 # define		EPSILON		1e-6
-# define		LUMEN	3
+# define		LUMEN	4
 
 # define NB_PARAMS_PLANE 4
 # define NB_PARAMS_SPHERE 4
