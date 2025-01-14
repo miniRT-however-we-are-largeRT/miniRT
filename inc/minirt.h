@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:03:36 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/12 18:13:34 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:04:55 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # include "light.h"
 
 # include "../lib/mlx/mlx.h"
+
+# define	SPP			3
 
 # define	UP          126
 # define	DOWN        125
@@ -108,7 +110,7 @@ void		rt_free(t_data *rt);
 void		rt_init(t_data *data, char *path);
 
 // anti_alias.c
-t_color3	anti_aliasing_color(t_scene *scene, int i, int j, int samples_per_pixel);
+t_color3	anti_aliasing_color(t_scene *scene, int i, int j);
 t_color3	average_color(t_color3 *colors, int sample_count);
 double		clamp(double x, double min, double max);
 double		random_double_range(double min, double max);
