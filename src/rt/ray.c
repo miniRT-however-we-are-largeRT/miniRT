@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 17:12:06 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/12 18:13:34 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:42:36 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,27 +42,19 @@ t_ray	ray_primary(t_camera *cam, double u, double v)
 	return (ray);
 }
 
-t_hit_record record_init(void)
+t_hit_record	record_init(void)
 {
-	t_hit_record    record;
+	t_hit_record	record;
 
 	record.tmin = EPSILON;
 	record.tmax = INFINITY;
 	return (record);
 }
 
-t_color3 ray_color(t_scene *scene)
+t_color3	ray_color(t_scene *scene)
 {
-	// t_ray		*ray;
-	// double		t;
-
 	scene->rec = record_init();
 	if (hit(scene->world, &(scene->ray), &(scene->rec)))
-		return (phong_lighting(scene));  // 구체 객체의 색상 반환
-	
-	// t = 0.5 * (scene->ray.dir.y + 1.0);
-	// // (1-t) * 흰색 + t * 하늘색
-	// return (vadd(vmult_f(1.0 - t, color3(1, 1, 1)), \
-	// 	vmult_f(t, color3(0.5, 0.7, 1.0))));  // 배경 색상
+		return (phong_lighting(scene));
 	return (color3(0, 0, 0));
 }

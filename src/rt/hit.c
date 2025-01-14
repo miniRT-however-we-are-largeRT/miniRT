@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:17:51 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/12 20:35:28 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:34:46 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_bool	hit(t_obj *world, t_ray *ray, t_hit_record *rec)
 {
-	t_bool	hit_any;
+	t_bool			hit_any;
 	t_hit_record	tmp_rec;
 
 	tmp_rec = *rec;

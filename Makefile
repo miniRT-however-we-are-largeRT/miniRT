@@ -18,7 +18,7 @@ SRC =	$(SRCDIR)/main.c \
 		$(SRCDIR)/utils/error.c \
 		$(SRCDIR)/utils/object.c \
 		$(SRCDIR)/utils/light.c \
-		$(SRCDIR)/rt/canvas.c \
+		$(SRCDIR)/rt/camera.c \
 		$(SRCDIR)/rt/hit.c \
 		$(SRCDIR)/rt/ray.c \
 		$(SRCDIR)/rt/run.c \
