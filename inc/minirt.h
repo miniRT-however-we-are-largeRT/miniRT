@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:03:36 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/14 17:04:55 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/16 15:32:33 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@
 
 # include "../lib/mlx/mlx.h"
 
-# define	SPP			3
+# define	SPP 3
+# define	KSN 64
+# define	KS 0.7
 
 # define	UP          126
 # define	DOWN        125

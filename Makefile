@@ -20,17 +20,15 @@ SRC =	$(SRCDIR)/main.c \
 		$(SRCDIR)/utils/light.c \
 		$(SRCDIR)/rt/camera.c \
 		$(SRCDIR)/rt/hit.c \
+		$(SRCDIR)/rt/hit_cylinder.c \
 		$(SRCDIR)/rt/ray.c \
 		$(SRCDIR)/rt/run.c \
-		$(SRCDIR)/rt/scene.c \
 		$(SRCDIR)/rt/vec1.c \
 		$(SRCDIR)/rt/vec2.c \
 		$(SRCDIR)/rt/vec3.c \
 		$(SRCDIR)/rt/window.c \
 		$(SRCDIR)/rt/light.c \
-		$(SRCDIR)/rt/anti_alias.c \
-		$(SRCDIR)/rt/move.c \
-		
+		$(SRCDIR)/rt/anti_alias.c
 
 # Object files
 OBJS = $(SRC:.c=.o)

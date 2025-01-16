@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_set.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:36:06 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/12 18:20:45 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/16 17:02:19 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,17 @@ typedef enum e_object_id
 	id_triangle,
 	id_torus
 }	t_obj_id;
+
+typedef struct s_discrm
+{
+	t_vec3	oc;
+	double	a;
+	double	half_b;
+	double	c;
+	double	dscrm;
+	double	sqrtd;
+	double	root;
+}	t_discrm;
 
 typedef struct s_hit_record
 {
@@ -158,8 +169,14 @@ typedef struct s_light
 	t_obj_id		id;
 	t_vec3			coords;
 	double			brightness;
+	double			constant;
+	double			linear;
+	double			quadratic;
 	t_color3		color;
 	t_color3        albedo;
+	t_color3		ambient;
+	t_color3		diffuse;
+	t_color3		specular;			
 	struct s_light	*next;
 }	t_light;
 
