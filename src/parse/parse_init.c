@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:19:52 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/16 16:58:44 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/17 21:51:03 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,10 @@ void	parse_light(t_data *data, char *line)
 	light->id = id_light;
 	light->albedo = light->color;
 	light->constant = 1.0;
-	light->linear = 0.09;
-	light->quadratic = 0.032; //linear, quadratic suppose the light coverage is 50 (might change)
+	light->linear = 0.7;
+	light->quadratic = 1.8; //linear, quadratic suppose the light coverage is 50 (might change)
+	light->ambient = vmult_f(data->scene->ambient.lighting, \
+								data->scene->ambient.color);
 	light->next = NULL;
 	push_light(data, light);
 	ft_free_split(split);

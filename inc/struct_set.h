@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:36:06 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/16 17:02:19 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/17 21:16:30 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,6 @@ typedef struct s_hit_record
 	t_bool		front_face;
 	t_color3	albedo;
 }				t_hit_record;
-
-typedef struct s_colors
-{
-	t_color3	ambient;
-	t_color3	diffuse;
-	t_color3	specular;
-	t_color3	reflect;
-	t_color3	refract;
-	int			is_shadow;
-}	t_colors;
 
 typedef struct s_ambient
 {
@@ -164,6 +154,28 @@ typedef struct	s_ray
 // 	t_obj		*closest_obj;
 // }	t_rays;
 
+typedef struct s_colors
+{
+	t_color3	ambient;
+	t_color3	diffuse;
+	t_color3	specular;
+	// t_color3	reflect;
+	// t_color3	refract;
+	double		is_shadow;
+	double		attenuation;
+}	t_colors;
+
+typedef struct s_light_var
+{
+	t_color3	light;	
+	t_vec3		light_dir;
+	t_vec3		u_dir;
+	double		light_len;
+	t_ray		light_ray;
+	t_vec3		view_dir;
+	t_vec3		reflect_dir;
+}	t_light_var;
+
 typedef struct s_light
 {
 	t_obj_id		id;
@@ -174,9 +186,7 @@ typedef struct s_light
 	double			quadratic;
 	t_color3		color;
 	t_color3        albedo;
-	t_color3		ambient;
-	t_color3		diffuse;
-	t_color3		specular;			
+	t_color3		ambient;		
 	struct s_light	*next;
 }	t_light;
 
