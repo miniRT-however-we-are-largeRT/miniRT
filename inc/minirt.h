@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:03:36 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/12 18:13:34 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/18 14:36:11 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,29 @@
 # define MINIRT_H
 
 # include "../lib/libft.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <pthread.h>
-# include <math.h>
-# include "struct_set.h"
-# include "ray.h"
+# include "../lib/mlx/mlx.h"
 # include "bool.h"
 # include "light.h"
+# include "ray.h"
+# include "struct_set.h"
+# include <math.h>
+# include <pthread.h>
+# include <stdio.h>
+# include <stdlib.h>
 
-# include "../lib/mlx/mlx.h"
+# define SPP 3
+# define KSN 64
+# define KS 0.7
+# define BRIGHTNESS 2
 
-# define	UP          126
-# define	DOWN        125
-# define	LEFT        123
-# define	RIGHT       124
-# define 	ESC         53
-# define 	KeyPress    2
-# define 	KeyRelease  3
-# define 	MAX_KEY     65535
+# define UP 126
+# define DOWN 125
+# define LEFT 123
+# define RIGHT 124
+# define ESC 53
+# define KeyPress 2
+# define KeyRelease 3
+# define MAX_KEY 65535
 
 # define SPECULAR_KV 0.5
 # define SPECULAR_N 20
@@ -81,26 +85,27 @@ typedef struct s_event
 	int		mouse;
 	t_obj	*selection;
 	t_bool	torender;
-}	t_event;
+}			t_event;
 
-typedef struct 	s_data
+typedef struct s_data
 {
 	char	*path;
 	size_t	num_objs;
-	void    *mlx;
-	void    *mlx_win;
+	void	*mlx;
+	void	*mlxF_win;
 	t_scene	*scene;
-	double	width, height;
-	int     x, y;
-	int     up, down, left, right;
-	void    *img;
-	char    *addr;
-	int     bits_per_pixel;
-	int     line_length;
-	int     endian;
-}               t_data;
+	double width, height;
+	int x;
+	int y;
+	int up, down, left, right;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_data;
 
-int	run(t_data *data);
+int			run(t_data *data);
 
 // window.c
 void		rt_clear(t_data *rt);
@@ -108,13 +113,13 @@ void		rt_free(t_data *rt);
 void		rt_init(t_data *data, char *path);
 
 // anti_alias.c
-t_color3	anti_aliasing_color(t_scene *scene, int i, int j, int samples_per_pixel);
+t_color3	anti_aliasing_color(t_scene *scene, int i, int j);
 t_color3	average_color(t_color3 *colors, int sample_count);
 double		clamp(double x, double min, double max);
 double		random_double_range(double min, double max);
 double		random_double(void);
 
 // light.c
-void	free_lights(t_light **light);
+void		free_lights(t_light **light);
 
 #endif

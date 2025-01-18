@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 20:43:23 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/12 18:13:34 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/18 14:36:12 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
-#include "struct_set.h"
-#include "minirt.h"
-#include "bool.h"
-#include "utils.h"
-#include "error_handle.h"
-#include <math.h>
+# include "bool.h"
+# include "error_handle.h"
+# include "minirt.h"
+# include "struct_set.h"
+# include "utils.h"
+# include <math.h>
 
 // // file.c
 t_bool	open_file(t_data *rt, char *file);

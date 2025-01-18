@@ -1,7 +1,4 @@
-# Compiler and flags
 NAME = miniRT
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
 
 # Directories
 INCDIR = ./inc
@@ -9,11 +6,6 @@ LIBDIR = ./lib
 SRCDIR = ./src
 LIBFTDIR = $(LIBDIR)
 MLXDIR = $(LIBDIR)/mlx
-
-# Subdirectories
-RTDIR = rt
-PARSEDIR = parse
-UTILSDIR = utils
 
 # Source files
 SRC =	$(SRCDIR)/main.c \
@@ -26,50 +18,62 @@ SRC =	$(SRCDIR)/main.c \
 		$(SRCDIR)/utils/error.c \
 		$(SRCDIR)/utils/object.c \
 		$(SRCDIR)/utils/light.c \
-		$(SRCDIR)/rt/canvas.c \
+		$(SRCDIR)/rt/camera.c \
 		$(SRCDIR)/rt/hit.c \
+		$(SRCDIR)/rt/hit_cylinder.c \
 		$(SRCDIR)/rt/ray.c \
 		$(SRCDIR)/rt/run.c \
-		$(SRCDIR)/rt/scene.c \
 		$(SRCDIR)/rt/vec1.c \
 		$(SRCDIR)/rt/vec2.c \
 		$(SRCDIR)/rt/vec3.c \
 		$(SRCDIR)/rt/window.c \
 		$(SRCDIR)/rt/light.c \
-		$(SRCDIR)/rt/anti_alias.c \
-		$(SRCDIR)/rt/move.c \
-		
+		$(SRCDIR)/rt/anti_alias.c
 
 # Object files
 OBJS = $(SRC:.c=.o)
 
 # Library files
 LIBFT = $(LIBFTDIR)/libft.a
-MLX = $(MLXDIR)/libmlx.a
+MLX = $(MLXDIR)/libmlx.dylib
+
+
+CC				= cc
+CFLAGS			= -Wall -Wextra -Werror
+GL_LINK			= -lmlx -lm -L$(MLXDIR) -framework OpenGL -framework AppKit
+FT_LINK			= -lft -L$(LIBFTDIR)
+INCLUDES		= -I$(INC) -I$(MLXDIR) -I$(LIBFTDIR)
+
+RM				= rm -f
 
 # Commands
-all: $(OBJDIR) $(NAME)
+all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT) $(MLX)
-	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFTDIR) -lft -lm -L$(MLXDIR) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+%.o: %.c $(HEADER)
+	@$(CC) $(CFLAGS) -c $(INCLUDES) $< -o $@
 
-%.o: %.c
-	$(CC) $(CFLAGS) -I$(INCDIR) -c $< -o $@
+$(NAME): $(LIBFT) $(MLX) $(OBJS)
+	@$(CC) $(CFLAGS) $(FT_LINK) $(GL_LINK) $(INCLUDES) $(OBJS) -o $(NAME)
+	@echo "$(NAME): object file and $(NAME) created"
 
 $(LIBFT):
-	$(MAKE) -C $(LIBFTDIR)
+	@$(MAKE) -sC $(LIBFTDIR)
+	@echo "$(NAME): $(LIBFT) created"
 
 $(MLX):
-	$(MAKE) -C $(MLXDIR)
-
+	@$(MAKE) -sC $(MLXDIR)
+	@echo "$(NAME): $(MLX) created"
 clean:
-	$(MAKE) -C $(LIBFTDIR) clean
-	$(MAKE) -C $(MLXDIR) clean
-	rm -f $(OBJS)
+	@$(MAKE) -sC $(MLXDIR) clean
+	@$(MAKE) -sC $(LIBFTDIR) clean
+	@$(RM) $(OBJS)
+	@echo "$(NAME): objects deleted"
 
 fclean: clean
-	$(MAKE) -C $(LIBFTDIR) fclean
-	rm -f $(NAME)
+	@$(RM) libmlx.dylib
+	@$(RM) $(LIBFT)
+	@$(RM) $(NAME)
+	@echo "$(NAME): $(NAME), $(MLX), $(LIBFT) deleted"
 
 re: fclean all
 
