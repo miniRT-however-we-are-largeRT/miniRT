@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 00:47:31 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/18 14:33:11 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/18 15:37:32 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,4 @@ typedef enum e_bool
 	true,
 }	t_bool;
 
-#endif // BOOL_H
+#endif

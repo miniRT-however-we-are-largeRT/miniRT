@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:17:28 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/18 14:18:29 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/18 15:26:17 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_color3	get_point_light(t_scene *scene, t_light *light)
 	phong.specular = get_specular(scene, &var);
 	var.light_len = vlen(var.light_dir);
 	p_normal = vadd(scene->rec.p, vmult_f(EPSILON, scene->rec.normal));
-	var.light_ray = ray_set(p_normal, var.light_dir);
+	var.light_ray = ray_set(p_normal, var.u_dir);
 	phong.is_shadow = in_shadow(scene->world, var.light_ray, var.light_len);
 	point_light = vadd(phong.specular, phong.diffuse);
 	point_light = vmult_f(1 - phong.is_shadow, point_light);
