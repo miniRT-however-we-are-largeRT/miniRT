@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 19:16:52 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/18 14:26:40 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/18 14:57:40 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,6 @@ t_data	*get_data(void)
 	return (data);
 }
 
-void	print_light(t_data *data)
-{
-	t_light	*light;
-
-	light = data->scene->light;
-	while (light)
-	{
-		printf("%d", light->id);
-		printf("%f %f %f\n", light->color.x, light->color.y, light->color.z);
-		printf("%f %f %f\n", light->coords.x, light->coords.y, light->coords.z);
-		printf("%f\n", light->brightness);
-		light = light->next;
-	}
-}
-
 int	main(int argc, char **argv)
 {
 	t_data	*data;
@@ -52,7 +37,8 @@ int	main(int argc, char **argv)
 	data = get_data();
 	if (!open_file(data, argv[1]))
 		error_handle(OPEN_ERROR);
-	print_light(data);
 	rt_init(data, argv[1]);
 	run(data);
+	rt_clear(data);
+	return (0);
 }

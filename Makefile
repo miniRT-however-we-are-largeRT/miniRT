@@ -1,13 +1,23 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/01/18 14:55:11 by junhyeop          #+#    #+#              #
+#    Updated: 2025/01/18 14:55:25 by junhyeop         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = miniRT
 
-# Directories
 INCDIR = ./inc
 LIBDIR = ./lib
 SRCDIR = ./src
 LIBFTDIR = $(LIBDIR)
 MLXDIR = $(LIBDIR)/mlx
 
-# Source files
 SRC =	$(SRCDIR)/main.c \
 		$(SRCDIR)/parse/parse_file.c \
 		$(SRCDIR)/parse/parse.c \
@@ -30,10 +40,8 @@ SRC =	$(SRCDIR)/main.c \
 		$(SRCDIR)/rt/light.c \
 		$(SRCDIR)/rt/anti_alias.c
 
-# Object files
 OBJS = $(SRC:.c=.o)
 
-# Library files
 LIBFT = $(LIBFTDIR)/libft.a
 MLX = $(MLXDIR)/libmlx.dylib
 
@@ -43,10 +51,8 @@ CFLAGS			= -Wall -Wextra -Werror
 GL_LINK			= -lmlx -lm -L$(MLXDIR) -framework OpenGL -framework AppKit
 FT_LINK			= -lft -L$(LIBFTDIR)
 INCLUDES		= -I$(INC) -I$(MLXDIR) -I$(LIBFTDIR)
-
 RM				= rm -f
 
-# Commands
 all: $(NAME)
 
 %.o: %.c $(HEADER)
