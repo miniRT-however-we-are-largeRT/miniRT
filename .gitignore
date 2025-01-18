@@ -1,0 +1,8 @@
+.vscode
+.idea
+.DS_store
+*.o
+*.a
+*.dylib
+.gitignore
+miniRT
