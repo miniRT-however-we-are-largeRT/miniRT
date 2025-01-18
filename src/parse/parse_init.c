@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:19:52 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/18 14:27:13 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/18 15:42:06 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,6 @@ void	parse_light(t_data *data, char *line)
 		error_handle(RT_FILE_ERROR);
 	light->id = id_light;
 	light->albedo = light->color;
-	light->constant = 1.0;
-	light->linear = 0.7;
-	light->quadratic = 1.8;
 	light->ambient = vmult_f(data->scene->ambient.lighting, \
 								data->scene->ambient.color);
 	light->next = NULL;

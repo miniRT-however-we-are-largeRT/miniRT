@@ -6,12 +6,11 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:53:57 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/18 14:16:06 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/18 15:38:48 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
-#include "../../inc/scene.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {

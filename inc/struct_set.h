@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_set.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:36:06 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/18 14:51:17 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/18 15:43:02 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,6 @@ typedef struct s_cylinder
 	double			radius;
 	double			height;
 	double			r2;
-	t_vec3			p1;
-	t_vec3			p2;
-	t_vec3			delta_p;
 	t_color3		color;
 }					t_cylinder;
 
@@ -119,25 +116,10 @@ typedef struct s_obj
 {
 	t_obj_id		id;
 	t_obj_union		object;
-	double			speckv;
-	double			specn;
-	double			mirror;
-	double			refract;
-	t_vec3			ex;
-	t_vec3			ey;
-	t_vec3			ez;
 	t_vec3			coords;
 	t_color3		color;
-	t_color3		color2;
 	t_color3		albedo;
 	double			h;
-	double			pattern_len;
-	int				pattern_num;
-	double			alpha;
-	double			bump_f;
-	double			texture_f;
-	t_bool			has_bump;
-	t_bool			has_texture;
 	struct s_obj	*next;
 }					t_obj;
 
@@ -172,9 +154,6 @@ typedef struct s_light
 	t_obj_id		id;
 	t_vec3			coords;
 	double			brightness;
-	double			constant;
-	double			linear;
-	double			quadratic;
 	t_color3		color;
 	t_color3		albedo;
 	t_color3		ambient;
