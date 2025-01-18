@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 00:35:14 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/12 21:30:14 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/18 17:23:56 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	*sanitize_line(char *line)
 		i++;
 	}
 	line = ft_strtrim(tmp, " ");
+	free(tmp);
 	return (line);
 }
 
