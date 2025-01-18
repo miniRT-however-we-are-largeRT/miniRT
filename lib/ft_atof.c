@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atof.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/18 15:05:56 by junhyeop          #+#    #+#             */
+/*   Updated: 2025/01/18 15:11:08 by junhyeop         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include <math.h>
 
@@ -7,46 +19,62 @@ int	ft_isspace(char c)
 		|| c == '\r');
 }
 
+static int	skip_whitespace_and_get_sign(const char **str)
+{
+	int	sign;
+
+	sign = 1;
+	while (ft_isspace(**str))
+		(*str)++;
+	if (**str == '-' || **str == '+')
+	{
+		if (**str == '-')
+			sign = -1;
+		(*str)++;
+	}
+	return (sign);
+}
+
+static double	parse_integer_part(const char **str)
+{
+	double	result;
+
+	result = 0;
+	while (ft_isdigit(**str))
+	{
+		result = result * 10 + (**str - '0');
+		(*str)++;
+	}
+	return (result);
+}
+
+static double	parse_decimal_part(const char **str)
+{
+	double	decimal;
+	double	divisor;
+
+	decimal = 0;
+	divisor = 1;
+	if (**str == '.')
+	{
+		(*str)++;
+		while (ft_isdigit(**str))
+		{
+			decimal = decimal * 10 + (**str - '0');
+			divisor *= 10;
+			(*str)++;
+		}
+	}
+	return (decimal / divisor);
+}
+
 double	ft_atod(const char *str)
 {
 	double	result;
 	double	sign;
-	double	decimal;
-	double	decimal_divisor;
-	int		i;
 
-	result = 0;
-	sign = 1;
-	decimal = 0;
-	decimal_divisor = 1; // 소수부의 나눗셈 값을 누적할 변수
-	i = 0;
-	// 공백 무시
-	while (ft_isspace(str[i]))
-		i++;
-	// 부호 처리
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
-	// 정수부 계산
-	while (ft_isdigit(str[i]))
-	{
-		result = result * 10 + (str[i] - '0');
-		i++;
-	}
-	// 소수부 계산
-	if (str[i] == '.')
-	{
-		i++;
-		while (ft_isdigit(str[i]))
-		{
-			decimal = decimal * 10 + (str[i] - '0');
-			decimal_divisor *= 10; // 소수점 자릿수를 반영
-			i++;
-		}
-	}
-	// 최종 결과 반환
-	return (sign * (result + decimal / decimal_divisor));
+	sign = skip_whitespace_and_get_sign(&str);
+	result = parse_integer_part(&str);
+	result += parse_decimal_part(&str);
+	return (sign * result);
 }

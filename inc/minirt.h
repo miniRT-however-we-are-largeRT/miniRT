@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:03:36 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/18 14:36:11 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/18 14:50:00 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@
 # define LEFT 123
 # define RIGHT 124
 # define ESC 53
-# define KeyPress 2
-# define KeyRelease 3
+# define KEY_PRESS 2
+# define KEY_RELEASE 3
 # define MAX_KEY 65535
 
 # define SPECULAR_KV 0.5
@@ -57,7 +57,7 @@
 # define DARKGREY 0x333333
 # define MAX_KEY 65535
 # define MAX_REFLECT 5
-# define ANTIALIASING_ON false
+# define ANTIALIASING_ON 0
 # define PROGBAR_TEXT_W 90
 # define PROGBAR_TEXT_H 12
 # define PROGBAR_W 180
@@ -92,12 +92,16 @@ typedef struct s_data
 	char	*path;
 	size_t	num_objs;
 	void	*mlx;
-	void	*mlxF_win;
+	void	*mlx_win;
 	t_scene	*scene;
-	double width, height;
-	int x;
-	int y;
-	int up, down, left, right;
+	double	width;
+	double	height;
+	int		x;
+	int		y;
+	int		up;
+	int		down;
+	int		left;
+	int		right;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;

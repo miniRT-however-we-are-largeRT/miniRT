@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_set.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:36:06 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/18 14:36:21 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/18 14:51:17 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,22 +147,11 @@ typedef struct s_ray
 	t_vec3			dir;
 }					t_ray;
 
-// typedef struct s_rays
-// {
-// 	t_ray		prime_ray;
-// 	t_ray		shadowray;
-// 	t_hit		hit;
-// 	t_hit		shadow_hit;
-// 	t_obj		*closest_obj;
-// }	t_rays;
-
 typedef struct s_colors
 {
 	t_color3		ambient;
 	t_color3		diffuse;
 	t_color3		specular;
-	// t_color3	reflect;
-	// t_color3	refract;
 	double			is_shadow;
 	double			attenuation;
 }					t_colors;

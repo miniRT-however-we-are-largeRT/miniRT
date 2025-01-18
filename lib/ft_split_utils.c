@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 21:06:24 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/02 19:53:18 by junhyeong        ###   ########.fr       */
+/*   Updated: 2025/01/18 15:11:50 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_free_split(char **split)
+void	ft_free_split(char **split)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (split[i])
@@ -25,9 +25,9 @@ void ft_free_split(char **split)
 	free(split);
 }
 
-int ft_split_size(char **split)
+int	ft_split_size(char **split)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (split[i])
