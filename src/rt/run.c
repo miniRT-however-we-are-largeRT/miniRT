@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:53:57 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/14 17:03:03 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/18 14:16:06 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	ft_draw(t_data *data)
 		while (i < data->scene->canvas.w)
 		{
 			pixel_color = anti_aliasing_color(data->scene, i, j);
-
 			color = ((int)(255.999 * clamp(pixel_color.x, 0.0, 0.999)) << 16);
 			color += ((int)(255.999 * clamp(pixel_color.y, 0.0, 0.999)) << 8);
 			color += ((int)(255.999 * clamp(pixel_color.z, 0.0, 0.999)));

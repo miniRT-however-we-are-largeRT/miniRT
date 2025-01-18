@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:17:51 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/16 15:20:07 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/18 14:25:52 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,33 +48,27 @@ t_bool	hit_obj(t_obj *world, t_ray *ray, t_hit_record *rec)
 
 t_bool	hit_sphere(t_obj *obj, t_ray *ray, t_hit_record *rec)
 {
-	t_vec3		oc;
-	double		a;
-	double		half_b;
-	double		c;
-	double		dscrm;
-	double		sqrtd;
-	double		root;
+	t_discrm	var;
 	t_sphere	*sp;
 
 	sp = &(obj->object.sphere);
-	oc = vsub(ray->orig, sp->center);
-	a = vlen_sqr(ray->dir);
-	half_b = vdot(oc, ray->dir);
-	c = vlen_sqr(oc) - sp->r2;
-	dscrm = half_b * half_b - a * c;
-	if (dscrm < 0)
+	var.oc = vsub(ray->orig, sp->center);
+	var.a = vlen_sqr(ray->dir);
+	var.half_b = vdot(var.oc, ray->dir);
+	var.c = vlen_sqr(var.oc) - sp->r2;
+	var.dscrm = var.half_b * var.half_b - var.a * var.c;
+	if (var.dscrm < 0)
 		return (FALSE);
-	sqrtd = sqrt(dscrm);
-	root = (-half_b - sqrtd) / a;
-	if (root < rec->tmin || rec->tmax < root)
+	var.sqrtd = sqrt(var.dscrm);
+	var.root = (-var.half_b - var.sqrtd) / var.a;
+	if (var.root < rec->tmin || rec->tmax < var.root)
 	{
-		root = (-half_b + sqrtd) / a;
-		if (root < rec->tmin || rec->tmax < root)
+		var.root = (-var.half_b + var.sqrtd) / var.a;
+		if (var.root < rec->tmin || rec->tmax < var.root)
 			return (FALSE);
 	}
-	rec->t = root;
-	rec->p = ray_at(*ray, root);
+	rec->t = var.root;
+	rec->p = ray_at(*ray, var.root);
 	rec->normal = uvec(vdiv_f(sp->radius, vsub(rec->p, sp->center)));
 	rec->albedo = obj->albedo;
 	set_face_normal(ray, rec);
@@ -107,5 +101,8 @@ t_bool	hit_plane(t_obj *obj, t_ray *ray, t_hit_record *rec)
 void	set_face_normal(t_ray *r, t_hit_record *rec)
 {
 	rec->front_face = vdot(r->dir, rec->normal) < 0;
-	rec->normal = (rec->front_face) ? rec->normal : vmult_f(-1, rec->normal);
+	if (rec->front_face)
+		rec->normal = rec->normal;
+	else
+		rec->normal = vmult_f(-1, rec->normal);
 }

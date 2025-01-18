@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:17:38 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/12 18:13:34 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/18 14:36:27 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,23 @@
 
 typedef struct s_point3
 {
-	double        x;
-	double        y;
-	double        z;
-}              t_point3;
+	double			x;
+	double			y;
+	double			z;
+}					t_point3;
 
-typedef struct	s_t
+typedef struct s_t
 {
-	double		min;
-	double		max;
-}				t_t;
+	double			min;
+	double			max;
+}					t_t;
 
-typedef struct	s_coef
+typedef struct s_coef
 {
-	double		a;
-	double		half_b;
-	double		c;
-}				t_coef;
+	double			a;
+	double			half_b;
+	double			c;
+}					t_coef;
 
 typedef t_point3	t_vec3;
 typedef t_point3	t_color3;

@@ -1,5 +1,5 @@
 A 0.1 50,50,50
-C 0,-3,0 0,1,0 60
+C 0,0,-10 0,0,1.0 60
 L -1.5,0,-1.5 0.5 255,255,255
 #L 1.5,10.5,-1.5 0.5 255,0,0
 #Proof that caps render only when a ray doesnt intersect both caps

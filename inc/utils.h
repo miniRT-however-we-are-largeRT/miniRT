@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 20:47:47 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/12 18:13:34 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/18 14:36:23 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-# include "minirt.h"
 # include "../lib/libft.h"
+# include "minirt.h"
 # include <math.h>
 
 // utils.c
 t_bool	ft_isdouble(char *str);
-int	is_ulong(char *str);
+int		is_ulong(char *str);
 
 // list.c
 void	ft_lstadd_back(t_list **lst, t_list *new);

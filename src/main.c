@@ -6,12 +6,12 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 19:16:52 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/12 20:48:43 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/18 14:26:40 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
 #include "../inc/main.h"
+#include "../inc/minirt.h"
 
 t_data	*get_data(void)
 {
@@ -28,18 +28,21 @@ t_data	*get_data(void)
 	return (data);
 }
 
-void print_light(t_data *data)
+void	print_light(t_data *data)
 {
-	t_light *light = data->scene->light;
+	t_light	*light;
 
-	while (light) {
+	light = data->scene->light;
+	while (light)
+	{
 		printf("%d", light->id);
 		printf("%f %f %f\n", light->color.x, light->color.y, light->color.z);
 		printf("%f %f %f\n", light->coords.x, light->coords.y, light->coords.z);
-		printf("%f\n", light->brightness);;
+		printf("%f\n", light->brightness);
 		light = light->next;
 	}
 }
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;
@@ -49,7 +52,6 @@ int	main(int argc, char **argv)
 	data = get_data();
 	if (!open_file(data, argv[1]))
 		error_handle(OPEN_ERROR);
-
 	print_light(data);
 	rt_init(data, argv[1]);
 	run(data);

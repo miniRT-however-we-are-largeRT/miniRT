@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:35:36 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/14 17:33:47 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/18 14:36:19 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 
 # include "minirt.h"
 
-void	    camera(t_data *data);
+void	camera(t_data *data);
 #endif
