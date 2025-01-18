@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:16:57 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/16 15:36:42 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:46:22 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,28 @@ t_bool	hit_cylinder_caps(t_cylinder *cy, t_ray *ray, t_hit_record *rec, double *
 	return (FALSE);
 }
 
+t_bool	hit_cylinder_cap(t_cylinder *cy, t_ray *ray, t_hit_record *rec, double *t, int dir)
+{
+	t_vec3		center;
+	double		cap_t;
+	t_vec3		cap_p;
+
+
+	center = vadd(cy->coords, vmult_f(dir * cy->height / 2.0, cy->orient));
+	cap_t = vdot(vsub(center, ray->orig), cy->orient) / vdot(ray->dir,
+			cy->orient);
+	cap_p = ray_at(*ray, cap_t);
+	if (cap_t >= rec->tmin && cap_t <= rec->tmax && vlen_sqr(vsub(cap_p,
+				center)) <= cy->radius * cy->radius)
+	{
+		*t = cap_t;
+		rec->p = cap_p;
+		rec->normal = uvec(vmult_f(dir, cy->orient));
+		return (TRUE);
+	}
+	return (FALSE);
+}
+
 t_bool	dscrm_cy(t_cylinder *cy, t_ray *ray, t_hit_record *rec, t_discrm *var)
 {
 	double	projection;
@@ -72,7 +94,7 @@ t_bool	dscrm_cy(t_cylinder *cy, t_ray *ray, t_hit_record *rec, t_discrm *var)
 	rec->p = ray_at(*ray, var->root);
 	projection = vdot(vsub(rec->p, cy->coords), cy->orient);
 	if (projection < -cy->height / 2.0 || projection > cy->height / 2.0)
-		return (hit_cylinder_caps(cy, ray, rec, &rec->t));
+		return (CHECK);
 	projection_point = vadd(cy->coords, vmult_f(projection, cy->orient));
 	rec->normal = uvec(vsub(rec->p, projection_point));
 	return (TRUE);
@@ -82,10 +104,21 @@ t_bool	hit_cylinder(t_obj *obj, t_ray *ray, t_hit_record *rec)
 {
 	t_cylinder	*cy;
 	t_discrm	var;
+	t_bool		side;
+	t_bool		top_cap;
+	t_bool		bottom_cap;
 
 	cy = &(obj->object.cylinder);
-	if (dscrm_cy(cy, ray, rec, &var) == FALSE)
+	side = dscrm_cy(cy, ray, rec, &var);
+	if (side == FALSE)
 		return (FALSE);
+	else if (side == CHECK)
+	{
+		top_cap = hit_cylinder_cap(cy, ray, rec, &rec->t, TOP);
+		bottom_cap = hit_cylinder_cap(cy, ray, rec, &rec->t, BOTTOM);
+		if (top_cap == FALSE && bottom_cap == FALSE)
+			return (FALSE);
+	}
 	rec->albedo = obj->albedo;
 	set_face_normal(ray, rec);
 	return (TRUE);

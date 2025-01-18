@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:36:06 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/17 21:16:30 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:35:02 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 
 # define		FALSE	0
 # define		TRUE	1
+# define		CHECK	2
+# define		TOP		1
+# define		BOTTOM	-1
 # define		EPSILON		1e-6
 # define		LUMEN	2
 
