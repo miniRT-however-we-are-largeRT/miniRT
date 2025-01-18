@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:17:51 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/18 14:25:52 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/18 20:15:32 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ t_bool	hit_obj(t_obj *world, t_ray *ray, t_hit_record *rec)
 		hit_result = hit_plane(world, ray, rec);
 	else if (world->id == id_cylinder)
 		hit_result = hit_cylinder(world, ray, rec);
+	else if (world->id == id_cone)
+		hit_result = hit_cone(world, ray, rec);
 	return (hit_result);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 00:35:14 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/18 17:23:56 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/18 20:37:42 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ t_bool	is_invalid(t_data *data)
 		return (false);
 	return (true);
 }
-
+void pl(char *line) {
+	printf("%s\n", line);
+}
 t_bool	read_file(t_data *data, int fd)
 {
 	char	*line;
@@ -54,6 +56,7 @@ t_bool	read_file(t_data *data, int fd)
 		if (!line)
 			break ;
 		line = sanitize_line(line);
+		pl(line);
 		if (!parse_line(data, line))
 			flag = false;
 		free(line);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 02:04:49 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/11 17:38:07 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/18 20:01:10 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,13 @@ t_bool	parse_line(t_data *data, char *line)
 		parse_shape(data, line, id_plane, NB_PARAMS_PLANE);
 	else if (line[0] == 'c' && line[1] == 'y')
 		parse_shape(data, line, id_cylinder, NB_PARAMS_CYLINDER);
+	else if (line[0] == 'c' && line[1] == 'o')
+		parse_shape(data, line, id_cone, NB_PARAMS_CONE);
 	else
 		return (false);
 	return (true);
 }
+
 
 void	parse_shape(t_data *data, char *line, int id, int nb_params)
 {
@@ -48,6 +51,9 @@ void	parse_shape(t_data *data, char *line, int id, int nb_params)
 		parse_plane(split, obj);
 	else if (line[0] == 'c' && line[1] == 'y')
 		parse_cylinder(split, obj);
+	else if (line[0] == 'c' && line[1] == 'o') {
+		parse_cone(split, obj);
+	}
 	else
 		error_handle("Error: invalid identifier\n");
 	push_obj(data, obj);

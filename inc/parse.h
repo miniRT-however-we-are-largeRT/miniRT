@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 20:43:23 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/18 14:36:12 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/18 19:31:44 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_bool	parse_ulong(char *str, unsigned long *num);
 // // parse_objects.c
 void	parse_sphere(char **split, t_obj *obj);
 void	parse_plane(char **split, t_obj *obj);
-void	parse_cone(t_data *rt, char **split, t_obj *obj);
+void	parse_cone(char **split, t_obj *obj);
 void	parse_cylinder(char **split, t_obj *obj);
 void	parse_triangle(char **split, t_obj *obj);
 
