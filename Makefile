@@ -39,7 +39,7 @@ SRC =	$(SRCDIR)/main.c \
 		$(SRCDIR)/rt/vec3.c \
 		$(SRCDIR)/rt/window.c \
 		$(SRCDIR)/rt/light.c \
-		$(SRCDIR)/rt/anti_alias.c \
+		$(SRCDIR)/rt/anti_alias.c
 
 OBJS = $(SRC:.c=.o)
 
