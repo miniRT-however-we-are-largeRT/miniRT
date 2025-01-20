@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 17:51:44 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/18 20:28:55 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/18 21:40:57 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,35 +67,46 @@ void	get_cone_normal(t_hit_record *rec, t_cone *co, double proj)
 	height = vmult_f(co->radius * proj / co->height, co->orient);
 	rec->normal = uvec(vadd(height, vmult_f(proj, rec->normal)));
 }
+t_bool	hit_cone_side(t_cone *cone, t_discrm *var, t_ray *ray, \
+						t_hit_record *rec)
+{
+	double		projection;
+
+	if (var->dscrm < 0)
+		return (FALSE);
+	if (var->root < rec->tmin || var->root > rec->tmax)
+	{
+		var->root = (-var->half_b + var->sqrtd) / var->a;
+		if (var->root < rec->tmin || var->root > rec->tmax)
+			return (FALSE);
+	}
+	rec->t = var->root;
+	rec->p = ray_at(*ray, var->root);
+	projection = vdot(vsub(rec->p, cone->coords), cone->orient);
+	if (projection > cone->height)
+		return (FALSE);
+	else if (projection < 0)
+		return (CHECK);
+	get_cone_normal(rec, cone, projection);
+	return (TRUE);
+}
 
 t_bool	hit_cone(t_obj *obj, t_ray *ray, t_hit_record *rec)
 {
 	t_cone		*cone;
 	t_discrm	var;
-	double		projection;
+	t_bool		side;
 
 	cone = &(obj->object.cone);
 	dscrm_cone(cone, ray, &var);
-	if (var.dscrm < 0)
+	side = hit_cone_side(cone, &var, ray, rec);
+	if (side == FALSE)
 		return (FALSE);
-	if (var.root < rec->tmin || var.root > rec->tmax)
-	{
-		var.root = (-var.half_b + var.sqrtd) / var.a;
-		if (var.root < rec->tmin || var.root > rec->tmax)
-			return (FALSE);
-	}
-	rec->t = var.root;
-	rec->p = ray_at(*ray, var.root);
-	projection = vdot(vsub(rec->p, cone->coords), cone->orient);
-	if (projection > cone->height)
-		return (FALSE);
-	else if (projection < 0)
+	else if (side == CHECK)
 	{
 		if (hit_cone_cap(cone, ray, rec) == FALSE)
 			return (FALSE);
 	}
-	else
-		get_cone_normal(rec, cone, projection);
 	rec->albedo = obj->albedo;
 	set_face_normal(ray, rec);
 	return (TRUE);

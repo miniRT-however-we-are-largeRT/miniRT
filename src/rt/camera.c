@@ -22,10 +22,19 @@ void	set_viewport_value(t_scene *scene)
 	scene->camera.viewport_w = viewport_height * scene->canvas.aspect_ratio;
 }
 
+t_vec3	vup(t_vec3 vec)
+{
+	if (vec.x == 0 && vec.y == 1 && vec.z == 0)
+		return (vec3(0, 0, 1));
+	if (vec.x == 0 && vec.y == -1 && vec.z == 0)
+		return (vec3(0, 0, -1));
+	return (vec3(0, 1, 0));
+}
+
 void	set_uvw(t_camera *cam)
 {
 	cam->w = uvec(vmult_f(-1, cam->dir));
-	cam->u = uvec(vcross(vec3(0, 1, 0), cam->w));
+	cam->u = uvec(vcross(vup(cam->w), cam->w));
 	cam->v = vcross(cam->w, cam->u);
 }
 
