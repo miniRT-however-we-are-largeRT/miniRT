@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   minirt_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:03:36 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/21 14:49:44 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:53:47 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef MINIRT_BONUS_H
+# define MINIRT_BONUS_H
 
 # include "../lib/libft.h"
 # include "../lib/mlx/mlx.h"
-# include "bool.h"
-# include "light.h"
-# include "ray.h"
-# include "struct_set.h"
-# include "anti_alias.h"
+# include "bool_bonus.h"
+# include "light_bonus.h"
+# include "ray_bonus.h"
+# include "struct_set_bonus.h"
+# include "anti_alias_bonus.h"
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
 
-# define SPP 10
+# define SPP 5
 # define KSN 64
 # define KS 0.7
 # define BRIGHTNESS 2

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera.c                                           :+:      :+:    :+:   */
+/*   camera_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:38:58 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/21 14:56:13 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/21 19:58:31 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minirt.h"
+#include "../../inc/minirt_bonus.h"
 
 void	set_viewport_value(t_scene *scene)
 {

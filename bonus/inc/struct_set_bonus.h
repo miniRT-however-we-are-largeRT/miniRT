@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct_set.h                                       :+:      :+:    :+:   */
+/*   struct_set_bonus.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:36:06 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/21 20:00:07 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/21 20:00:14 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_SET_H
-# define STRUCT_SET_H
+#ifndef STRUCT_SET_BONUS_H
+# define STRUCT_SET_BONUS_H
 
-# include "bool.h"
-# include "vec.h"
+# include "bool_bonus.h"
+# include "vec_bonus.h"
 # include <unistd.h>
 
 # define FALSE 0
@@ -57,13 +57,6 @@ typedef struct s_discrm
 	double			root;
 }					t_discrm;
 
-typedef struct s_cyl_hit
-{
-	t_bool		side;
-	t_bool		top_cap;
-	t_bool		bottom_cap;
-}	t_cyl_hit;
-
 typedef struct s_hit_record
 {
 	t_point3		p;
@@ -89,6 +82,13 @@ typedef struct s_plane
 	t_vec3			orient;
 	t_color3		color;
 }					t_plane;
+
+typedef struct s_cyl_hit
+{
+	t_bool		side;
+	t_bool		top_cap;
+	t_bool		bottom_cap;
+}	t_cyl_hit;
 
 typedef struct s_cylinder
 {
