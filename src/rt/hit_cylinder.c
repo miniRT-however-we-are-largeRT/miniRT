@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:16:57 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/21 00:13:29 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/21 19:44:43 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_bool	hit_cylinder_cap(t_cylinder *cy, t_ray *ray, t_hit_record *rec, int dir)
 	{
 		rec->t = cap_t;
 		rec->p = cap_p;
+		rec->tmax = rec->t;
 		rec->normal = uvec(vmult_f(dir, cy->orient));
 		return (TRUE);
 	}
@@ -53,7 +54,6 @@ t_bool	hit_cylinder_side(t_cylinder *cy, t_discrm *var, t_hit_record *rec, \
 	double	projection;
 	t_vec3	projection_point;
 
-	dscrm_cy(cy, ray, var);
 	if (var->dscrm < 0)
 		return (FALSE);
 	if (var->root < rec->tmin || var->root > rec->tmax)
@@ -66,7 +66,7 @@ t_bool	hit_cylinder_side(t_cylinder *cy, t_discrm *var, t_hit_record *rec, \
 	rec->p = ray_at(*ray, var->root);
 	projection = vdot(vsub(rec->p, cy->coords), cy->orient);
 	if (projection < -cy->height / 2.0 || projection > cy->height / 2.0)
-		return (CHECK);
+		return (FALSE);
 	projection_point = vadd(cy->coords, vmult_f(projection, cy->orient));
 	rec->normal = uvec(vsub(rec->p, projection_point));
 	return (TRUE);
@@ -76,21 +76,15 @@ t_bool	hit_cylinder(t_obj *obj, t_ray *ray, t_hit_record *rec)
 {
 	t_cylinder	*cy;
 	t_discrm	var;
-	t_bool		side;
-	t_bool		top_cap;
-	t_bool		bottom_cap;
+	t_cyl_hit	hit;
 
 	cy = &(obj->object.cylinder);
-	side = hit_cylinder_side(cy, &var, rec, ray);
-	if (side == FALSE)
+	dscrm_cy(cy, ray, &var);
+	hit.top_cap = hit_cylinder_cap(cy, ray, rec, TOP);
+	hit.bottom_cap = hit_cylinder_cap(cy, ray, rec, BOTTOM);
+	hit.side = hit_cylinder_side(cy, &var, rec, ray);
+	if (hit.top_cap == FALSE && hit.bottom_cap == FALSE && hit.side == FALSE)
 		return (FALSE);
-	else if (side == CHECK)
-	{
-		top_cap = hit_cylinder_cap(cy, ray, rec, TOP);
-		bottom_cap = hit_cylinder_cap(cy, ray, rec, BOTTOM);
-		if (top_cap == FALSE && bottom_cap == FALSE)
-			return (FALSE);
-	}
 	rec->albedo = obj->albedo;
 	set_face_normal(ray, rec);
 	return (TRUE);

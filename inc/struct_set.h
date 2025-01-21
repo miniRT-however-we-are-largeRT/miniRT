@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:36:06 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/18 19:52:04 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/21 19:51:49 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@ typedef struct s_discrm
 	double			sqrtd;
 	double			root;
 }					t_discrm;
+
+typedef struct s_cyl_hit
+{
+	t_bool		side;
+	t_bool		top_cap;
+	t_bool		bottom_cap;
+}	t_cyl_hit;
 
 typedef struct s_hit_record
 {
