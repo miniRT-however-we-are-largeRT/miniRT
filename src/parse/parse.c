@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 02:04:49 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/18 20:01:10 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:35:44 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ t_bool	parse_line(t_data *data, char *line)
 	return (true);
 }
 
-
 void	parse_shape(t_data *data, char *line, int id, int nb_params)
 {
 	t_obj	*obj;
@@ -51,9 +50,8 @@ void	parse_shape(t_data *data, char *line, int id, int nb_params)
 		parse_plane(split, obj);
 	else if (line[0] == 'c' && line[1] == 'y')
 		parse_cylinder(split, obj);
-	else if (line[0] == 'c' && line[1] == 'o') {
+	else if (line[0] == 'c' && line[1] == 'o')
 		parse_cone(split, obj);
-	}
 	else
 		error_handle("Error: invalid identifier\n");
 	push_obj(data, obj);

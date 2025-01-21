@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 17:51:44 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/18 21:40:57 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:33:46 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	get_cone_normal(t_hit_record *rec, t_cone *co, double proj)
 	height = vmult_f(co->radius * proj / co->height, co->orient);
 	rec->normal = uvec(vadd(height, vmult_f(proj, rec->normal)));
 }
+
 t_bool	hit_cone_side(t_cone *cone, t_discrm *var, t_ray *ray, \
 						t_hit_record *rec)
 {
