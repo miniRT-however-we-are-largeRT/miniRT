@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+         #
+#    By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/18 14:55:11 by junhyeop          #+#    #+#              #
-#    Updated: 2025/01/18 14:55:25 by junhyeop         ###   ########.fr        #
+#    Updated: 2025/01/18 19:34:51 by jihyjeon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC =	$(SRCDIR)/main.c \
 		$(SRCDIR)/rt/camera.c \
 		$(SRCDIR)/rt/hit.c \
 		$(SRCDIR)/rt/hit_cylinder.c \
+		$(SRCDIR)/rt/hit_cone.c \
 		$(SRCDIR)/rt/ray.c \
 		$(SRCDIR)/rt/run.c \
 		$(SRCDIR)/rt/vec1.c \

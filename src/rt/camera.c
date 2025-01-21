@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:38:58 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/14 17:25:58 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/18 19:30:42 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,24 @@ void	set_viewport_value(t_scene *scene)
 	double		viewport_height;
 
 	viewport_height = 2 * tan((scene->camera.fov * M_PI / 180) / 2);
-	scene->camera.focal_len = 1.0;
+	scene->camera.focal_len = 0.5;
 	scene->camera.viewport_h = viewport_height;
 	scene->camera.viewport_w = viewport_height * scene->canvas.aspect_ratio;
+}
+
+t_vec3	vup(t_vec3 vec)
+{
+	if (vec.x == 0 && vec.y == 1 && vec.z == 0)
+		return (vec3(0, 0, 1));
+	if (vec.x == 0 && vec.y == -1 && vec.z == 0)
+		return (vec3(0, 0, -1));
+	return (vec3(0, 1, 0));
 }
 
 void	set_uvw(t_camera *cam)
 {
 	cam->w = uvec(vmult_f(-1, cam->dir));
-	cam->u = uvec(vcross(vec3(0, 1, 0), cam->w));
+	cam->u = uvec(vcross(vup(cam->w), cam->w));
 	cam->v = vcross(cam->w, cam->u);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:17:38 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/18 14:36:27 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/18 21:36:28 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ double				vlen(const t_vec3 v);
 double				vlen_sqr(const t_vec3 v);
 t_vec3				uvec(const t_vec3 v);
 t_point3			vmin(t_point3 a, t_point3 b);
+t_vec3				vup(t_vec3 vec);
 t_vec3				vec3(const double x, const double y, const double z);
 t_color3			color3(double x, double y, double z);
 t_point3			point3(double x, double y, double z);

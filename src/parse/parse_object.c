@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_object.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 22:32:38 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/12 18:13:34 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/18 20:15:23 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,30 @@ void	parse_cylinder(char **split, t_obj *obj)
 	cylinder.radius = cylinder.diameter / 2;
 	obj->object.cylinder = cylinder;
 	obj->albedo = cylinder.color;
+	return ;
+}
+
+void	parse_cone(char **split, t_obj *obj)
+{
+	t_cone	cone;
+
+	ft_bzero(&cone, sizeof(t_cone));
+	if (!parse_vector(split[1], &obj->coords))
+		error_handle(RT_FILE_ERROR);
+	if (!parse_vector(split[2], &cone.orient))
+		error_handle(RT_FILE_ERROR);
+	if (!parse_double(split[3], &cone.diameter))
+		error_handle(RT_FILE_ERROR);
+	if (!parse_double(split[4], &cone.height))
+		error_handle(RT_FILE_ERROR);
+	if (!parse_color(split[5], &cone.color))
+		error_handle(RT_FILE_ERROR);
+	normalize(&cone.orient);
+	cone.id = id_cone;
+	cone.coords = obj->coords;
+	cone.radius = cone.diameter / 2;
+	cone.r2 = cone.radius * cone.radius;
+	obj->object.cone = cone;
+	obj->albedo = cone.color;
 	return ;
 }

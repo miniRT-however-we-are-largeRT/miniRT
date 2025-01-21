@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:36:06 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/18 15:43:02 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/18 19:52:04 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define NB_PARAMS_PLANE 4
 # define NB_PARAMS_SPHERE 4
 # define NB_PARAMS_CYLINDER 6
-# define NB_PARAMS_CONE 7
+# define NB_PARAMS_CONE 6
 # define NB_PARAMS_TRIANGLE 5
 # define NB_PARAMS_TORUS 6
 
@@ -95,6 +95,18 @@ typedef struct s_cylinder
 	t_color3		color;
 }					t_cylinder;
 
+typedef struct s_cone
+{
+	t_obj_id		id;
+	t_point3		coords;
+	t_vec3			orient;
+	double			diameter;
+	double			radius;
+	double			r2;
+	double			height;
+	t_color3		color;
+}	t_cone;
+
 typedef struct s_sphere
 {
 	t_obj_id		id;
@@ -110,6 +122,7 @@ typedef union u_object
 	t_sphere		sphere;
 	t_plane			plane;
 	t_cylinder		cylinder;
+	t_cone			cone;
 }					t_obj_union;
 
 typedef struct s_obj

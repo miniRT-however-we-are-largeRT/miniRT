@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:03:36 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/18 15:43:42 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/18 19:30:02 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-# define SPP 10
+# define SPP 5
 # define KSN 64
 # define KS 0.7
 # define BRIGHTNESS 2
