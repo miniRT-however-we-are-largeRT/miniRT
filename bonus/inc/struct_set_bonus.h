@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_set_bonus.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:36:06 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/21 14:53:30 by junhyeop         ###   ########.fr       */
+/*   Updated: 2025/01/21 20:00:14 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,13 @@ typedef struct s_plane
 	t_vec3			orient;
 	t_color3		color;
 }					t_plane;
+
+typedef struct s_cyl_hit
+{
+	t_bool		side;
+	t_bool		top_cap;
+	t_bool		bottom_cap;
+}	t_cyl_hit;
 
 typedef struct s_cylinder
 {
