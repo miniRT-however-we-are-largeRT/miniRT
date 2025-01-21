@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   ray_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 17:11:36 by junhyeop          #+#    #+#             */
-/*   Updated: 2025/01/18 19:34:31 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:53:40 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-# define RAY_H
+#ifndef RAY_BONUS_H
+# define RAY_BONUS_H
 
-# include "struct_set.h"
-# include "vec.h"
+# include "struct_set_bonus.h"
+# include "vec_bonus.h"
 
 t_ray		ray_set(t_point3 origin, t_vec3 direction);
 t_point3	ray_at(t_ray ray, double t);

@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.h                                            :+:      :+:    :+:   */
+/*   parse_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 20:43:23 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/18 19:31:44 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:53:44 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_H
-# define PARSE_H
+#ifndef PARSE_BONUS_H
+# define PARSE_BONUS_H
 
-# include "bool.h"
-# include "error_handle.h"
-# include "minirt.h"
-# include "struct_set.h"
-# include "utils.h"
+# include "bool_bonus.h"
+# include "error_handle_bonus.h"
+# include "minirt_bonus.h"
+# include "struct_set_bonus.h"
+# include "utils_bonus.h"
 # include <math.h>
 
 // // file.c

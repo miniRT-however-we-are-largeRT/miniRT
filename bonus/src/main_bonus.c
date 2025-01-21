@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 19:16:52 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/21 14:34:45 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:21:34 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/main.h"
-#include "../inc/minirt.h"
+#include "../inc/main_bonus.h"
+#include "../inc/minirt_bonus.h"
 
 t_data	*get_data(void)
 {

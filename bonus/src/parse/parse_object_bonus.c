@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_object.c                                     :+:      :+:    :+:   */
+/*   parse_object_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 22:32:38 by junhyeong         #+#    #+#             */
-/*   Updated: 2025/01/18 20:15:23 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:16:37 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parse.h"
+#include "../../inc/parse_bonus.h"
 
 void	parse_sphere(char **split, t_obj *obj)
 {

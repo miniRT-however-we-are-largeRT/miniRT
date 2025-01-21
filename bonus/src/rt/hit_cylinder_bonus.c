@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hit_cylinder.c                                     :+:      :+:    :+:   */
+/*   hit_cylinder_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:16:57 by jihyjeon          #+#    #+#             */
-/*   Updated: 2025/01/21 19:44:43 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2025/01/21 19:58:51 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minirt.h"
+#include "../../inc/minirt_bonus.h"
 
 t_bool	hit_cylinder_cap(t_cylinder *cy, t_ray *ray, t_hit_record *rec, int dir)
 {
