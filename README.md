@@ -5,8 +5,9 @@ The **MiniRT** project is part of the 42 curriculum, where the objective is to i
 
 This project introduces students to the fundamentals of computer graphics, specifically focusing on the ray tracing technique, which simulates the behavior of light to generate realistic images.
 
-_ScreenShot!_
-<img width="700" alt="Image" src="https://github.com/user-attachments/assets/b0177ccd-d511-4701-8af0-e606f88dfe9a" />
+> ### _ScreenShot!_
+> <img width="1392" alt="raytracing" src="https://github.com/user-attachments/assets/48f05350-96b3-4123-b66b-308ae71d3d3b" />
+
 
 ---
 
