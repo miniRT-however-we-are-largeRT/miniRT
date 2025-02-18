@@ -1,5 +1,17 @@
 # MiniRT Project
-
+## How To Use
+1. image build
+```bash
+docker build -t minirt .
+```
+2. Host’s X server access rights
+```bash
+xhost +local:docker
+```
+3. Run container
+```bash
+docker run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix minirt
+```
 ## Overview
 The **MiniRT** project is part of the 42 curriculum, where the objective is to implement a ray tracing program. The goal is to render 3D scenes described in a configuration file using a ray tracing algorithm.
 
