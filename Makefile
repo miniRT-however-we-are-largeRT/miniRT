@@ -3,22 +3,22 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+         #
+#    By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/18 14:55:11 by junhyeop          #+#    #+#              #
-#    Updated: 2025/01/21 17:09:10 by junhyeop         ###   ########.fr        #
+#    Updated: 2025/02/18 21:40:28 by junhyeong        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = miniRT
 NAME_BONUS = miniRT_bonus
 
-INCDIR = ./inc
-LIBDIR = ./lib
-SRCDIR = ./src
+INCDIR    = ./inc
+LIBDIR    = ./lib
+SRCDIR    = ./src
 BONUS_DIR = ./bonus
-LIBFTDIR = $(LIBDIR)
-MLXDIR = $(LIBDIR)/mlx
+LIBFTDIR  = $(LIBDIR)
+MLXDIR    = $(LIBDIR)/mlx
 
 SRC =	$(SRCDIR)/main.c \
 		$(SRCDIR)/parse/parse_file.c \
@@ -66,31 +66,35 @@ SRC_BONUS =	$(BONUS_DIR)/$(SRCDIR)/main_bonus.c \
 			$(BONUS_DIR)/$(SRCDIR)/rt/light_bonus.c \
 			$(BONUS_DIR)/$(SRCDIR)/rt/anti_alias_bonus.c
 
-OBJS = $(SRC:.c=.o)
+OBJS       = $(SRC:.c=.o)
 OBJS_BONUS = $(SRC_BONUS:.c=.o)
 
 LIBFT = $(LIBFTDIR)/libft.a
-MLX = $(MLXDIR)/libmlx.dylib
+MLX   = $(MLXDIR)/libmlx.a
 
-CC				= cc
-CFLAGS			= -Wall -Wextra -Werror
-GL_LINK			= -lmlx -lm -L$(MLXDIR) -framework OpenGL -framework AppKit
-FT_LINK			= -lft -L$(LIBFTDIR)
-INCLUDES		= -I$(INCDIR) -I$(MLXDIR) -I$(LIBFTDIR)
-INCLUDES		= -I$(BONUS_DIR)/$(INCDIR) -I$(MLXDIR) -I$(LIBFTDIR)
-RM				= rm -f
+CC      = cc
+CFLAGS  = -Wall -Wextra -Werror
+
+# 리눅스에서는 X11 관련 라이브러리(-lXext, -lX11)를 링크합니다.
+GL_LINK = -L$(MLXDIR) -lmlx -lXext -lX11 -lm
+FT_LINK = -lft -L$(LIBFTDIR)
+
+# inc와 bonus/inc 둘 다 포함
+INCLUDES = -I$(INCDIR) -I$(BONUS_DIR)/$(INCDIR) -I$(MLXDIR) -I$(LIBFTDIR)
+
+RM = rm -f
 
 all: $(NAME)
 
 %.o: %.c $(HEADER)
 	@$(CC) $(CFLAGS) -c $(INCLUDES) $< -o $@
-
+	
 $(NAME): $(LIBFT) $(MLX) $(OBJS)
-	@$(CC) $(CFLAGS) $(FT_LINK) $(GL_LINK) $(INCLUDES) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(FT_LINK) $(GL_LINK) -o $(NAME)
 	@echo "$(NAME): object file and $(NAME) created"
 
 $(NAME_BONUS): $(LIBFT) $(MLX) $(OBJS_BONUS)
-	@$(CC) $(CFLAGS) $(FT_LINK) $(GL_LINK) $(INCLUDES) $(OBJS_BONUS) -o $(NAME_BONUS)
+	@$(CC) $(CFLAGS) $(OBJS_BONUS) $(FT_LINK) $(GL_LINK) -o $(NAME_BONUS)
 	@echo "$(NAME_BONUS): object file and $(NAME_BONUS) created"
 
 $(LIBFT):
@@ -108,7 +112,7 @@ clean:
 	@echo "$(NAME): objects deleted"
 
 fclean: clean
-	@$(RM) libmlx.dylib
+	@$(RM) $(MLX)
 	@$(RM) $(LIBFT)
 	@$(RM) $(NAME) $(NAME_BONUS)
 	@echo "$(NAME): $(NAME), $(NAME_BONUS), $(MLX), $(LIBFT) deleted"
